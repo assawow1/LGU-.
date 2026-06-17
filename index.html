@@ -1,0 +1,2331 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U+인터넷 - 본사직영점 특별 혜택</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 견적서 캡처를 위한 html2canvas 라이브러리 추가 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        uplusPink: '#E6007E',
+                        uplusLightPink: '#FFF0F6',
+                        uplusDark: '#1F1F1F',
+                        kakaoYellow: '#FEE500',
+                        kakaoDark: '#191919',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts (Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #F8F9FA;
+        }
+        /* Smooth transitions */
+        .tab-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* 시뮬레이터 전용 스타일 */
+        .text-uplus { color: #E6007E; }
+        .bg-uplus { background-color: #E6007E; }
+        .border-uplus { border-color: #E6007E; }
+        
+        .sim-input::-webkit-outer-spin-button,
+        .sim-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        .sim-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.2em 1.2em;
+            padding-right: 1.8rem;
+        }
+
+        .free-row { color: #E6007E; font-weight: bold; }
+
+        /* 캡쳐 영역 전용 모바일 최적화 폭 (약 430px) */
+        .mobile-container {
+            max-width: 430px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        
+        /* 스마트홈 스크롤바 감추기 */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased selection:bg-uplusPink selection:text-white">
+
+    <!-- Top Promo Banner -->
+    <div class="bg-gradient-to-r from-pink-500 via-uplusPink to-purple-600 text-white py-4 px-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-center items-center">
+            <div class="flex items-center gap-3 justify-center">
+                <span class="bg-white text-uplusPink font-black text-xs px-3 py-1 rounded-full animate-bounce">NEW</span>
+                <p class="font-semibold text-sm md:text-base text-center">
+                    소상공인/개인 맞춤 본사직영점 할인 요금제 출시! 신규가입 상담 <a href="tel:010-8080-6802" class="underline decoration-wavy hover:text-yellow-200 transition-colors font-extrabold">010-8080-6802</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header / Navigation -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.location.reload()">
+                <span class="text-uplusPink font-black text-2xl tracking-tighter">U<span class="text-gray-900">+</span></span>
+                <span class="text-sm font-bold text-gray-500 tracking-wide">인터넷 본사직영점</span>
+            </div>
+            <!-- Quick Contact -->
+            <div class="flex items-center gap-4 text-sm font-semibold">
+                <a href="tel:010-8080-6802" class="text-gray-600 hover:text-uplusPink hidden sm:inline-flex items-center gap-1 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1.3 1.3 0 01-.321.988l-1.305 1.305a12.933 12.933 0 005.452 5.452l1.305-1.305a1.3 1.3 0 01.98-.306l2.2.55a1 1 0 01.724.947V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    간편 전화상담 010-8080-6802
+                </a>
+                <button onclick="openConsultModal('빠른 간편가입 예약', '가정용')" class="bg-uplusPink text-white hover:bg-pink-700 px-4 py-2 rounded-full text-xs transition-all shadow-md">
+                    빠른 상담 예약
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Tabs Section -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        
+        <!-- Service Main Tabs - 소호 / 가정용 / 숙박업소 형태로 리뉴얼 -->
+        <div class="flex justify-center mb-8 border-b border-gray-200">
+            <nav class="flex gap-4 md:gap-8 justify-center flex-wrap" aria-label="Tabs">
+                <button onclick="switchMainTab('soho')" id="tab-soho" class="border-b-2 border-transparent text-gray-500 hover:text-uplusPink px-4 md:px-6 py-3 font-medium text-base md:text-lg tab-transition">
+                    소호인터넷 (상가/매장)
+                </button>
+                <button onclick="switchMainTab('home')" id="tab-home" class="border-b-2 border-uplusPink text-uplusPink px-4 md:px-6 py-3 font-bold text-base md:text-lg tab-transition">
+                    가정용 인터넷
+                </button>
+                <button onclick="switchMainTab('lodging')" id="tab-lodging" class="border-b-2 border-transparent text-gray-500 hover:text-uplusPink px-4 md:px-6 py-3 font-medium text-base md:text-lg tab-transition">
+                    숙박업소 인터넷
+                </button>
+            </nav>
+        </div>
+
+        <!-- 종류별 혜택 자세히 보기 (신규 추가된 인터랙티브 아코디언 섹션) -->
+        <div class="max-w-4xl mx-auto mb-10 bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden transition-all duration-300">
+            <button onclick="toggleBenefitDetails()" class="w-full px-6 py-5 flex justify-between items-center bg-gradient-to-r from-uplusLightPink/30 to-white hover:bg-uplusLightPink/50 transition-colors text-left focus:outline-none">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl" id="benefit-icon">🏠</span>
+                    <div>
+                        <span class="text-xs font-black text-uplusPink tracking-wider block uppercase" id="benefit-category-tag">가정용 인터넷 가입 특별 혜택</span>
+                        <h4 class="text-base md:text-lg font-black text-gray-900" id="benefit-title">본사직영점 단독 사은품 & 결합 혜택 상세</h4>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold text-gray-500 hidden sm:inline" id="benefit-toggle-text">혜택 자세히 보기 (클릭)</span>
+                    <svg id="benefit-chevron" class="w-6 h-6 text-uplusPink transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+            </button>
+            <div id="benefit-details-content" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out border-t border-gray-50 bg-white">
+                <div class="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm" id="benefit-detailed-body">
+                    <!-- 스크립트에서 선택한 탭 종류에 따라 풍부한 정보가 동적 대입됩니다 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 숙박업소 인터넷 전용 견적 시뮬레이터 실행 배너 -->
+        <div id="lodging-simulator-banner" class="hidden max-w-4xl mx-auto mb-8 bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 text-white rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden animate-fade-in border border-indigo-500/20">
+            <div class="absolute -right-10 -top-10 opacity-15 text-8xl pointer-events-none">📊</div>
+            <div class="relative z-10 text-center md:text-left">
+                <span class="bg-pink-500 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider mb-2.5 inline-block">견적 시뮬레이터</span>
+                <h3 class="text-xl md:text-2xl font-black mb-1">우리 숙박업소 맞춤 다회선 실시간 견적서</h3>
+                <p class="text-xs text-purple-200 leading-relaxed max-w-lg">객실 회선 수, 약정 조건, 인터넷 속도를 다양하게 조율하여 월 최종 납부액과 LG U+ 전용 특별 지원금 혜택을 실시간 산출해 보세요.</p>
+            </div>
+            <button onclick="openSimulator()" class="relative z-10 bg-uplusPink hover:bg-pink-700 text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-lg shadow-pink-500/20 transition-all text-sm shrink-0 flex items-center gap-2 hover:scale-105 active:scale-95">
+                <span>견적 시뮬레이션 시작하기</span> 📊
+            </button>
+        </div>
+
+        <!-- Filter Sub-Tabs for Internet Speeds (삭제됨 - 가정용 탭 전용 필터) -->
+        <div id="speed-filter-container" class="hidden flex flex-wrap justify-center gap-2 mb-10 bg-white p-2 rounded-xl shadow-sm max-w-2xl mx-auto">
+        </div>
+
+        <!-- Plan Grid - 스크립트 기반으로 동적 렌더링 지원 -->
+        <div id="plan-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <!-- 기본 렌더링: 가정용 인터넷 (하단 스크립트에 의해 자동 연계 초기화 처리됨) -->
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 1. 가정용 인터넷 전용: 스마트홈 요금제 Section -->
+        <!-- ========================================================= -->
+        <div id="home-benefits-section" class="mb-16">
+            <div class="flex justify-between items-end mb-6 border-b border-gray-200 pb-3">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">스마트홈 요금제</h2>
+                <button onclick="openConsultModal('스마트홈 요금제 통합 문의', '가정용')" class="bg-gray-100 text-gray-600 px-4 py-2 rounded-lg text-xs font-bold hover:bg-gray-200 transition-colors">요금 상세 안내</button>
+            </div>
+            
+            <!-- 데스크탑에서는 그리드, 모바일에서는 스와이프 가능한 가로 스크롤로 구성 -->
+            <div class="flex overflow-x-auto gap-4 pb-4 hide-scrollbar snap-x">
+                
+                <!-- Card 1 -->
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col relative hover:border-uplusPink transition-colors min-w-[240px] md:min-w-0 md:flex-1 snap-center">
+                    <div class="absolute top-4 right-4 bg-pink-100 text-uplusPink text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">보안</div>
+                    <div class="h-24 flex items-center justify-center mb-2">
+                        <!-- 도어캠 목업 아이콘 -->
+                        <div class="w-[80px] h-[28px] bg-gradient-to-r from-gray-700 to-gray-800 rounded-full flex items-center justify-end px-3 shadow-md border-b-2 border-gray-600">
+                            <div class="w-3 h-3 bg-gray-900 rounded-full border border-gray-600"></div>
+                        </div>
+                    </div>
+                    <h4 class="font-black text-gray-900 text-sm mb-1 flex items-center gap-1 cursor-pointer hover:text-uplusPink">우리집지킴이 도어캠 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></h4>
+                    <p class="text-[10px] text-gray-500 font-bold mb-1">U+스마트홈 결합 할인 ↓</p>
+                    <div class="flex items-baseline gap-1 mb-4">
+                        <span class="text-lg font-black text-gray-900 tracking-tighter">월 12,100원</span>
+                        <span class="text-[9px] text-gray-400 line-through">◀ 월 14,300원</span>
+                    </div>
+                    <div class="flex w-full mb-5 mt-auto">
+                        <button onclick="openConsultModal('우리집지킴이 도어캠 상담', '가정용')" class="w-full py-2.5 border border-uplusPink text-uplusPink bg-white rounded-full text-[11px] font-bold hover:bg-uplusPink hover:text-white transition-all">가입상담 신청</button>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-relaxed pt-4 border-t border-gray-100 break-keep min-h-[60px]">
+                        AI 움직임 감지는 물론 택배/집 안 도난·화재 보상까지, 우리집 보안은 현관부터 걱정 없어요.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col relative hover:border-uplusPink transition-colors min-w-[240px] md:min-w-0 md:flex-1 snap-center">
+                    <div class="absolute top-4 right-4 bg-pink-100 text-uplusPink text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">보안</div>
+                    <div class="h-24 flex items-center justify-center mb-2">
+                        <!-- Easy2+ 목업 (로봇형 카메라) -->
+                        <div class="text-6xl drop-shadow-md relative">
+                            🤖
+                        </div>
+                    </div>
+                    <h4 class="font-black text-gray-900 text-sm mb-1 flex items-center gap-1 cursor-pointer hover:text-uplusPink">우리집지킴이 Easy2+ <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></h4>
+                    <p class="text-[10px] text-gray-500 font-bold mb-1">U+스마트홈 결합 할인 ↓</p>
+                    <div class="flex items-baseline gap-1 mb-4">
+                        <span class="text-lg font-black text-gray-900 tracking-tighter">월 8,800원</span>
+                        <span class="text-[9px] text-gray-400 line-through">◀ 월 11,000원</span>
+                    </div>
+                    <div class="flex w-full mb-5 mt-auto">
+                        <button onclick="openConsultModal('우리집지킴이 Easy2+ 상담', '가정용')" class="w-full py-2.5 border border-uplusPink text-uplusPink bg-white rounded-full text-[11px] font-bold hover:bg-uplusPink hover:text-white transition-all">가입상담 신청</button>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-relaxed pt-4 border-t border-gray-100 break-keep min-h-[60px]">
+                        사각지대 없이 우리 집 안전을 철저하게 지킬 수 있어요.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col relative hover:border-uplusPink transition-colors min-w-[240px] md:min-w-0 md:flex-1 snap-center">
+                    <div class="absolute top-4 right-4 bg-pink-100 text-uplusPink text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">가족</div>
+                    <div class="h-24 flex items-center justify-center mb-2">
+                        <!-- 클락 허브 아이콘 -->
+                        <div class="w-[70px] h-[36px] bg-gray-100 border border-gray-300 rounded-lg flex items-center justify-center shadow-inner relative">
+                            <span class="text-gray-400 font-black text-sm tracking-widest">10:58</span>
+                            <div class="absolute -right-6 top-1 w-4 h-6 bg-white border border-gray-200 rounded flex flex-col items-center justify-center gap-0.5 shadow-sm">
+                                <div class="w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
+                                <div class="w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-black text-gray-900 text-sm mb-1 flex items-center gap-1 cursor-pointer hover:text-uplusPink">우리집돌봄이 Family <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></h4>
+                    <p class="text-[10px] text-gray-500 font-bold mb-1">U+스마트홈 결합 할인 ↓</p>
+                    <div class="flex items-baseline gap-1 mb-4">
+                        <span class="text-lg font-black text-gray-900 tracking-tighter">월 8,800원</span>
+                        <span class="text-[9px] text-gray-400 line-through">◀ 월 11,000원</span>
+                    </div>
+                    <div class="flex w-full mb-5 mt-auto">
+                        <button onclick="openConsultModal('우리집돌봄이 Family 상담', '가정용')" class="w-full py-2.5 border border-uplusPink text-uplusPink bg-white rounded-full text-[11px] font-bold hover:bg-uplusPink hover:text-white transition-all">가입상담 신청</button>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-relaxed pt-4 border-t border-gray-100 break-keep min-h-[60px]">
+                        언제 어디서나 집안을 확인하고 가전과 조명을 제어할 수 있어요.
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col relative hover:border-uplusPink transition-colors min-w-[240px] md:min-w-0 md:flex-1 snap-center">
+                    <div class="absolute top-4 right-4 bg-pink-100 text-uplusPink text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">아이</div>
+                    <div class="h-24 flex items-center justify-center mb-2">
+                        <!-- 타워형 CCTV -->
+                        <div class="w-[30px] h-[55px] bg-gradient-to-b from-gray-700 to-gray-500 rounded-t-full rounded-b-md flex flex-col items-center shadow-md relative">
+                            <div class="w-4 h-4 bg-black rounded-full mt-2 border border-gray-600"></div>
+                            <div class="w-full h-px bg-gray-400 mt-2 opacity-50"></div>
+                        </div>
+                    </div>
+                    <h4 class="font-black text-gray-900 text-sm mb-1 flex items-center gap-1 cursor-pointer hover:text-uplusPink">우리집돌봄이 Kids <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></h4>
+                    <p class="text-[10px] text-gray-500 font-bold mb-1">U+스마트홈 결합 할인 ↓</p>
+                    <div class="flex items-baseline gap-1 mb-4">
+                        <span class="text-lg font-black text-gray-900 tracking-tighter">월 9,900원</span>
+                        <span class="text-[9px] text-gray-400 line-through">◀ 월 12,100원</span>
+                    </div>
+                    <div class="flex w-full mb-5 mt-auto">
+                        <button onclick="openConsultModal('우리집돌봄이 Kids 상담', '가정용')" class="w-full py-2.5 border border-uplusPink text-uplusPink bg-white rounded-full text-[11px] font-bold hover:bg-uplusPink hover:text-white transition-all">가입상담 신청</button>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-relaxed pt-4 border-t border-gray-100 break-keep min-h-[60px]">
+                        초고화질 CCTV와 화재/가전·가구 파손 보험을 이용할 수 있어요.
+                    </p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col relative hover:border-uplusPink transition-colors min-w-[240px] md:min-w-0 md:flex-1 snap-center">
+                    <div class="absolute top-4 right-4 bg-pink-100 text-uplusPink text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">댕냥이</div>
+                    <div class="h-24 flex items-center justify-center mb-2">
+                        <!-- 자동급식기 & 카메라 목업 -->
+                        <div class="flex items-end gap-2">
+                            <div class="w-[36px] h-[45px] bg-white border border-gray-200 shadow-sm rounded-t-lg rounded-b-sm relative">
+                                <div class="absolute top-1 left-1 w-7 h-1 border-b border-gray-100"></div>
+                                <div class="absolute top-3 left-1 w-7 h-1 border-b border-gray-100"></div>
+                            </div>
+                            <div class="w-[20px] h-[30px] bg-white border border-gray-200 shadow-sm rounded-full flex justify-center items-start pt-1">
+                                <div class="w-2.5 h-2.5 bg-black rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-black text-gray-900 text-sm mb-1 flex items-center gap-1 cursor-pointer hover:text-uplusPink">우리집돌봄이 Pet <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></h4>
+                    <p class="text-[10px] text-gray-500 font-bold mb-1">U+스마트홈 결합 할인 ↓</p>
+                    <div class="flex items-baseline gap-1 mb-4">
+                        <span class="text-lg font-black text-gray-900 tracking-tighter">월 8,800원</span>
+                        <span class="text-[9px] text-gray-400 line-through">◀ 월 11,000원</span>
+                    </div>
+                    <div class="flex w-full mb-5 mt-auto">
+                        <button onclick="openConsultModal('우리집돌봄이 Pet 상담', '가정용')" class="w-full py-2.5 border border-uplusPink text-uplusPink bg-white rounded-full text-[11px] font-bold hover:bg-uplusPink hover:text-white transition-all">가입상담 신청</button>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-relaxed pt-4 border-t border-gray-100 break-keep min-h-[60px]">
+                        반려동물과 함께하는 일상을 스마트하게 만들 수 있어요.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 2. 숙박업소 인터넷 전용 Section (즐거움 섹션 복구) -->
+        <!-- ========================================================= -->
+        <div id="lodging-benefits-section" class="hidden mb-16">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-2">U+인터넷만 누릴 수 있는 특별한 즐거움</h2>
+            <p class="text-gray-500 text-center mb-10 text-sm md:text-base">다양하고 차별화된 6가지 핵심 가치를 제공합니다.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-50 hover:border-uplusPink/30 shadow-sm hover:shadow-md transition-all flex justify-between items-start gap-4">
+                    <div>
+                        <h4 class="font-bold text-lg text-gray-900 mb-1">끊김 없이 즐기기</h4>
+                        <p class="text-xs text-gray-500 leading-relaxed">대용량 4K 동영상 스트리밍 및 고화질 실시간 라이브 시청도 안정적으로 지원합니다.</p>
+                    </div>
+                    <div class="bg-pink-50 p-3 rounded-xl text-2xl">📺</div>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-50 hover:border-uplusPink/30 shadow-sm hover:shadow-md transition-all flex justify-between items-start gap-4">
+                    <div>
+                        <h4 class="font-bold text-lg text-gray-900 mb-1">무료로 편리하게</h4>
+                        <p class="text-xs text-gray-500 leading-relaxed">추가 비용 없이 최신 기가 와이파이 공유기 임대료가 전액 면제되어 집안 가득 무선인터넷을 제공합니다.</p>
+                    </div>
+                    <div class="bg-pink-50 p-3 rounded-xl text-2xl">📶</div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-50 hover:border-uplusPink/30 shadow-sm hover:shadow-md transition-all flex justify-between items-start gap-4">
+                    <div>
+                        <h4 class="font-bold text-lg text-gray-900 mb-1">동시 접속도 자유롭게</h4>
+                        <p class="text-xs text-gray-500 leading-relaxed">집안의 모든 스마트폰, PC, 노트북이 동시에 연결되어도 데이터 저하 현상이 최소화됩니다.</p>
+                    </div>
+                    <div class="bg-pink-50 p-3 rounded-xl text-2xl">💻</div>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-50 hover:border-uplusPink/30 shadow-sm hover:shadow-md transition-all flex justify-between items-start gap-4">
+                    <div>
+                        <h4 class="font-bold text-lg text-gray-900 mb-1">안전하게 철통 차단</h4>
+                        <p class="text-xs text-gray-500 leading-relaxed">보이스피싱 사이트, 악성코드 배포지 접근을 인터넷 게이트웨이 단계에서 완벽하게 우회 차단합니다.</p>
+                    </div>
+                    <div class="bg-pink-50 p-3 rounded-xl text-2xl">🛡️</div>
+                </div>
+                <!-- Card 5 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-50 hover:border-uplusPink/30 shadow-sm hover:shadow-md transition-all flex justify-between items-start gap-4">
+                    <div>
+                        <h4 class="font-bold text-lg text-gray-900 mb-1">24시간 원격 자가 진단</h4>
+                        <p class="text-xs text-gray-500 leading-relaxed">인터넷 접속 상태가 의심스러울 때 원격으로 회선을 리셋하고 원격으로 진단하는 스마트 진단 서비스를 받으세요.</p>
+                    </div>
+                    <div class="bg-pink-50 p-3 rounded-xl text-2xl">⚙️</div>
+                </div>
+                <!-- Card 6 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-50 hover:border-uplusPink/30 shadow-sm hover:shadow-md transition-all flex justify-between items-start gap-4">
+                    <div>
+                        <h4 class="font-bold text-lg text-gray-900 mb-1">약정 안심 혜택 보장</h4>
+                        <p class="text-xs text-gray-500 leading-relaxed">약정 만료 시 재약정 혜택을 알아서 추천해드리며 최고 사양 장비 무상 교체 등의 서비스 업그레이드를 지원합니다.</p>
+                    </div>
+                    <div class="bg-pink-50 p-3 rounded-xl text-2xl">🎁</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 3. 소호인터넷 전용 탭 Section (주요 제공 기능) -->
+        <!-- ========================================================= -->
+        <div id="soho-benefits-section" class="hidden mb-16 max-w-5xl mx-auto">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 px-2">주요 제공 기능</h2>
+            
+            <div class="bg-white border border-gray-200 rounded-[2rem] p-6 md:p-10 shadow-sm overflow-hidden">
+                
+                <!-- 내부 탭 전환 메뉴 -->
+                <div class="flex gap-6 border-b border-gray-200 mb-8 relative">
+                    <button onclick="switchSohoBenefit('ai')" id="soho-btn-ai" class="text-xl md:text-2xl font-black text-uplusPink border-b-[3px] border-uplusPink pb-2 -mb-[2px] z-10 transition-all outline-none">U+AI전화</button>
+                    <button onclick="switchSohoBenefit('cctv')" id="soho-btn-cctv" class="text-xl md:text-2xl font-bold text-gray-400 hover:text-gray-600 border-b-[3px] border-transparent pb-2 -mb-[2px] z-10 transition-all outline-none">지능형CCTV</button>
+                </div>
+
+                <!-- 콘텐츠: U+AI전화 -->
+                <div id="soho-content-ai" class="animate-fade-in">
+                    <ul class="space-y-2 mb-10 pl-2">
+                        <li class="flex items-start gap-2 text-gray-600 font-medium text-sm md:text-base break-keep">
+                            <span class="text-gray-400 mt-1">•</span> 
+                            AI가 고객을 응대할 수 있도록 영업 시간, 매장 위치, 주차 정보 등 가게 정보를 등록할 수 있어요.
+                        </li>
+                        <li class="flex items-start gap-2 text-gray-600 font-medium text-sm md:text-base break-keep">
+                            <span class="text-gray-400 mt-1">•</span> 
+                            AI 응대 내역, 고객 문의 유형을 분석한 리포트를 매달 받아 볼 수 있어요.
+                        </li>
+                    </ul>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                        <!-- AI Card 1 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full max-w-[260px] h-[320px] bg-white border-2 border-gray-100 rounded-[2rem] shadow-md p-4 flex flex-col relative overflow-hidden mb-4">
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-1.5 bg-gray-200 rounded-full"></div>
+                                <div class="mt-4 border-b border-gray-100 pb-2 mb-2 flex justify-between items-end">
+                                    <span class="text-[10px] font-black text-gray-800">지능형CCTV <span class="text-indigo-600 border-b-2 border-indigo-600 pb-1">AI 전화</span> AI 예약</span>
+                                </div>
+                                <div class="text-[9px] text-gray-400 font-bold mb-2">우리 가게 정보</div>
+                                
+                                <div class="border border-gray-200 rounded-lg p-2.5 mb-2">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-[11px] font-bold text-gray-700">🎧 AI 음성</span>
+                                        <span class="text-[8px] bg-gray-100 px-2 py-0.5 rounded text-gray-500">변경</span>
+                                    </div>
+                                </div>
+                                <div class="border border-gray-200 rounded-lg p-2.5 mb-2 relative">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-[11px] font-bold text-gray-700">🕒 영업시간과 휴일 정보</span>
+                                        <span class="text-[8px] bg-gray-100 px-2 py-0.5 rounded text-gray-500">변경</span>
+                                    </div>
+                                    <!-- 손가락 클릭 효과 포인트 -->
+                                    <div class="absolute -right-3 -bottom-5 bg-white border border-indigo-200 shadow-lg text-indigo-700 font-black text-xs px-3 py-1.5 rounded-full flex items-center gap-1 z-10 animate-bounce">
+                                        <span class="text-indigo-600">+ 등록</span>
+                                        <span class="text-lg leading-none transform -rotate-12 translate-y-1">👆</span>
+                                    </div>
+                                </div>
+                                <div class="border border-gray-200 rounded-lg p-2.5">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-[11px] font-bold text-gray-700">📍 주소 정보</span>
+                                        <span class="text-[8px] bg-gray-100 px-2 py-0.5 rounded text-gray-500">변경</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-sm font-bold text-gray-800">AI 전화 응대 설정</span>
+                        </div>
+
+                        <!-- AI Card 2 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full max-w-[260px] h-[320px] bg-white border-2 border-indigo-500 rounded-[2rem] shadow-md p-4 flex flex-col relative overflow-hidden mb-4 justify-center">
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-1.5 bg-gray-200 rounded-full"></div>
+                                
+                                <div class="border border-gray-100 rounded-2xl p-4 shadow-sm relative">
+                                    <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
+                                        <span class="text-xs font-black text-gray-800">010-0000-0000(이름)</span>
+                                        <div class="flex gap-1.5">
+                                            <div class="bg-indigo-100 text-indigo-600 p-1.5 rounded-full"><svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg></div>
+                                            <div class="bg-indigo-600 text-white p-1.5 rounded-full"><svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path></svg></div>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-3 mb-2">
+                                        <span class="text-[10px] text-gray-400 w-6">시간</span>
+                                        <span class="text-[10px] font-bold text-gray-800">오후 3:20</span>
+                                    </div>
+                                    <div class="flex gap-3 mb-6">
+                                        <span class="text-[10px] text-gray-400 w-6">내용</span>
+                                        <p class="text-[10px] text-gray-700 leading-relaxed flex-1 bg-gray-50 p-2 rounded-lg break-keep">
+                                            고객님이 작성하신 메모 텍스트 영역입니다. 고객님이 작성하신 메모 텍스트영역입니다.
+                                        </p>
+                                    </div>
+                                    <button class="w-full bg-indigo-50 text-indigo-700 text-[11px] font-bold py-2 rounded-lg">확인하기</button>
+                                </div>
+                            </div>
+                            <span class="text-sm font-bold text-gray-800">고객메모 확인</span>
+                        </div>
+
+                        <!-- AI Card 3 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full max-w-[260px] h-[320px] bg-white border-2 border-indigo-500 rounded-[2rem] shadow-md p-5 flex flex-col relative overflow-hidden mb-4">
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-1.5 bg-gray-200 rounded-full"></div>
+                                <div class="mt-4 mb-6">
+                                    <p class="text-[10px] text-gray-400 font-bold">AI 전화 응대 비중</p>
+                                    <p class="text-lg font-black text-indigo-700 tracking-tighter">84% 응대했어요</p>
+                                </div>
+                                
+                                <!-- Donut Chart SVG Mockup -->
+                                <div class="relative w-full flex-grow flex items-center justify-center -mt-6">
+                                    <svg viewBox="0 0 100 50" class="w-40 h-20 overflow-visible">
+                                        <!-- Background Arch -->
+                                        <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#E0E7FF" stroke-width="12" stroke-linecap="round"></path>
+                                        <!-- Value Arch (84%) -->
+                                        <path d="M 10 50 A 40 40 0 0 1 82 20" fill="none" stroke="#4F46E5" stroke-width="12" stroke-linecap="round"></path>
+                                    </svg>
+                                    <div class="absolute flex flex-col items-center bottom-2">
+                                        <span class="text-[8px] text-gray-400">총 184건 중</span>
+                                        <span class="text-base font-black text-gray-800">139건</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-center gap-4 mt-auto mb-2 border-t border-gray-100 pt-3">
+                                    <div class="flex items-center gap-1">
+                                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                                        <span class="text-[9px] font-bold text-gray-600">AI 전화 응대 수</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="w-2 h-2 rounded-full bg-indigo-200"></span>
+                                        <span class="text-[9px] font-bold text-gray-600">AI 수신 전화 수</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-sm font-bold text-gray-800">고객 응대 내역 분석</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 콘텐츠: 지능형CCTV -->
+                <div id="soho-content-cctv" class="hidden">
+                    <ul class="space-y-2 mb-10 pl-2">
+                        <li class="flex items-start gap-2 text-gray-600 font-medium text-sm md:text-base break-keep">
+                            <span class="text-uplusPink font-bold mt-1">•</span> 
+                            영상 분석 기능으로 외부인 침입이나 카메라 훼손 등의 행동이 감지되면 자동으로 알림을 보내요.
+                        </li>
+                        <li class="flex items-start gap-2 text-gray-600 font-medium text-sm md:text-base break-keep">
+                            <span class="text-gray-400 mt-1">•</span> 
+                            카메라의 화각을 360도 조절할 수 있고, 화면도 확대할 수 있어요.
+                        </li>
+                    </ul>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                        <!-- CCTV Card 1 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full max-w-[260px] h-[320px] bg-white border-2 border-gray-100 rounded-[2rem] shadow-md p-4 flex flex-col relative overflow-hidden mb-4">
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-1.5 bg-gray-200 rounded-full"></div>
+                                <div class="mt-4 flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold text-gray-800">가게 01 <span class="text-[8px] text-gray-400">▼</span></span>
+                                </div>
+                                <div class="flex gap-2 border-b border-gray-100 pb-1 mb-2">
+                                    <span class="text-[9px] font-bold text-indigo-600 border-b border-indigo-600 pb-1">실시간</span>
+                                    <span class="text-[9px] text-gray-400">녹화/감지</span>
+                                    <span class="text-[9px] text-gray-400">출입관리</span>
+                                </div>
+                                <div class="flex justify-between items-center mb-2 px-1">
+                                    <span class="text-[8px] font-bold border border-gray-200 rounded px-1.5 py-0.5">전체 그룹 ▼</span>
+                                    <span class="text-[8px] font-bold border border-gray-200 rounded px-1.5 py-0.5">카메라01 ▼</span>
+                                </div>
+                                <div class="bg-gray-200 flex-grow rounded-lg relative overflow-hidden flex items-center justify-center shadow-inner">
+                                    <!-- Video Placeholder -->
+                                    <div class="absolute inset-0 bg-blue-900/10"></div>
+                                    <div class="absolute bottom-2 left-2 flex gap-1">
+                                        <div class="w-3 h-3 bg-white/80 rounded-sm"></div>
+                                        <div class="w-3 h-3 bg-white/40 rounded-sm"></div>
+                                    </div>
+                                    <svg class="w-8 h-8 text-white/50" fill="currentColor" viewBox="0 0 20 20"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path></svg>
+                                </div>
+                            </div>
+                            <span class="text-sm font-bold text-gray-800">실시간 영상 확인</span>
+                        </div>
+
+                        <!-- CCTV Card 2 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full max-w-[260px] h-[320px] bg-white border-2 border-gray-100 rounded-[2rem] shadow-md p-4 flex flex-col relative overflow-hidden mb-4">
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-1.5 bg-gray-200 rounded-full"></div>
+                                <div class="mt-4 flex gap-2 border-b border-gray-100 pb-1 mb-2">
+                                    <span class="text-[9px] text-gray-400">실시간</span>
+                                    <span class="text-[9px] font-bold text-indigo-600 border-b border-indigo-600 pb-1">녹화/감지</span>
+                                    <span class="text-[9px] text-gray-400">출입관리</span>
+                                </div>
+                                <div class="bg-gray-200 h-[140px] rounded-lg relative overflow-hidden flex items-center justify-center mb-2">
+                                    <div class="absolute inset-0 bg-blue-900/10"></div>
+                                    <svg class="w-6 h-6 text-white/50" fill="currentColor" viewBox="0 0 20 20"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path></svg>
+                                </div>
+                                <!-- Popup Alert Mockup -->
+                                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] bg-white border border-gray-200 shadow-xl rounded-xl p-3 z-10 animate-fade-in">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <p class="text-[11px] font-black text-gray-900 leading-tight">카메라 01 <span class="text-uplusPink">침입 발생</span></p>
+                                            <p class="text-[8px] text-gray-500 mt-0.5">2023/08/29 AM 10:45</p>
+                                        </div>
+                                        <span class="bg-slate-800 text-white text-[9px] font-bold px-2 py-1 rounded-md">출동 신청 ></span>
+                                    </div>
+                                    <p class="text-[7px] text-gray-400 mt-1.5 flex items-center gap-0.5">
+                                        <span class="text-red-500">ⓘ</span> 카메라를 조작 중인 경우 잘못 탐지될 수 있습니다.
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="text-sm font-bold text-gray-800">감지 알림</span>
+                        </div>
+
+                        <!-- CCTV Card 3 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full max-w-[260px] h-[320px] bg-slate-600 border-2 border-slate-700 rounded-[2rem] shadow-md flex flex-col relative overflow-hidden mb-4 justify-center items-center">
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-1.5 bg-gray-400 rounded-full z-10"></div>
+                                <div class="absolute top-4 left-4 flex items-center gap-1 opacity-50">
+                                    <span class="text-[9px] text-white">🚨 출동 서비스 안내</span>
+                                </div>
+                                
+                                <!-- Center Modal -->
+                                <div class="bg-white w-[85%] rounded-xl shadow-2xl p-4 relative z-10">
+                                    <h6 class="text-center font-black text-sm text-gray-900 mb-3">긴급 출동 신청</h6>
+                                    <div class="bg-gray-50 p-2.5 rounded-lg text-[9px] text-gray-700 leading-relaxed mb-3">
+                                        <p>[주소] 서울특별시 용산구 한강대로 32</p>
+                                        <p>[카메라 이름] 카메라01</p>
+                                        <p>[요청 연락처] 010-****-5678</p>
+                                    </div>
+                                    <p class="text-center text-[8px] text-gray-500 mb-4">주소지로 무료 긴급 출동합니다.</p>
+                                    <div class="flex justify-between items-center px-2">
+                                        <span class="text-[10px] text-gray-500 font-bold">취소</span>
+                                        <div class="relative">
+                                            <span class="text-sm font-black text-indigo-600 pr-2">확인</span>
+                                            <!-- Pointer Interaction -->
+                                            <span class="absolute -right-4 -bottom-6 text-2xl animate-bounce">👆</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-sm font-bold text-gray-800">긴급 출동 신청</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Speed Check interactive Banner -->
+        <section class="mb-16">
+            <div class="bg-uplusLightPink border border-pink-100 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden shadow-sm">
+                <div class="absolute -right-8 -bottom-12 opacity-10 text-9xl select-none">🌐</div>
+                <div class="relative z-10 text-center md:text-left">
+                    <span class="bg-uplusPink text-white text-xs font-black px-3 py-1.5 rounded-full uppercase tracking-wider mb-3 inline-block">속도 자가진단</span>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-2">현재 내가 사용중인 인터넷 속도는 최적일까?</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">혹시 요금제 대비 낮은 대역 of 속도를 무작정 사용하고 있진 않으신가요? 1분만에 가상 진단을 실행해 최적의 권장 요금제를 매칭받아보세요.</p>
+                </div>
+                <button onclick="openSpeedTest()" class="relative z-10 bg-uplusPink hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-2xl shadow-lg shadow-pink-200 transition-all text-base shrink-0">
+                    실시간 인터넷 속도 테스트 시작 ⚡
+                </button>
+            </div>
+        </section>
+
+        <!-- Dynamic Subscription Benefits -->
+        <section class="mb-8">
+            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">인터넷 본사직영점만의 3대 가입 혜택</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-white rounded-3xl border border-gray-50 p-8 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-full bg-pink-50 flex items-center justify-center text-3xl mb-6">📉</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">본사직영점 단독 할인</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">대리점 수수료 0%! 오직 본사직영점에서 직접 가입할 때만 매달 추가 월정액 특별 할인이 평생 보장됩니다.</p>
+                </div>
+                <!-- Benefit 2 -->
+                <div class="bg-white rounded-3xl border border-gray-50 p-8 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center text-3xl mb-6">💳</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">제휴카드 상시 추가 혜택</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">U+ 제휴카드로 통신요금 자동이체 시 전월 실적 조건에 따라 추가로 월 최대 25,000원 청구 할인 혜택을 누릴 수 있습니다.</p>
+                </div>
+                <!-- Benefit 3 -->
+                <div class="bg-white rounded-3xl border border-gray-50 p-8 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center text-3xl mb-6">📱</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">모바일 + 인터넷 스마트 결합</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">휴대폰 결합에 가구원 추가 결합까지! 같이 쓸수록 할인폭이 눈덩이처럼 불어나는 초강력 맞춤 유무선 결합 제도입니다.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8 pb-8 border-b border-gray-800">
+                <div>
+                    <h4 class="text-white font-extrabold text-2xl tracking-tighter mb-2">U<span class="text-uplusPink">+</span> 인터넷</h4>
+                    <p class="text-sm text-gray-500">본 페이지는 LGU+ 인터넷 가입 제안용 데모 랜딩 페이지입니다.</p>
+                </div>
+                <div class="flex gap-4">
+                    <a href="tel:010-8080-6802" class="text-white hover:text-uplusPink transition-all font-semibold text-lg">📞 010-8080-6802 (간편 전화상담)</a>
+                </div>
+            </div>
+            
+            <div class="text-xs text-gray-500 space-y-2 leading-relaxed">
+                <p>• 부가세 포함 기준 가격이며, 무약정의 기본 상품 금액 기준 대비 온라인 할인 및 제휴 혜택 등이 적용된 금액입니다.</p>
+                <p>• 가입 후 1년/2년 약정 해지 시, 사용 기간에 따른 위약금(할인반환금)이 발생할 수 있으며 본인 명의 계약에 한해 유지가 가능합니다.</p>
+                <p>• 인터넷 설치 장소의 망 인프라 및 단말 스펙(특히 단말기 무선랜 카드 성능)에 따라 실제 측정 속도는 일부 유동적일 수 있습니다.</p>
+                <p>• 유심/기본 안심 가드 서비스 및 패밀리 결합 등의 자세한 신청 방법은 유선 고객센터(<a href="tel:010-8080-6802" class="underline hover:text-uplusPink">010-8080-6802</a>) 또는 전용 가입센터를 통해 상세하게 전문 설계사로부터 확인할 수 있습니다.</p>
+                <p class="pt-4">© LG Uplus Corp. All Rights Reserved. (Demo Landing Page UI Concept)</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- 1. Interactive Speed Test Modal -->
+    <div id="speed-test-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="speed-modal-content">
+            <button onclick="closeSpeedTest()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 font-bold text-2xl">&times;</button>
+            
+            <div class="text-center">
+                <span class="text-3xl">⚡</span>
+                <h3 class="text-2xl font-black text-gray-900 mt-2 mb-1">인터넷 가상 속도 테스트</h3>
+                <p class="text-xs text-gray-500">현재 사용 중인 브라우저 환경에서 유선/무선 통신 상태를 모방 테스트합니다.</p>
+            </div>
+
+            <!-- Dial Gauge Simulation -->
+            <div class="my-8 flex flex-col items-center justify-center relative">
+                <!-- Outer Arc Indicator -->
+                <div class="w-48 h-48 rounded-full border-8 border-gray-100 flex items-center justify-center relative">
+                    <div id="gauge-fill" class="absolute inset-0 rounded-full border-8 border-transparent border-t-uplusPink/80 border-r-uplusPink/80 rotate-45 transition-transform duration-100 ease-out" style="transform: rotate(-135deg);"></div>
+                    <div class="text-center z-10">
+                        <span id="speed-num" class="text-5xl font-black text-gray-900 block tracking-tight">0.0</span>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Mbps</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-around w-full mt-6 text-center">
+                    <div>
+                        <span class="text-xs text-gray-400 font-bold block">다운로드</span>
+                        <span id="down-result" class="text-lg font-extrabold text-gray-700">- Mbps</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-gray-400 font-bold block">업로드</span>
+                        <span id="up-result" class="text-lg font-extrabold text-gray-700">- Mbps</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-gray-400 font-bold block">지연 시간(Ping)</span>
+                        <span id="ping-result" class="text-lg font-extrabold text-gray-700">- ms</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Speed Test Controls / Status -->
+            <div id="test-status" class="text-center font-bold text-uplusPink text-sm mb-6 h-6">
+                진단 버튼을 클릭하시면 테스트가 진행됩니다.
+            </div>
+
+            <div class="grid grid-cols-1 gap-3">
+                <button id="start-test-btn" onclick="startGaugeSimulation()" class="w-full bg-uplusPink hover:bg-pink-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-pink-100 transition-all text-base">
+                    속도 테스트 시작하기
+                </button>
+                <div id="test-recommendation" class="hidden p-4 bg-gray-50 rounded-2xl border border-gray-100 text-xs text-left">
+                    <span class="font-extrabold text-gray-900 block mb-1">💡 추천 상품 매칭결과:</span>
+                    <p id="recommendation-text" class="text-gray-600 leading-relaxed"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2. Consultation & Sign-Up Application Modal -->
+    <div id="consult-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300" id="consult-modal-content">
+            <button onclick="closeConsultModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 font-bold text-2xl">&times;</button>
+            
+            <div class="mb-6">
+                <h3 class="text-2xl font-black text-gray-900">U+ 가입상담 신청</h3>
+                <p class="text-xs text-gray-500 mt-1">간단한 정보 입력 후 신청하시면 전문 상담사가 1시간 이내 연락해 드립니다.</p>
+            </div>
+
+            <form id="consult-form" onsubmit="submitConsultation(event)" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">선택 요금제</label>
+                    <input type="text" id="target-plan-input" readonly class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-uplusPink font-bold" value="">
+                </div>
+                
+                <!-- 콩 모양 설치 장소 구분 선택 피커 -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-2">설치 장소 구분</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button type="button" onclick="selectPlaceType('상가')" id="place-store" class="place-type-btn py-3 px-2 rounded-full border border-gray-200 text-xs font-bold text-gray-600 bg-white hover:bg-gray-50 active:scale-95 transition-all text-center flex flex-col sm:flex-row items-center justify-center gap-1">
+                            <span>🏬</span> <span>상가</span>
+                        </button>
+                        <button type="button" onclick="selectPlaceType('숙박업소')" id="place-hotel" class="place-type-btn py-3 px-2 rounded-full border border-gray-200 text-xs font-bold text-gray-600 bg-white hover:bg-gray-50 active:scale-95 transition-all text-center flex flex-col sm:flex-row items-center justify-center gap-1">
+                            <span>🏨</span> <span>숙박업소</span>
+                        </button>
+                        <button type="button" onclick="selectPlaceType('가정용')" id="place-home" class="place-type-btn py-3 px-2 rounded-full border border-gray-200 text-xs font-bold text-gray-600 bg-white hover:bg-gray-50 active:scale-95 transition-all text-center flex flex-col sm:flex-row items-center justify-center gap-1">
+                            <span>🏠</span> <span>가정용</span>
+                        </button>
+                    </div>
+                    <!-- Hidden input to store selected value -->
+                    <input type="hidden" id="place-type-input" name="place_type" value="가정용">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">고객명</label>
+                    <input type="text" id="client-name" required placeholder="홍길동" class="w-full border border-gray-200 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-uplusPink focus:ring-1 focus:ring-uplusPink">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">휴대폰 번호</label>
+                    <input type="tel" id="client-phone" required placeholder="010-1234-5678" class="w-full border border-gray-200 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-uplusPink focus:ring-1 focus:ring-uplusPink">
+                </div>
+                
+                <div class="flex flex-col gap-2 pt-1">
+                    <div class="flex items-start gap-2">
+                        <input type="checkbox" id="age-agree" required class="mt-0.5 h-4 w-4 rounded border-gray-300 text-uplusPink focus:ring-uplusPink">
+                        <label for="age-agree" class="text-xs text-gray-600 leading-normal cursor-pointer">
+                            만 14세 이상입니다 <span class="text-uplusPink font-bold">(필수)</span>
+                        </label>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <input type="checkbox" id="privacy-agree" required class="mt-0.5 h-4 w-4 rounded border-gray-300 text-uplusPink focus:ring-uplusPink">
+                        <label for="privacy-agree" class="text-xs text-gray-600 leading-normal cursor-pointer">
+                            개인정보 수집 및 이용 동의 <span class="text-uplusPink font-bold">(필수)</span>
+                        </label>
+                    </div>
+                    
+                    <!-- 개인정보 수집 내역 박스 -->
+                    <div class="mt-1 bg-gray-50 border border-gray-200 rounded-lg p-3 text-[10px] text-gray-600 space-y-2 leading-tight">
+                        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 border-b border-gray-200 pb-1.5">
+                            <span class="font-bold text-gray-800 whitespace-nowrap min-w-[85px]">수집/이용 목적</span>
+                            <span>서비스 가입 상담</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 border-b border-gray-200 pb-1.5">
+                            <span class="font-bold text-gray-800 whitespace-nowrap min-w-[85px]">수집/이용 항목</span>
+                            <span>이름, 휴대전화 번호, 업무용 이메일, 회사명, 가입신청상품, 인입경로, 부서명, 직책 (부서명/직책은 가입자에 한함)</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4">
+                            <span class="font-bold text-gray-800 whitespace-nowrap min-w-[85px]">보유/이용 기간</span>
+                            <span class="text-uplusPink font-bold">상담 신청일로부터 1개월까지 보관 후 파기</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-uplusPink hover:bg-pink-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-pink-100 transition-all text-sm mt-4">
+                    실시간 간편상담 신청하기 ✉️
+                </button>
+            </form>
+
+            <!-- Success message wrapper (hidden initially) -->
+            <div id="consult-success" class="hidden absolute inset-0 bg-white rounded-3xl p-8 flex flex-col items-center justify-center text-center">
+                <span class="text-5xl mb-4 animate-bounce">🎉</span>
+                <h4 class="text-2xl font-black text-gray-900 mb-2">상담 예약이 접수되었습니다!</h4>
+                <p class="text-sm text-gray-500 leading-relaxed max-w-xs mb-4">
+                    담당 전문 상담사가 <strong class="text-uplusPink" id="success-place-type">가정용</strong> 가입 건으로 기재해 주신 휴대전화로 신속히 연락해 드리겠습니다. 감사합니다!
+                </p>
+                <div class="flex flex-col gap-2 w-full max-w-xs">
+                    <!-- 상담 신청 성공 시에도 즉시 1:1 카카오톡 상담을 할 수 있는 서브 루트 마련 -->
+                    <button onclick="openKakaoTalk()" class="w-full bg-kakaoYellow hover:bg-yellow-400 text-kakaoDark text-xs font-black py-3 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5">
+                        <span>💬</span> <span>카카오톡 즉시 상담하기</span>
+                    </button>
+                    <button onclick="closeConsultModal()" class="w-full bg-gray-900 hover:bg-gray-800 text-white text-xs font-bold py-3 rounded-xl transition-all">
+                        돌아가기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3. 대다수 다회선 숙박업소 전용 맞춤 실시간 시뮬레이터 견적 모달 -->
+    <div id="simulator-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-4 md:p-6 shadow-2xl relative scrollbar-thin transform scale-95 opacity-0 transition-all duration-300" id="simulator-modal-content">
+            <button onclick="closeSimulator()" class="absolute top-4 right-5 text-gray-400 hover:text-gray-600 font-bold text-2xl z-20">&times;</button>
+            
+            <div class="text-center mb-4">
+                <span class="text-2xl">📋</span>
+                <h3 class="text-lg font-black text-gray-900">다회선 맞춤 견적 시뮬레이터</h3>
+                <p class="text-[10px] text-gray-400">모달 내부에서 옵션을 변경하고 이미지 캡처를 실행하세요.</p>
+            </div>
+
+            <!-- 캡쳐 대상 영역 고정 -->
+            <div id="sim-capture-area" class="mobile-container overflow-hidden border border-slate-200 rounded-2xl">
+                <!-- 헤더 -->
+                <div class="bg-uplus p-3 text-white flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <div>
+                            <h1 class="text-base font-black tracking-tight uppercase leading-tight">LG Uplus</h1>
+                            <p class="text-[8px] text-pink-100 opacity-90 uppercase tracking-widest leading-none mt-0.5">Business Estimate</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="flex items-center gap-1 bg-black/15 px-2 py-0.5 rounded-md">
+                            <span class="text-[9px] text-pink-100">발행일:</span>
+                            <input type="date" id="sim-docDate" class="bg-transparent border-none outline-none text-white text-[10px] font-bold p-0 w-[78px] sim-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-white">
+                    <!-- 조건 선택 섹션 -->
+                    <div class="mb-3 p-3 bg-slate-50 rounded-lg border border-slate-100 grid grid-cols-2 gap-2" data-html2canvas-ignore="false">
+                        <div class="col-span-2 border-b border-slate-200 pb-1 mb-0.5">
+                            <h2 class="text-[11px] font-bold text-slate-800 flex items-center gap-1.5">
+                                <span class="w-1 h-2.5 bg-uplus rounded-full"></span>
+                                견적 옵션 설정
+                            </h2>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-[8px] font-bold text-slate-400 uppercase mb-0.5">약정 기간</label>
+                            <select id="sim-contract" class="w-full bg-white border border-slate-200 rounded px-1.5 py-1 text-[10px] font-medium focus:ring-1 focus:ring-uplus outline-none sim-select">
+                                <option value="3">3년 약정</option>
+                                <option value="5" selected>5년 약정</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-[8px] font-bold text-slate-400 uppercase mb-0.5">인터넷 종류</label>
+                            <select id="sim-internet" class="w-full bg-white border border-slate-200 rounded px-1.5 py-1 text-[10px] font-medium focus:ring-1 focus:ring-uplus outline-none sim-select">
+                                <option value="기가Slim" selected>기가Slim (500M)</option>
+                                <option value="광랜">광랜 (100M)</option>
+                                <option value="기가1G">기가 1G</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-[8px] font-bold text-slate-400 uppercase mb-0.5">TV 상품</label>
+                            <select id="sim-tv" class="w-full bg-white border border-slate-200 rounded px-1.5 py-1 text-[10px] font-medium focus:ring-1 focus:ring-uplus outline-none sim-select">
+                                <option value="기본형" selected>기본형 (223개)</option>
+                                <option value="실속형">실속형 (217개)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-[8px] font-bold text-slate-400 uppercase mb-0.5 text-uplus">총 회선수 (TV)</label>
+                            <input type="number" id="sim-tvTotal" value="15" class="w-full bg-white border border-slate-200 rounded px-1.5 py-1 text-[10px] font-bold text-uplus focus:ring-1 focus:ring-uplus outline-none sim-input">
+                        </div>
+
+                        <div class="col-span-2 grid grid-cols-2 gap-1.5 border-t border-slate-200 pt-2 mt-1">
+                            <div class="flex items-center gap-1">
+                                <input type="checkbox" id="sim-freeWifi" class="w-3 h-3 accent-uplus" checked>
+                                <label for="sim-freeWifi" class="text-[9px] text-slate-700 font-bold">WIFI 무료 적용</label>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <input type="checkbox" id="sim-freeUHD3" class="w-3 h-3 accent-uplus" checked>
+                                <label for="sim-freeUHD3" class="text-[9px] text-slate-700 font-bold">UHD3셋탑 무료</label>
+                            </div>
+                            <div class="col-span-2 flex items-center mt-0.5">
+                                <label class="inline-block text-[9px] font-bold text-slate-400 mr-1.5">상품권 기준:</label>
+                                <select id="sim-facility" class="bg-white border border-slate-200 rounded px-1.5 py-0.5 text-[9px] focus:ring-1 focus:ring-uplus outline-none sim-select">
+                                    <option value="모텔">모텔</option>
+                                    <option value="원룸">원룸</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 요금 상세 내역 -->
+                    <div class="mb-1 flex justify-between items-end px-1">
+                        <h3 class="text-[11px] font-bold text-slate-800 flex items-center gap-1">
+                            ■ 요금 상세 내역
+                            <span class="text-[9px] font-normal text-slate-500 ml-1">총 <span id="sim-displayTotalLines" class="font-bold text-uplus">15</span>회선</span>
+                        </h3>
+                        <span class="text-[8px] text-slate-400">단위: 원(VAT별도)</span>
+                    </div>
+
+                    <!-- 모바일 표 -->
+                    <div class="border-y border-slate-300 mb-3 w-full">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-slate-50 border-b border-slate-300">
+                                <tr>
+                                    <th class="px-1 py-1 font-bold text-center border-r border-slate-200 text-[8px] text-slate-600 w-[18%]">구분</th>
+                                    <th class="px-1 py-1 font-bold text-center border-r border-slate-200 text-[8px] text-slate-600 w-[34%]">상품명/규격</th>
+                                    <th class="px-1 py-1 font-bold text-center border-r border-slate-200 text-[8px] text-slate-600 w-[12%]">수량</th>
+                                    <th class="px-1 py-1 font-bold text-center border-r border-slate-200 text-[8px] text-slate-600 w-[16%]">단가</th>
+                                    <th class="px-1 py-1 font-bold text-center text-[8px] text-slate-600 w-[20%]">최종금액</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sim-priceTable" class="divide-y divide-slate-200">
+                                <!-- JS에서 동적 렌더링 -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 하단 정보 영역 -->
+                    <div class="flex flex-col gap-3">
+                        <div>
+                            <h3 class="text-[11px] font-bold text-slate-900 flex items-center gap-1 mb-1 px-1">
+                                ■ 사은품 및 특이사항
+                            </h3>
+                            <div class="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                                <p id="sim-contractBasis" class="text-[9px] font-bold text-slate-800 border-b border-slate-300 pb-1 mb-1">5년 약정 기준</p>
+                                <ul class="text-[8px] text-slate-700 space-y-0.5 mb-1.5 leading-tight">
+                                    <li class="flex items-start gap-1">
+                                        <span class="text-uplus font-bold">•</span>
+                                        <span>광케이블 단독 선로 인입 인프라 설치비 전액 무상 면제</span>
+                                    </li>
+                                    <li class="flex items-start gap-1">
+                                        <span class="text-uplus font-bold">•</span>
+                                        <span>OTT 지원 넷플릭스 내장 UHD 셋탑 무료 정책 자동 적용</span>
+                                    </li>
+                                    <li class="flex items-start gap-1">
+                                        <span class="text-uplus font-bold">•</span>
+                                        <span>통합 멀티 리모컨 객실 총 수량 무상 증정</span>
+                                    </li>
+                                </ul>
+                                
+                                <div class="pt-1.5 border-t border-slate-200">
+                                    <div class="flex flex-col">
+                                        <span class="text-[9px] font-bold text-slate-800 uppercase">LG U+ 특전 지원금 (본사 전용 수령액)</span>
+                                        <div class="flex items-baseline justify-between mt-0.5">
+                                            <div class="flex items-baseline gap-0.5">
+                                                <span id="sim-voucherTotal" class="text-base font-black text-red-600 tracking-tight">0</span>
+                                                <span class="text-[10px] font-bold text-red-600">원</span>
+                                            </div>
+                                            <span class="text-[8px] text-slate-400 font-medium">지급(백화점 모바일 상품권 수령 가능)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 합계 영역 -->
+                        <div class="bg-slate-800 p-3 rounded-lg text-white">
+                            <h3 class="text-[10px] font-bold text-pink-200 border-b border-white/20 pb-1 mb-1.5">■ 총 합계 요금</h3>
+                            
+                            <div class="flex justify-between items-center py-0.5">
+                                <span class="text-slate-300 text-[9px]">월 이용료 (VAT 별도)</span>
+                                <span id="sim-subtotal" class="text-[10px] font-bold">0</span>
+                            </div>
+                            <div class="flex justify-between items-center py-0.5 border-b border-white/10 mb-1.5 pb-1">
+                                <span class="text-slate-300 text-[9px]">부가가치세 (10%)</span>
+                                <span id="sim-vatTotal" class="text-[10px] font-bold">0</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-end mt-1">
+                                <div class="flex flex-col">
+                                    <span class="inline-block bg-uplus text-white text-[7px] px-1 py-0.5 rounded font-bold w-max mb-0.5 leading-none">VAT 포함</span>
+                                    <span class="text-[10px] font-bold text-slate-200">최종 월 납부 총액</span>
+                                </div>
+                                <div class="text-right">
+                                    <span id="sim-total" class="text-xl font-black text-white tracking-tighter">0</span>
+                                    <span class="text-[10px] font-bold text-pink-400 ml-0.5">원</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-100 border-t border-slate-200 p-2 text-center text-[7px] text-slate-400 leading-none">
+                    <p>© LG Uplus Corp. All rights reserved.</p>
+                </div>
+            </div>
+
+            <!-- 하단 캡처 단추 -->
+            <div class="mt-4 px-1">
+                <button id="sim-captureBtn" onclick="captureAndSaveSim(this)" class="w-full bg-slate-900 text-white px-5 py-3.5 rounded-2xl flex justify-center items-center gap-2 text-xs font-bold shadow-lg active:scale-95 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                    </svg>
+                    견적서 이미지로 앨범 저장하기
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 4. 카카오톡 실시간 1:1 상담 플로팅 버튼 -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2 group">
+        <!-- 상담 유도 말풍선 툴팁 -->
+        <div class="bg-slate-900 text-white text-[11px] font-bold py-2 px-3.5 rounded-2xl shadow-xl whitespace-nowrap animate-bounce relative right-2 flex items-center gap-1.5 border border-slate-800">
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
+            실시간 카카오톡 1:1 상담 중!
+            <div class="absolute bottom-[-5px] right-6 w-2.5 h-2.5 bg-slate-900 rotate-45 border-r border-b border-slate-800"></div>
+        </div>
+        
+        <!-- 카카오톡 연동 원형 플로팅 버튼 -->
+        <button onclick="openKakaoTalk()" class="bg-kakaoYellow hover:bg-yellow-400 hover:scale-105 active:scale-95 text-kakaoDark p-4 rounded-full shadow-2xl flex items-center justify-center gap-2 transition-all duration-300 ring-4 ring-white/80">
+            <!-- 카카오톡 공식 말풍선 엠블럼 SVG 구현 -->
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3c-5.522 0-10 3.513-10 7.848 0 2.812 1.9 5.277 4.747 6.643-.328 1.218-1.185 4.398-1.221 4.542-.054.211.077.411.282.411.144 0 .28-.052.383-.122.083-.056 1.636-1.111 3.553-2.417.755.127 1.543.193 2.256.193 5.522 0 10-3.513 10-7.848s-4.478-7.85-10-7.85z"/>
+            </svg>
+            <span class="font-extrabold text-sm tracking-tight pr-1">카톡상담</span>
+        </button>
+    </div>
+
+
+    <!-- JS Code -->
+    <script>
+        // 텔레그램 연동 정보 설정
+        const TELEGRAM_CONFIG = {
+            token: '8542782104:AAEf3rcE3ByJvj0OwIYTGv22u0_h56v99Xw', // Telegram Bot Token
+            chatId: '6675909268'                                      // Telegram Chat ID
+        };
+
+        // 🔗 카카오톡 실시간 상담 오픈채팅 / 채널 링크 주소 설정 변수
+        // (이곳의 URL 주소만 사장님의 오픈채팅 주소로 바꿔 끼우시면 즉시 연동됩니다)
+        const KAKAO_TALK_URL = "https://open.kakao.com/o/sXXXXXXXX"; // 예: "https://open.kakao.com/o/sXXXXXXXX"
+
+        // 카카오톡 이동 및 텔레그램 클릭 알림 발송 함수
+        async function openKakaoTalk() {
+            // 사용자 체감 딜레이를 방지하기 위해 카카오톡 링크를 즉시 새 창으로 엽니다.
+            window.open(KAKAO_TALK_URL, '_blank');
+
+            // 텔레그램 알림봇으로 클릭 알림 전송
+            const messageText = `💬 [U+인터넷 알림] 고객이 방금 '카카오톡 실시간 상담' 버튼을 클릭하여 이동했습니다.`;
+            try {
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_CONFIG.token}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CONFIG.chatId,
+                        text: messageText
+                    })
+                });
+            } catch (error) {
+                console.error("카톡 클릭 텔레그램 알림 발송 실패:", error);
+            }
+        }
+
+        // 다회선 견적 시뮬레이터 가격 DB정의
+        const simPriceDB = {
+            "3": {
+                internet: {
+                    "광랜": { price: 25000, desc: "100Mbps 광랜 기본 서비스" },
+                    "기가Slim": { price: 30000, desc: "500Mbps 기가속도 안정적 서비스" },
+                    "기가1G": { price: 35000, desc: "1Gbps 기가속도 가장 빠른 서비스" }
+                },
+                tv: {
+                    "실속형": { main: 12000, sub: 7000, desc: "217개 채널" },
+                    "기본형": { main: 13000, sub: 7500, desc: "223개 채널" }
+                }
+            },
+            "5": {
+                internet: {
+                    "광랜": { price: 20000, desc: "100Mbps 광랜 기본 서비스" },
+                    "기가Slim": { price: 25000, desc: "500Mbps 기가속도 안정적 서비스" },
+                    "기가1G": { price: 30000, desc: "1Gbps 기가속도 가장 빠른 서비스" }
+                },
+                tv: {
+                    "실속형": { main: 10000, sub: 6000, desc: "217개 채널" },
+                    "기본형": { main: 11000, sub: 6500, desc: "223개 채널" }
+                }
+            },
+            equipment: {
+                "WIFI": { price: 1000, desc: "정품 통합형 WIFI (무료정책)" },
+                "구글셋탑": { price: 1000, desc: "구글 셋탑박스" },
+                "UHD3셋탑": { price: 3000, desc: "UHD화질/넷플릭스 등 OTT 지원" }
+            },
+            voucherDB: {
+                "3": {
+                    "광랜": { "모텔": 200000, "원룸": 180000 },
+                    "기가Slim": { "모텔": 230000, "원룸": 210000 },
+                    "기가1G": { "모텔": 240000, "원룸": 220000 }
+                },
+                "5": {
+                    "광랜": { "모텔": 250000, "원룸": 230000 },
+                    "기가Slim": { "모텔": 280000, "원룸": 260000 },
+                    "기가1G": { "모텔": 290000, "원룸": 270000 }
+                }
+            }
+        };
+
+        // 고화질 플랫 벡터 SVG 도출 함수 정의
+        function getRouterSvg() {
+            return `
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="14" width="20" height="6" rx="1" fill="currentColor" fill-opacity="0.1"/>
+                <path d="M6 14v-4" />
+                <path d="M18 14V8" />
+                <path d="M12 14V4" />
+                <circle cx="12" cy="4" r="1" fill="currentColor" />
+            </svg>
+            `;
+        }
+        function getPhoneSvg() {
+            return `
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" fill="currentColor" fill-opacity="0.1"/>
+                <line x1="12" y1="18" x2="12" y2="18.01" />
+                <line x1="9" y1="6" x2="15" y2="6" />
+                <line x1="9" y1="10" x2="15" y2="10" />
+            </svg>
+            `;
+        }
+        function getCctvSvg() {
+            return `
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11a9 9 0 0 0-18 0" fill="currentColor" fill-opacity="0.1"/>
+                <path d="M12 2v3" />
+                <circle cx="12" cy="13" r="3" />
+                <path d="M9 13h6" />
+            </svg>
+            `;
+        }
+        function getTvSvg() {
+            return `
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="13" rx="2" fill="currentColor" fill-opacity="0.1"/>
+                <line x1="12" y1="16" x2="12" y2="21" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+            </svg>
+            `;
+        }
+
+        // 데이터 셋: 각 탭별 보여줄 최적의 전용 상품들 정의
+        const PLAN_DATA = {
+            home: [
+                {
+                    badgeText: '최저요금',
+                    badgeColor: 'bg-teal-600',
+                    bubbleText: '부담 없는 요금으로 가볍게!',
+                    intSpeed: '200M',
+                    tvChan: '217',
+                    intName1: '와이파이기본',
+                    intName2: '안심 200M',
+                    tvName1: '실속형',
+                    tvName2: '',
+                    oldPrice: '40,700원',
+                    newPrice: '29,730원',
+                    giftMain: '상품권 25만원 증정 (실속할인과 택1)',
+                    placeType: '가정용',
+                    subTitle: '인터넷 200M + IPTV 실속형'
+                },
+                {
+                    badgeText: '가장인기',
+                    badgeColor: 'bg-orange-500',
+                    bubbleText: '가장 많은 고객이 선택!',
+                    intSpeed: '500M',
+                    tvChan: '252',
+                    intName1: '와이파이기본',
+                    intName2: '기가슬림안심 500M',
+                    tvName1: '프리미엄',
+                    tvName2: '',
+                    oldPrice: '51,700원',
+                    newPrice: '26,950원',
+                    giftMain: '상품권 35만원 증정 (실속할인과 택1)',
+                    placeType: '가정용',
+                    subTitle: '인터넷 500M + IPTV 프리미엄'
+                },
+                {
+                    badgeText: '최대혜택',
+                    badgeColor: 'bg-uplusPink',
+                    bubbleText: '고사양 게임을 가장 빠르게',
+                    intSpeed: '1G',
+                    tvChan: '257',
+                    intName1: '와이파이기본',
+                    intName2: '기가안심 1G',
+                    tvName1: '프리미엄',
+                    tvName2: 'VOD',
+                    oldPrice: '62,700원',
+                    newPrice: '29,700원',
+                    giftMain: '상품권 38만원 증정 (실속할인과 택1)',
+                    placeType: '가정용',
+                    subTitle: '인터넷 1G + IPTV 프리미엄 VOD'
+                }
+            ],
+            soho: [
+                {
+                    isBundle: true,
+                    title: "가장 많은 사장님의 선택!",
+                    normalPrice: "133,100원",
+                    salePrice: "48,400원",
+                    badgeText: "상품권 5만원 추가 증정",
+                    placeType: "상가",
+                    subTitle: "인터넷 1G + U+AI전화 + CCTV 에스원 안심",
+                    items: [
+                        { name: "인터넷 1G", type: "router" },
+                        { name: "인터넷전화 U+AI전화", type: "phone" },
+                        { name: "CCTV 에스원 안심", type: "cctv" }
+                    ]
+                },
+                {
+                    isBundle: true,
+                    title: "실속 조합을 합리적인 요금으로",
+                    normalPrice: "56,100원",
+                    salePrice: "28,300원",
+                    badgeText: "상품권 5만원 추가 증정",
+                    placeType: "상가",
+                    subTitle: "인터넷 100M + U+AI전화",
+                    items: [
+                        { name: "인터넷 100M", type: "router" },
+                        { name: "인터넷전화 U+AI전화", type: "phone" }
+                    ]
+                },
+                {
+                    isBundle: true,
+                    title: "빈틈없이 든든한 조합",
+                    normalPrice: "155,100원",
+                    salePrice: "68,200원",
+                    badgeText: "상품권 5만원 추가 증정",
+                    placeType: "상가",
+                    subTitle: "인터넷 1G + U+AI전화 + CCTV 에스원 안심 + IPTV 프리미엄",
+                    items: [
+                        { name: "인터넷 1G", type: "router" },
+                        { name: "인터넷전화 U+AI전화", type: "phone" },
+                        { name: "CCTV 에스원 안심", type: "cctv" },
+                        { name: "IPTV 프리미엄", type: "tv" }
+                    ]
+                }
+            ],
+            lodging: [
+                {
+                    speed: '100M',
+                    badgeColor: 'bg-teal-100 text-teal-800',
+                    badgeText: '다세대/펜션 특화',
+                    speedText: '객실별 최대 100M Bulk',
+                    subTitle: '펜션/게스트하우스 IPTV 기본팩',
+                    title: '최저가 벌크 요금으로 전 객실 IPTV 단독 전송망 구축',
+                    normalPrice: '25,000원',
+                    salePrice: '19,800원 (회선당)',
+                    placeType: '숙박업소',
+                    gift: '객실 일괄 전환 시 프리미엄 등급 TV 셋톱박스 무상 교체',
+                    wifi: '각 객실 매립형 전용 벽면 와이파이 허브 100% 무상 설치',
+                    protect: '다객실 동시 점유 트래픽 간섭 격리 안심 이더넷 솔루션'
+                },
+                {
+                    speed: '500M',
+                    badgeColor: 'bg-pink-100 text-uplusPink',
+                    badgeText: '모텔/호텔 강력추천',
+                    speedText: '객실별 최대 500M Bulk',
+                    subTitle: '올인원 모텔 IPTV 기가와이파이팩',
+                    title: '전 객실 끊김 없는 넷플릭스 스트리밍 전용 무선환경',
+                    normalPrice: '31,000원',
+                    salePrice: '24,200원 (회선당)',
+                    placeType: '숙박업소',
+                    gift: '상품권 상담 후 역대급 추가 본사 단독 전액 특별 장려금 지원',
+                    wifi: '500M 전 객실 고화질 영상 송출용 프리미엄 와이파이 임대료 0원',
+                    protect: '객실 내 개인 정보 보장을 위한 스마트 이더넷 보안 가드 기본 탑재'
+                },
+                {
+                    speed: '1G',
+                    badgeColor: 'bg-blue-100 text-blue-800',
+                    badgeText: '대형 프리미엄 호텔',
+                    speedText: '최대 1Gbps 메인넷',
+                    subTitle: '호텔 기가 토탈 AP 솔루션',
+                    title: '대용량 세미나홀, 전 객실 메인 전용선 연동 패키지',
+                    normalPrice: '견적가 문의',
+                    salePrice: '전문 설계팀 일대일 무료 맞춤설계',
+                    placeType: '숙박업소',
+                    gift: '전문 엔지니어의 상시 무료 사이트 서베이 및 정기 무상 검진 지원',
+                    wifi: '중앙 집중식 통합 AP 컨트롤러 및 메인 중계 장비 무상 임대',
+                    protect: '숙박 시설 전용 PMS 연동 통합 클라우드 인프라 제공'
+                }
+            ]
+        };
+
+        // 종류별 세부 혜택 설명 데이터셋 (아코디언용)
+        const BENEFIT_DETAILS_DATA = {
+            home: {
+                tag: "가정용 인터넷 가입 특별 혜택",
+                title: "본사직영점 단독 사은품 & 결합 혜택 상세",
+                icon: "🏠",
+                html: `
+                    <div class="space-y-4">
+                        <h5 class="font-extrabold text-base text-gray-900 border-b border-gray-100 pb-2 flex items-center gap-2">
+                            <span class="text-lg">🎁</span> 최대 45만원 단독 사은품
+                        </h5>
+                        <ul class="space-y-2.5 text-xs text-gray-600 leading-relaxed list-disc pl-4">
+                            <li><strong>최대 45만원 전액 상품권 증정:</strong> 신세계, 홈플러스, L.POINT 등 고객 선호 모바일 백화점 상품권 즉시 모바일 발송.</li>
+                            <li><strong>인기 가전 사은품 무상 업그레이드:</strong> 삼성/LG 32~43인치 스마트 TV, 다이슨 청소기, 공기청정기 등 원하는 사은품으로 대체 가입 가능.</li>
+                            <li><strong>본사직영점 가입 추가 특별 장려금:</strong> 신규 가입 및 개통 완료 시 제공되는 본사 전용의 히든 보너스 혜택 적용.</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="font-extrabold text-base text-gray-900 border-b border-gray-100 pb-2 flex items-center gap-2">
+                            <span class="text-lg">📉</span> 홈 특화 결합 및 공유기 무상
+                        </h5>
+                        <ul class="space-y-2.5 text-xs text-gray-600 leading-relaxed list-disc pl-4">
+                            <li><strong>모바일(휴대폰) 유무선 결합:</strong> 가구 내 U+ 모바일 요금제 사용자 결합 시 월 통신료 최대 44,000원 평생 세이브.</li>
+                            <li><strong>최신형 기가 와이파이6 0원:</strong> 프리미엄 고화질 OTT 시청도 끊김없는 최신 고사양 공유기 임대료 월 4,400원 면제(3년 약정 기준 총 15만원 이득).</li>
+                            <li><strong>패밀리 결합 추가 적용:</strong> 가족 구성원 중 이미 U+ 인터넷을 사용하고 있는 가구가 있다면 추가 회선 할인 기본 중복 적용.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            soho: {
+                tag: "소호인터넷 (상가/매장) 가입 특별 혜택",
+                title: "우리가게 패키지 전용 특별 혜택",
+                icon: "🏬",
+                html: `
+                    <div class="col-span-1 md:col-span-2">
+                        <h4 class="text-xl md:text-2xl font-black text-slate-900 text-center mb-10">특별혜택</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center items-stretch">
+                            
+                            <!-- 1. 우리가게홍보 -->
+                            <div class="flex flex-col items-center w-full">
+                                <h5 class="text-lg md:text-[19px] font-black text-indigo-900 mb-5 bg-indigo-50 px-6 py-2 rounded-full tracking-tight">우리가게홍보</h5>
+                                <div class="w-full max-w-[240px] h-[380px] bg-white border-[6px] border-slate-100 rounded-[2.5rem] shadow-xl p-5 mb-6 flex flex-col relative overflow-hidden">
+                                    <div class="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-1.5 bg-slate-200 rounded-full"></div>
+                                    
+                                    <div class="mt-4 bg-indigo-900 text-white text-[11px] rounded-full px-4 py-1 inline-block mx-auto mb-4 font-bold shadow-sm">우리가게 홍보</div>
+                                    <p class="font-black text-[15px] text-slate-800 leading-snug mb-3 break-keep">200만 LG U+ 고객에게<br>우리 가게를<br>무료로 홍보하세요!</p>
+                                    <p class="text-[9px] text-slate-500 mb-auto leading-relaxed break-keep px-1">'우리가게 홍보'를 신청하고, 가게 쿠폰을 만들면 200만 고객이 이용하는 U+멤버십 앱에 내 가게를 무료로 홍보할 수 있어요.</p>
+                                    
+                                    <!-- 예쁜 SVG 아이콘 적용 -->
+                                    <div class="flex justify-center my-4 text-indigo-400">
+                                        <svg class="w-16 h-16 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                    </div>
+                                    
+                                    <div class="bg-indigo-100 text-indigo-700 rounded-xl p-3 text-[11px] font-black w-full shadow-sm">우리가게 홍보 신청하기</div>
+                                </div>
+                                <p class="text-[13px] md:text-sm text-slate-600 leading-relaxed font-medium break-keep px-2">
+                                    우리가게패키지앱에서 신청하면<br>
+                                    U+one 앱에 <span class="text-uplusPink font-bold">사장님 매장을</span><br>
+                                    <span class="text-uplusPink font-bold">무료로 홍보</span>할 수 있어요.
+                                </p>
+                            </div>
+                            
+                            <!-- 2. 사장님광장 -->
+                            <div class="flex flex-col items-center w-full">
+                                <h5 class="text-lg md:text-[19px] font-black text-indigo-900 mb-5 bg-indigo-50 px-6 py-2 rounded-full tracking-tight">사장님광장</h5>
+                                <div class="w-full max-w-[240px] h-[380px] bg-white border-[6px] border-slate-100 rounded-[2.5rem] shadow-xl p-5 mb-6 flex flex-col relative overflow-hidden text-left">
+                                    <div class="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-1.5 bg-slate-200 rounded-full"></div>
+                                    
+                                    <div class="mt-4 mb-4">
+                                        <h6 class="font-black text-base text-slate-800 tracking-tight">사장님 광장</h6>
+                                        <p class="text-[10px] font-bold text-uplusPink mt-0.5">U+사장님광장 특별 제휴 혜택</p>
+                                    </div>
+                                    
+                                    <div class="flex-grow flex flex-col gap-3">
+                                        <div class="bg-gradient-to-br from-blue-700 to-blue-900 rounded-2xl p-4 text-white shadow-md flex-1 flex flex-col justify-center relative overflow-hidden">
+                                            <div class="absolute right-[-10px] bottom-[-10px] opacity-20">
+                                                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 11a1 1 0 11-2 0 1 1 0 012 0zm4 0a1 1 0 11-2 0 1 1 0 012 0z"/></svg>
+                                            </div>
+                                            <p class="text-[9px] font-semibold text-blue-100 mb-1 opacity-90">위생적인 매장 관리를 위한</p>
+                                            <p class="text-[15px] font-black tracking-tight leading-tight">세스코 (CESCO)<br>전문 컨설팅</p>
+                                        </div>
+                                        <div class="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl p-4 text-white shadow-md flex-1 flex flex-col justify-center relative overflow-hidden">
+                                            <div class="absolute right-[-5px] bottom-[-5px] opacity-20">
+                                                <svg class="w-14 h-14" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/></svg>
+                                            </div>
+                                            <p class="text-[9px] font-semibold text-orange-100 mb-1 opacity-90">골치아픈 법률고민 해결</p>
+                                            <p class="text-[15px] font-black tracking-tight leading-tight">법률상담 (로톡)<br>상담 지원</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-[13px] md:text-sm text-slate-600 leading-relaxed font-medium break-keep px-2">
+                                    U+우리가게패키지 사장님이라면 누구나!<br>
+                                    블로그 홍보, 해충 예방/청소, 홍보물 제작 등<br>
+                                    <span class="text-uplusPink font-bold">매장 운영에 꼭 필요한 혜택</span>을<br>
+                                    골라서 이용할 수 있어요.
+                                </p>
+                            </div>
+
+                            <!-- 3. 상권 분석 -->
+                            <div class="flex flex-col items-center w-full">
+                                <h5 class="text-lg md:text-[19px] font-black text-indigo-900 mb-5 bg-indigo-50 px-6 py-2 rounded-full tracking-tight">상권 분석</h5>
+                                <div class="w-full max-w-[240px] h-[380px] bg-white border-[6px] border-slate-100 rounded-[2.5rem] shadow-xl p-4 mb-6 flex flex-col relative overflow-hidden text-left">
+                                    <div class="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-1.5 bg-slate-200 rounded-full"></div>
+                                    
+                                    <div class="mt-4 flex items-center bg-slate-50 border border-slate-200 rounded-full px-3 py-2 mb-4 shadow-sm">
+                                        <svg class="w-3.5 h-3.5 text-uplusPink mr-1.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                                        <span class="text-[10px] text-slate-700 font-bold truncate">서울특별시 용산구 한강로동</span>
+                                    </div>
+                                    
+                                    <div class="px-1 mb-4">
+                                        <p class="text-[11px] text-slate-500 font-bold mb-1">총 매출</p>
+                                        <p class="text-[22px] font-black text-slate-900 tracking-tighter leading-none">318<span class="text-base font-bold">억</span> 7,822<span class="text-base font-bold">만</span></p>
+                                    </div>
+                                    
+                                    <div class="flex-grow flex flex-col gap-2.5">
+                                        <div class="border border-slate-200 rounded-2xl p-3 bg-white shadow-sm flex flex-col justify-between h-full relative overflow-hidden">
+                                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-yellow-400"></div>
+                                            <p class="text-[12px] font-black text-slate-800 flex items-center gap-1.5"><span class="text-base drop-shadow-sm">🍱</span> 기타일식</p>
+                                            <div class="flex justify-between items-end mt-2">
+                                                <span class="text-[9px] text-slate-500 font-medium">총 매출<br><b class="text-slate-900 text-[11px]">11억 6,174만</b></span>
+                                                <span class="text-[9px] text-slate-500 font-medium text-right">월평균 매출<br><b class="text-slate-900 text-[11px]">3,630만</b></span>
+                                            </div>
+                                        </div>
+                                        <div class="border border-slate-200 rounded-2xl p-3 bg-white shadow-sm flex flex-col justify-between h-full relative overflow-hidden">
+                                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-orange-400"></div>
+                                            <p class="text-[12px] font-black text-slate-800 flex items-center gap-1.5"><span class="text-base drop-shadow-sm">🍣</span> 초밥/사시미</p>
+                                            <div class="flex justify-between items-end mt-2">
+                                                <span class="text-[9px] text-slate-500 font-medium">총 매출<br><b class="text-slate-900 text-[11px]">4억 7,110만</b></span>
+                                                <span class="text-[9px] text-slate-500 font-medium text-right">월평균 매출<br><b class="text-slate-900 text-[11px]">2,479만</b></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-[13px] md:text-sm text-slate-600 leading-relaxed font-medium break-keep px-2">
+                                    사장님 매장이 위치한 상권의 <span class="text-uplusPink font-bold">평균 매출,</span><br>
+                                    <span class="text-uplusPink font-bold">생활 인구 현황, 배달 이용 현황</span> 등의<br>
+                                    상권분석을 앱에서 한 일 번에 확인할 수 있어요.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                `
+            },
+            lodging: {
+                tag: "숙박업소 인터넷 가입 특별 혜택",
+                title: "다객실 벌크(Bulk) 다회선 전용 맞춤 혜택 상세",
+                icon: "🏨",
+                html: `
+                    <div class="space-y-4">
+                        <h5 class="font-extrabold text-base text-gray-900 border-b border-gray-100 pb-2 flex items-center gap-2">
+                            <span class="text-lg">📺</span> 전 객실 고사양 IPTV & OTT 지원
+                        </h5>
+                        <ul class="space-y-2.5 text-xs text-gray-600 leading-relaxed list-disc pl-4">
+                            <li><strong>넷플릭스/유튜브 빌트인 최신 셋톱박스:</strong> 별도 동글 없이 전 객실에서 원터치로 고화질 OTT 재생이 가능한 셋톱 장비 파격 무상 교체.</li>
+                            <li><strong>다회선 대량 벌크 가입 전용 견적:</strong> 펜션, 호텔, 모텔 등 객실 회선 규모에 맞춰 최대 60% 이상의 기본요금 단체 할인율 적용.</li>
+                            <li><strong>중앙 방송 및 객실 키텍 시스템 완벽 호환:</strong> 호텔 내부 관리망 및 기존 인프라에 맞춰 깔끔하게 배선 공사 및 마감 설계 무료 진단.</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="font-extrabold text-base text-gray-900 border-b border-gray-100 pb-2 flex items-center gap-2">
+                            <span class="text-lg">🌐</span> 호텔용 프리미엄 무선 통합 네트워크
+                        </h5>
+                        <ul class="space-y-2.5 text-xs text-gray-600 leading-relaxed list-disc pl-4">
+                            <li><strong>벽면 매립형 Wi-Fi 허브 전 객실 무상 적용:</strong> 인테리어를 해치지 않는 슬림형 고출력 매립 무선 AP를 전 객실 개별 설치해 음영지역 제로화.</li>
+                            <li><strong>중앙 클라우드 무선 AP 컨트롤러:</strong> 특정 객실의 무리한 대용량 다운로드 및 트래픽 독점을 사전에 스마트 제어해 전 투숙객 품질 상시 보장.</li>
+                            <li><strong>무상 정기 출장 기술 점검 서비스:</strong> 가입 기간 내 원격 회선 자가 진단 및 전문 네트워크 전담 부서 24시간 실시간 트러블슈팅 케어 제공.</li>
+                        </ul>
+                    </div>
+                `
+            }
+        };
+
+        let isBenefitExpanded = false;
+
+        function toggleBenefitDetails() {
+            const content = document.getElementById('benefit-details-content');
+            const chevron = document.getElementById('benefit-chevron');
+            const toggleText = document.getElementById('benefit-toggle-text');
+            
+            isBenefitExpanded = !isBenefitExpanded;
+            if (isBenefitExpanded) {
+                if (content) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+                if (chevron) {
+                    chevron.classList.add('rotate-180');
+                }
+                if (toggleText) {
+                    toggleText.innerText = "혜택 접기";
+                }
+            } else {
+                if (content) {
+                    content.style.maxHeight = "0px";
+                }
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                }
+                if (toggleText) {
+                    toggleText.innerText = "혜택 자세히 보기 (클릭)";
+                }
+            }
+        }
+
+        // 소호인터넷 하단 혜택 렌더링 스크립트 전환 함수
+        function switchSohoBenefit(type) {
+            const btnAi = document.getElementById('soho-btn-ai');
+            const btnCctv = document.getElementById('soho-btn-cctv');
+            const contentAi = document.getElementById('soho-content-ai');
+            const contentCctv = document.getElementById('soho-content-cctv');
+
+            if (type === 'ai') {
+                if(btnAi) btnAi.className = 'text-xl md:text-2xl font-black text-uplusPink border-b-[3px] border-uplusPink pb-2 -mb-[2px] z-10 transition-all outline-none';
+                if(btnCctv) btnCctv.className = 'text-xl md:text-2xl font-bold text-gray-400 hover:text-gray-600 border-b-[3px] border-transparent pb-2 -mb-[2px] z-10 transition-all outline-none';
+                if(contentAi) {
+                    contentAi.classList.remove('hidden');
+                    contentAi.classList.add('animate-fade-in');
+                }
+                if(contentCctv) {
+                    contentCctv.classList.add('hidden');
+                    contentCctv.classList.remove('animate-fade-in');
+                }
+            } else {
+                if(btnCctv) btnCctv.className = 'text-xl md:text-2xl font-black text-uplusPink border-b-[3px] border-uplusPink pb-2 -mb-[2px] z-10 transition-all outline-none';
+                if(btnAi) btnAi.className = 'text-xl md:text-2xl font-bold text-gray-400 hover:text-gray-600 border-b-[3px] border-transparent pb-2 -mb-[2px] z-10 transition-all outline-none';
+                if(contentCctv) {
+                    contentCctv.classList.remove('hidden');
+                    contentCctv.classList.add('animate-fade-in');
+                }
+                if(contentAi) {
+                    contentAi.classList.add('hidden');
+                    contentAi.classList.remove('animate-fade-in');
+                }
+            }
+        }
+
+        // 메인 탭 전환 로직 (소호 / 가정용 / 숙박업소 요금제 및 세부 혜택 동적 변경)
+        function switchMainTab(tabName) {
+            const tabs = ['soho', 'home', 'lodging'];
+            tabs.forEach(t => {
+                const tabEl = document.getElementById(`tab-${t}`);
+                if (tabEl) {
+                    if (t === tabName) {
+                        tabEl.classList.remove('border-transparent', 'text-gray-500');
+                        tabEl.classList.add('border-uplusPink', 'text-uplusPink', 'font-bold');
+                    } else {
+                        tabEl.classList.add('border-transparent', 'text-gray-500');
+                        tabEl.classList.remove('border-uplusPink', 'text-uplusPink', 'font-bold');
+                    }
+                }
+            });
+
+            // 혜택 자세히 보기 아코디언 콘텐츠 동적 변경 연동
+            const benefitData = BENEFIT_DETAILS_DATA[tabName];
+            if (benefitData) {
+                const bIcon = document.getElementById('benefit-icon');
+                const bTag = document.getElementById('benefit-category-tag');
+                const bTitle = document.getElementById('benefit-title');
+                const bBody = document.getElementById('benefit-detailed-body');
+                
+                if (bIcon) bIcon.innerText = benefitData.icon;
+                if (bTag) bTag.innerText = benefitData.tag;
+                if (bTitle) bTitle.innerText = benefitData.title;
+                if (bBody) bBody.innerHTML = benefitData.html;
+
+                if (isBenefitExpanded) {
+                    const content = document.getElementById('benefit-details-content');
+                    if (content) {
+                        content.style.maxHeight = "none";
+                        setTimeout(() => {
+                            content.style.maxHeight = content.scrollHeight + "px";
+                        }, 50);
+                    }
+                }
+            }
+
+            const speedFilterContainer = document.getElementById('speed-filter-container');
+            const lodgingSimulatorBanner = document.getElementById('lodging-simulator-banner');
+            
+            const homeBenefitsSection = document.getElementById('home-benefits-section');
+            const defaultBenefitsSection = document.getElementById('default-benefits-section');
+            const sohoBenefitsSection = document.getElementById('soho-benefits-section');
+            
+            // 모든 하단 혜택 섹션 초기화 (숨김)
+            if (homeBenefitsSection) homeBenefitsSection.classList.add('hidden');
+            if (defaultBenefitsSection) defaultBenefitsSection.classList.add('hidden');
+            if (sohoBenefitsSection) sohoBenefitsSection.classList.add('hidden');
+            if (speedFilterContainer) speedFilterContainer.classList.add('hidden');
+            if (lodgingSimulatorBanner) lodgingSimulatorBanner.classList.add('hidden');
+
+            if (tabName === 'home') {
+                if (homeBenefitsSection) homeBenefitsSection.classList.remove('hidden');
+            } else if (tabName === 'soho') {
+                if (sohoBenefitsSection) {
+                    sohoBenefitsSection.classList.remove('hidden');
+                    switchSohoBenefit('ai'); // 기본 U+AI전화 활성
+                }
+            } else if (tabName === 'lodging') {
+                if (lodgingSimulatorBanner) lodgingSimulatorBanner.classList.remove('hidden');
+                if (defaultBenefitsSection) defaultBenefitsSection.classList.remove('hidden');
+            }
+
+            // 요금제 렌더링 실행
+            renderPlanGrid(tabName);
+        }
+
+        // 요금제 카드 동적 렌더링 함수
+        function renderPlanGrid(category) {
+            const planGrid = document.getElementById('plan-grid');
+            if (!planGrid) return;
+            
+            const data = PLAN_DATA[category];
+            if (!data) return;
+
+            let htmlContent = '';
+
+            // 소호 인터넷인 경우 업로드해주신 이미지의 수려한 가이드라인 그대로 맞춤 구조 렌더링
+            if (category === 'soho') {
+                data.forEach(item => {
+                    let itemsHtml = '';
+                    item.items.forEach((subItem, index) => {
+                        let iconSvg = '';
+                        if (subItem.type === 'router') {
+                            iconSvg = `<div class="bg-indigo-50 p-3 rounded-2xl text-indigo-500 flex items-center justify-center">${getRouterSvg()}</div>`;
+                        } else if (subItem.type === 'phone') {
+                            iconSvg = `<div class="bg-blue-50 p-3 rounded-2xl text-blue-500 flex items-center justify-center">${getPhoneSvg()}</div>`;
+                        } else if (subItem.type === 'cctv') {
+                            iconSvg = `<div class="bg-purple-50 p-3 rounded-2xl text-purple-500 flex items-center justify-center">${getCctvSvg()}</div>`;
+                        } else if (subItem.type === 'tv') {
+                            iconSvg = `<div class="bg-teal-50 p-3 rounded-2xl text-teal-500 flex items-center justify-center">${getTvSvg()}</div>`;
+                        }
+
+                        itemsHtml += `
+                            <div class="flex flex-col items-center justify-center flex-1 max-w-[80px]">
+                                ${iconSvg}
+                                <span class="text-[9px] md:text-[10px] font-extrabold text-slate-800 text-center mt-2.5 h-8 flex items-center justify-center break-keep leading-tight tracking-tighter">${subItem.name}</span>
+                            </div>
+                        `;
+
+                        if (index < item.items.length - 1) {
+                            itemsHtml += `
+                                <div class="flex items-center justify-center text-slate-300 font-black text-sm select-none h-12 self-start mt-3 px-0.5 md:px-1">+</div>
+                            `;
+                        }
+                    });
+
+                    htmlContent += `
+                    <div class="plan-card h-full bg-white rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 relative flex flex-col pt-8 pb-10 px-4 md:px-5">
+                        <!-- Card Title -->
+                        <h2 class="text-lg lg:text-[19px] font-black text-slate-900 text-center mb-6 tracking-tighter break-keep leading-snug min-h-[56px] flex items-center justify-center">${item.title}</h2>
+                        
+                        <!-- Icons Bundle Container -->
+                        <div class="flex justify-center items-start w-full mb-6 flex-grow">
+                            ${itemsHtml}
+                        </div>
+
+                        <!-- Price Area -->
+                        <div class="text-center border-t border-slate-50 pt-6 mb-6 mt-auto">
+                            <span class="text-[10px] font-bold text-slate-400 block mb-1">총 납부금액 예상가</span>
+                            <span class="text-xs text-slate-400 line-through font-bold">월 ${item.normalPrice}</span>
+                            <div class="flex items-baseline justify-center gap-0.5 mt-0.5">
+                                <span class="text-sm font-black text-uplusPink">월</span>
+                                <span class="text-2xl md:text-[26px] lg:text-3xl font-black text-uplusPink tracking-tighter">${item.salePrice}</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="w-full mt-auto">
+                            <button onclick="openConsultModal('${item.subTitle} 상담 신청', '${item.placeType}')" class="w-full py-3.5 px-4 rounded-full bg-uplusPink hover:bg-pink-700 text-white font-bold text-[13px] active:scale-95 transition-all shadow-md shadow-pink-100 whitespace-nowrap tracking-tighter">
+                                가입상담 신청
+                            </button>
+                        </div>
+
+                        <!-- Floating Bottom Badge -->
+                        <div class="absolute bottom-[-16px] left-1/2 -translate-x-1/2 bg-gradient-to-r from-slate-800 to-indigo-950 text-white text-[10px] font-black py-2 px-5 rounded-full shadow-lg flex items-center gap-1.5 whitespace-nowrap tracking-tight">
+                            <span class="text-xs">💵</span> ${item.badgeText}
+                        </div>
+                    </div>
+                    `;
+                });
+            } else if (category === 'home') {
+                htmlContent += `<div class="col-span-1 md:col-span-3 text-center md:text-left mb-2"><h2 class="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">인터넷+IPTV 결합 상품을 추천해 드려요</h2></div>`;
+                data.forEach(item => {
+                    htmlContent += `
+                    <div class="plan-card bg-white rounded-3xl border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300 relative flex flex-col pt-8 pb-8 px-5 md:px-6 mt-4">
+                        <!-- Top Badge -->
+                        <div class="absolute -top-3 left-6 ${item.badgeColor} text-white text-[10px] font-bold px-2 py-1 rounded-sm shadow-sm">
+                            ${item.badgeText}
+                        </div>
+
+                        <!-- Bubble -->
+                        <div class="flex justify-center mb-6 relative">
+                            <div class="border border-gray-200 rounded-full px-4 py-1.5 text-xs font-bold text-gray-600 bg-white shadow-sm relative z-10 break-keep text-center">
+                                ${item.bubbleText}
+                            </div>
+                            <!-- Bubble Tail -->
+                            <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-b border-r border-gray-200 transform rotate-45 z-0"></div>
+                        </div>
+
+                        <!-- Icons & Specs -->
+                        <div class="flex justify-center items-start gap-2 md:gap-4 mb-8">
+                            <!-- Internet -->
+                            <div class="flex flex-col items-center flex-1">
+                                <div class="relative w-16 h-16 md:w-20 md:h-20 rounded-full border-[3px] border-uplusPink flex flex-col items-center justify-center bg-white z-10 mb-3 shadow-inner">
+                                    <!-- Dashed Arc SVG to mimic gauge -->
+                                    <svg class="absolute inset-0 w-full h-full text-uplusPink transform -rotate-90" viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="10 6" opacity="0.3" stroke-dashoffset="20"></circle>
+                                    </svg>
+                                    <span class="text-lg md:text-[22px] font-black text-gray-900 leading-none tracking-tighter">${item.intSpeed.replace(/[A-Z]/g, '')}<span class="text-xs">${item.intSpeed.replace(/[0-9]/g, '')}</span></span>
+                                    <span class="text-[8px] md:text-[9px] font-bold text-gray-500 tracking-widest mt-0.5">bps</span>
+                                </div>
+                                <span class="text-[11px] font-black text-gray-800 mb-0.5">인터넷</span>
+                                <span class="text-[9px] text-gray-500 font-medium">${item.intName1}</span>
+                                <span class="text-[9px] text-gray-500 font-medium">${item.intName2}</span>
+                            </div>
+
+                            <!-- Plus -->
+                            <div class="flex items-center justify-center h-16 md:h-20 text-gray-300 font-light text-2xl pt-2">+</div>
+
+                            <!-- TV -->
+                            <div class="flex flex-col items-center flex-1">
+                                <div class="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl border-[3px] border-uplusPink flex flex-col items-center justify-center bg-white z-10 mb-3 shadow-inner">
+                                    <div class="absolute -top-[7px] left-1/2 -translate-x-1/2 w-4 md:w-5 h-2 border-t-[3px] border-l-[3px] border-r-[3px] border-uplusPink rounded-t-sm bg-white"></div>
+                                    <span class="text-lg md:text-[22px] font-black text-gray-900 leading-none tracking-tighter">${item.tvChan}</span>
+                                    <span class="text-[9px] md:text-[10px] font-bold text-gray-500 tracking-widest mt-0.5">채널</span>
+                                </div>
+                                <span class="text-[11px] font-black text-gray-800 mb-0.5">IPTV</span>
+                                <span class="text-[9px] text-gray-500 font-medium">${item.tvName1}</span>
+                                <span class="text-[9px] text-gray-500 font-medium">${item.tvName2}</span>
+                            </div>
+                        </div>
+
+                        <!-- Price Area -->
+                        <div class="flex flex-col mt-auto mb-4">
+                            <div class="flex justify-between items-center mb-2 px-2">
+                                <span class="text-[10px] text-gray-500">월 이용요금 (3년 약정 기준)</span>
+                                <span class="text-[11px] text-gray-400 line-through font-bold">${item.oldPrice}</span>
+                            </div>
+                            <div class="flex justify-center my-1 relative">
+                                <div class="w-full border-t border-gray-100 absolute top-1/2"></div>
+                                <div class="bg-white border border-gray-200 rounded-full w-6 h-6 flex items-center justify-center z-10 shadow-sm text-gray-400">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center mt-2 px-2">
+                                <span class="text-xs font-black text-gray-900">총 납부금액</span>
+                                <span class="text-xl md:text-[22px] font-black text-uplusPink tracking-tighter">월 ${item.newPrice}</span>
+                            </div>
+                        </div>
+
+                        <!-- Gift Box -->
+                        <div class="bg-gray-50 rounded-xl p-4 text-center mb-5 border border-gray-100">
+                            <p class="text-[11px] md:text-xs font-black text-gray-800 mb-1 tracking-tight">${item.giftMain}</p>
+                            <p class="text-[9px] text-gray-500">※ 총 납부금액은 실속할인 적용 기준</p>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="w-full mt-auto">
+                            <button onclick="openConsultModal('${item.subTitle} 상담 신청', '${item.placeType}')" class="w-full py-3.5 px-4 rounded-full border-2 border-uplusPink text-uplusPink bg-white font-bold text-[13px] hover:bg-uplusPink hover:text-white active:scale-95 transition-all whitespace-nowrap tracking-tighter">
+                                가입상담 신청
+                            </button>
+                        </div>
+                    </div>
+                    `;
+                });
+            } else {
+                // 숙박업소 탭은 일반 다중 표 양식 렌더링 유지
+                data.forEach(item => {
+                    htmlContent += `
+                    <div class="plan-card bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col" data-speed="${item.speed}">
+                        <div class="p-6 md:p-8 flex-grow">
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="${item.badgeColor} text-xs font-bold px-2.5 py-1 rounded-md">${item.badgeText}</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-1 rounded-md">${item.speedText}</span>
+                            </div>
+                            <h3 class="text-gray-500 text-xs font-bold uppercase tracking-wider">${item.subTitle}</h3>
+                            <h2 class="text-xl font-bold text-gray-900 mt-1 mb-3">${item.title}</h2>
+                            
+                            <div class="my-6">
+                                ${item.normalPrice !== '견적가 문의' ? `<span class="text-gray-400 text-xs line-through block">정상가 ${item.normalPrice}</span>` : ''}
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-sm font-bold text-uplusPink">본사직영점 특가</span>
+                                    <span class="text-2xl md:text-3xl font-extrabold text-gray-900">${item.salePrice}</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons - 상담 유형인 placeType 매개변수로 자동 선택 추가 -->
+                            <div class="w-full mt-6">
+                                <button onclick="openConsultModal('${item.subTitle} 상담 신청', '${item.placeType}')" class="w-full py-3.5 px-4 rounded-xl bg-uplusPink hover:bg-pink-700 text-white font-bold text-sm transition-all shadow-md shadow-pink-100">가입상담 신청</button>
+                            </div>
+                        </div>
+
+                        <!-- Features list in card footer -->
+                        <div class="bg-gray-50 p-6 border-t border-gray-100 text-xs text-gray-500 space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm text-base">
+                                    🎁
+                                </div>
+                                <div>
+                                    <span class="font-bold text-gray-700 block">무료 사은품 혜택</span>
+                                    ${item.gift}
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm text-base">
+                                    📶
+                                </div>
+                                <div>
+                                    <span class="font-bold text-gray-700 block">와이파이 사양</span>
+                                    ${item.wifi}
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm text-base">
+                                    🛡️
+                                </div>
+                                <div>
+                                    <span class="font-bold text-gray-700 block">차단 및 안전 서비스</span>
+                                    ${item.protect}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                });
+            }
+
+            planGrid.innerHTML = htmlContent;
+        }
+
+        // 설치 장소 구분 선택 피커 로직 (콩 모양 활성화 토글)
+        function selectPlaceType(type) {
+            document.querySelectorAll('.place-type-btn').forEach(btn => {
+                btn.classList.remove('border-uplusPink', 'bg-uplusLightPink', 'text-uplusPink', 'ring-1', 'ring-uplusPink');
+                btn.classList.add('border-gray-200', 'text-gray-600', 'bg-white');
+            });
+            
+            let targetId = '';
+            if (type === '상가') targetId = 'place-store';
+            else if (type === '숙박업소') targetId = 'place-hotel';
+            else if (type === '가정용') targetId = 'place-home';
+            
+            const targetBtn = document.getElementById(targetId);
+            if (targetBtn) {
+                targetBtn.classList.remove('border-gray-200', 'text-gray-600', 'bg-white');
+                targetBtn.classList.add('border-uplusPink', 'bg-uplusLightPink', 'text-uplusPink', 'ring-1', 'ring-uplusPink');
+            }
+            
+            const placeTypeInput = document.getElementById('place-type-input');
+            if (placeTypeInput) {
+                placeTypeInput.value = type;
+            }
+        }
+
+        // Consultation Modal operations (defaultPlaceType 파라미터 매칭 추가)
+        function openConsultModal(planTitle, defaultPlaceType) {
+            const modal = document.getElementById('consult-modal');
+            const content = document.getElementById('consult-modal-content');
+            const input = document.getElementById('target-plan-input');
+            const successOverlay = document.getElementById('consult-success');
+            const consultForm = document.getElementById('consult-form');
+            
+            if (successOverlay) successOverlay.classList.add('hidden');
+            if (consultForm) consultForm.reset();
+            
+            // 입력받은 기본 설치유형 자동선택 콩 클릭 처리
+            if (defaultPlaceType) {
+                selectPlaceType(defaultPlaceType);
+            } else {
+                selectPlaceType('가정용');
+            }
+
+            if (input) input.value = planTitle;
+            if (modal) modal.classList.remove('hidden');
+            
+            if (content) {
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+        }
+
+        function closeConsultModal() {
+            const modal = document.getElementById('consult-modal');
+            const content = document.getElementById('consult-modal-content');
+            
+            if (content) {
+                content.classList.remove('scale-100', 'opacity-100');
+                content.classList.add('scale-95', 'opacity-0');
+            }
+            
+            if (modal) {
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // 텔레그램 연동 가입상담 신청 제출 로직
+        async function submitConsultation(event) {
+            event.preventDefault();
+            
+            const planInput = document.getElementById('target-plan-input');
+            const placeTypeInput = document.getElementById('place-type-input');
+            const nameInput = document.getElementById('client-name');
+            const phoneInput = document.getElementById('client-phone');
+
+            const plan = planInput ? planInput.value : '';
+            const placeType = placeTypeInput ? placeTypeInput.value : '';
+            const name = nameInput ? nameInput.value : '';
+            const phone = phoneInput ? phoneInput.value : '';
+            
+            // 완료 화면용 장소 바인딩
+            const successPlaceType = document.getElementById('success-place-type');
+            if (successPlaceType) successPlaceType.innerText = placeType;
+
+            // 전송 중인 버튼 UI 구현
+            const submitBtn = document.getElementById('submit-btn');
+            let originalBtnText = "실시간 간편상담 신청하기 ✉️";
+            if (submitBtn) {
+                originalBtnText = submitBtn.innerText;
+                submitBtn.innerText = "상담 신청 전송 중... 📡";
+                submitBtn.disabled = true;
+            }
+
+            // 텔레그램 알림 템플릿 제작 (다이렉트 단어를 본사직영점으로 변경)
+            const messageText = `⚡ [U+인터넷 신규 가입 접수]\n\n• 설치 구분: ${placeType}\n• 요금 요약: ${plan}\n• 고객 성함: ${name}님\n• 전화 번호: ${phone}\n\n* 본사직영점 랜딩 페이지 신청 건입니다. 빠른 응대 바랍니다.`;
+
+            try {
+                // Telegram Send API 호출
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_CONFIG.token}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CONFIG.chatId,
+                        text: messageText
+                    })
+                });
+            } catch (error) {
+                console.error("텔레그램 알림 발송 실패 : ", error);
+            } finally {
+                // 신청 성공 안내 스크린 표시
+                if (submitBtn) {
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                }
+                const consultSuccess = document.getElementById('consult-success');
+                if (consultSuccess) consultSuccess.classList.remove('hidden');
+            }
+        }
+
+        // --- 다회선 시뮬레이터 팝업 모달 제어 함수 ---
+        function openSimulator() {
+            const modal = document.getElementById('simulator-modal');
+            const content = document.getElementById('simulator-modal-content');
+            if (modal) modal.classList.remove('hidden');
+            
+            // 실시간 가격 데이터 업데이트
+            updateSimTable();
+            
+            if (content) {
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+        }
+
+        function closeSimulator() {
+            const modal = document.getElementById('simulator-modal');
+            const content = document.getElementById('simulator-modal-content');
+            
+            if (content) {
+                content.classList.remove('scale-100', 'opacity-100');
+                content.classList.add('scale-95', 'opacity-0');
+            }
+            
+            if (modal) {
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // 실시간 견적 상세 계산 함수
+        function updateSimTable() {
+            const contractEl = document.getElementById('sim-contract');
+            const internetTypeEl = document.getElementById('sim-internet');
+            const tvTypeEl = document.getElementById('sim-tv');
+            const tvTotalEl = document.getElementById('sim-tvTotal');
+            const facilityTypeEl = document.getElementById('sim-facility');
+            
+            const freeWifiEl = document.getElementById('sim-freeWifi');
+            const freeUHD3El = document.getElementById('sim-freeUHD3');
+
+            if (!contractEl || !internetTypeEl || !tvTypeEl || !tvTotalEl || !facilityTypeEl) return;
+
+            const contract = contractEl.value;
+            const internetType = internetTypeEl.value;
+            const tvType = tvTypeEl.value;
+            const tvTotal = parseInt(tvTotalEl.value) || 0;
+            const facilityType = facilityTypeEl.value;
+            
+            const freeWifi = freeWifiEl ? freeWifiEl.checked : false;
+            const freeUHD3 = freeUHD3El ? freeUHD3El.checked : false;
+
+            const internetQty = Math.ceil(tvTotal / 8); 
+            const tvMainQty = internetQty; 
+            const tvSubQty = Math.max(0, tvTotal - tvMainQty);
+
+            const displayTotalLines = document.getElementById('sim-displayTotalLines');
+            if (displayTotalLines) displayTotalLines.innerText = tvTotal;
+            
+            const contractBasis = document.getElementById('sim-contractBasis');
+            if (contractBasis) contractBasis.innerText = contract + "년 약정 기준";
+
+            const tbody = document.getElementById('sim-priceTable');
+            if (!tbody) return;
+            tbody.innerHTML = ""; 
+
+            let subtotal = 0;
+
+            function createMobileRow(category, productName, spec, qty, unitPrice, amount, isFree = false) {
+                const amountStr = isFree ? `<span class="free-row">무료</span>` : amount.toLocaleString();
+                return `
+                    <tr>
+                        <td class="px-1 py-1.5 text-center border-r border-slate-200 text-slate-500 text-[8px] leading-[1.1] tracking-tighter break-keep">
+                            ${category.replace(' ', '<br>')}
+                        </td>
+                        <td class="px-1 py-1.5 border-r border-slate-200">
+                            <div class="font-bold text-slate-800 text-[9px] tracking-tight">${productName}</div>
+                            <div class="text-slate-500 text-[7px] mt-0.5 leading-tight tracking-tighter">${spec}</div>
+                        </td>
+                        <td class="px-1 py-1.5 text-center border-r border-slate-200 font-bold text-slate-800 text-[9px]">${qty.toLocaleString()}</td>
+                        <td class="px-1 py-1.5 text-right border-r border-slate-200 text-slate-600 font-medium text-[8px] tracking-tighter">${unitPrice.toLocaleString()}</td>
+                        <td class="px-1 py-1.5 text-right font-bold text-slate-900 text-[9px] tracking-tighter whitespace-nowrap">${amountStr}</td>
+                    </tr>
+                `;
+            }
+
+            const internetData = simPriceDB[contract].internet[internetType];
+            const internetAmount = internetQty * internetData.price;
+            subtotal += internetAmount;
+            tbody.innerHTML += createMobileRow("멀티라인(1:8)", `${internetType} 인터넷`, internetData.desc, internetQty, internetData.price, internetAmount);
+
+            const tvData = simPriceDB[contract].tv[tvType];
+            const tvMainAmount = tvMainQty * tvData.main;
+            subtotal += tvMainAmount;
+            tbody.innerHTML += createMobileRow("IPTV 메인회선", `${tvType} (주)`, tvData.desc, tvMainQty, tvData.main, tvMainAmount);
+
+            const tvSubAmount = tvSubQty * tvData.sub;
+            subtotal += tvSubAmount;
+            tbody.innerHTML += createMobileRow("IPTV 추가회선", `${tvType} (부)`, tvData.desc, tvSubQty, tvData.sub, tvSubAmount);
+
+            const wifiData = simPriceDB.equipment["WIFI"];
+            let wifiAmount = internetQty * wifiData.price;
+            if (freeWifi) wifiAmount = 0; 
+            subtotal += wifiAmount;
+            tbody.innerHTML += createMobileRow("정품 공유기", "WIFI 임대", wifiData.desc, internetQty, wifiData.price, wifiAmount, freeWifi);
+
+            const settopData = simPriceDB.equipment["UHD3셋탑"];
+            let settopAmount = tvTotal * settopData.price;
+            if (freeUHD3) settopAmount = 0; 
+            subtotal += settopAmount;
+            tbody.innerHTML += createMobileRow("UHD셋탑", "UHD3 셋탑박스", settopData.desc, tvTotal, settopData.price, settopAmount, freeUHD3);
+
+            const vat = Math.floor(subtotal * 0.1);
+            const grandTotal = subtotal + vat;
+
+            const subtotalEl = document.getElementById('sim-subtotal');
+            if(subtotalEl) subtotalEl.innerText = subtotal.toLocaleString();
+            
+            const vatTotalEl = document.getElementById('sim-vatTotal');
+            if(vatTotalEl) vatTotalEl.innerText = vat.toLocaleString();
+            
+            const totalEl = document.getElementById('sim-total');
+            if(totalEl) totalEl.innerText = grandTotal.toLocaleString();
+
+            const voucherBase = simPriceDB.voucherDB[contract][internetType][facilityType];
+            const totalVoucher = voucherBase * tvTotal;
+            const voucherTotalEl = document.getElementById('sim-voucherTotal');
+            if(voucherTotalEl) voucherTotalEl.innerText = totalVoucher.toLocaleString();
+        }
+
+        // html2canvas 활용 모바일 화면 캡쳐 구현
+        async function captureAndSaveSim(btn) {
+            const captureArea = document.getElementById('sim-capture-area');
+            const targetBtn = btn || document.getElementById('sim-captureBtn');
+            if (!captureArea || !targetBtn) return;
+            
+            const originalHTML = targetBtn.innerHTML;
+            
+            const dateInput = document.getElementById('sim-docDate');
+            let dateSpan;
+            if (dateInput) {
+                dateSpan = document.createElement('span');
+                dateSpan.innerText = dateInput.value.replace(/-/g, '.'); 
+                dateSpan.className = "text-[10px] font-bold text-white bg-transparent inline-block text-center";
+                dateInput.style.display = 'none';
+                dateInput.parentNode.insertBefore(dateSpan, dateInput);
+            }
+            
+            try {
+                targetBtn.innerHTML = '처리 중...';
+                targetBtn.style.pointerEvents = 'none';
+                targetBtn.style.opacity = '0.8';
+
+                const canvas = await html2canvas(captureArea, {
+                    scale: 4, 
+                    useCORS: true,
+                    backgroundColor: '#ffffff',
+                    windowWidth: captureArea.scrollWidth,
+                    windowHeight: captureArea.scrollHeight,
+                    logging: false
+                });
+
+                const imageURI = canvas.toDataURL('image/png', 1.0);
+                const dateStr = dateInput ? dateInput.value.replace(/-/g, '') : 'date';
+                const fileName = `LGUplus_멀티라인_견적서_${dateStr}.png`;
+
+                try {
+                    const blob = await (await fetch(imageURI)).blob();
+                    const file = new File([blob], fileName, { type: 'image/png' });
+                    
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            files: [file],
+                            title: 'LGU+ 멀티라인 견적서',
+                            text: '이미지를 저장하려면 아래 이미지 저장 버튼을 눌러주세요.'
+                        });
+                        return; 
+                    }
+                } catch (shareError) {
+                    console.log('공유 API 미지원 환경 또는 사용자 취소 -> 강제 파일 저장 전환');
+                }
+
+                const link = document.createElement('a');
+                link.download = fileName;
+                link.href = imageURI;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+            } catch (error) {
+                console.error('캡쳐 처리 오류:', error);
+            } finally {
+                targetBtn.innerHTML = originalHTML;
+                targetBtn.style.pointerEvents = 'auto';
+                targetBtn.style.opacity = '1';
+                
+                if (dateInput && dateSpan) {
+                    dateInput.style.display = '';
+                    dateSpan.remove();
+                }
+            }
+        }
+
+        // Interactive Speed Test Logic
+        let isTesting = false;
+        function openSpeedTest() {
+            const modal = document.getElementById('speed-test-modal');
+            const content = document.getElementById('speed-modal-content');
+            
+            if(modal) modal.classList.remove('hidden');
+            if(content) {
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+        }
+
+        function closeSpeedTest() {
+            const modal = document.getElementById('speed-test-modal');
+            const content = document.getElementById('speed-modal-content');
+            
+            if(content) {
+                content.classList.remove('scale-100', 'opacity-100');
+                content.classList.add('scale-95', 'opacity-0');
+            }
+            if(modal) {
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function startGaugeSimulation() {
+            if (isTesting) return;
+            isTesting = true;
+
+            const startBtn = document.getElementById('start-test-btn');
+            const speedNum = document.getElementById('speed-num');
+            const gaugeFill = document.getElementById('gauge-fill');
+            const statusText = document.getElementById('test-status');
+            const downResult = document.getElementById('down-result');
+            const upResult = document.getElementById('up-result');
+            const pingResult = document.getElementById('ping-result');
+            const recommendation = document.getElementById('test-recommendation');
+            const recText = document.getElementById('recommendation-text');
+
+            if(startBtn) {
+                startBtn.disabled = true;
+                startBtn.classList.add('opacity-50');
+            }
+            if(recommendation) recommendation.classList.add('hidden');
+            
+            if(downResult) downResult.innerText = "- Mbps";
+            if(upResult) upResult.innerText = "- Mbps";
+            if(pingResult) pingResult.innerText = "- ms";
+
+            let phase = 'ping';
+            let duration = 0;
+            const interval = setInterval(() => {
+                duration += 100;
+                
+                if (phase === 'ping') {
+                    if(statusText) statusText.innerText = "서버 지연 시간 확인 중...";
+                    const mockPing = (Math.random() * 5 + 3).toFixed(1);
+                    if(speedNum) speedNum.innerText = mockPing;
+                    
+                    if (duration >= 1500) {
+                        if(pingResult) pingResult.innerText = `${mockPing} ms`;
+                        phase = 'download';
+                        duration = 0;
+                    }
+                } else if (phase === 'download') {
+                    if(statusText) statusText.innerText = "다운로드 속도 테스트 중 ⬇️";
+                    const peakValue = 350 + Math.random() * 450;
+                    const randomCurrent = (peakValue * (0.8 + Math.random() * 0.2)).toFixed(1);
+                    if(speedNum) speedNum.innerText = randomCurrent;
+                    
+                    const rotateDeg = -135 + (randomCurrent / 1000) * 270;
+                    if(gaugeFill) gaugeFill.style.transform = `rotate(${rotateDeg}deg)`;
+
+                    if (duration >= 4000) {
+                        if(downResult) downResult.innerText = `${randomCurrent} Mbps`;
+                        phase = 'upload';
+                        duration = 0;
+                    }
+                } else if (phase === 'upload') {
+                    if(statusText) statusText.innerText = "업로드 속도 테스트 중 ⬆️";
+                    const peakValue = 300 + Math.random() * 300;
+                    const randomCurrent = (peakValue * (0.8 + Math.random() * 0.2)).toFixed(1);
+                    if(speedNum) speedNum.innerText = randomCurrent;
+
+                    const rotateDeg = -135 + (randomCurrent / 1000) * 270;
+                    if(gaugeFill) gaugeFill.style.transform = `rotate(${rotateDeg}deg)`;
+
+                    if (duration >= 3000) {
+                        if(upResult) upResult.innerText = `${randomCurrent} Mbps`;
+                        phase = 'complete';
+                    }
+                } else if (phase === 'complete') {
+                    clearInterval(interval);
+                    if(statusText) statusText.innerText = "속도 자가진단 성공 완료!";
+                    if(speedNum) speedNum.innerText = "100%";
+                    if(gaugeFill) gaugeFill.style.transform = `rotate(135deg)`;
+
+                    const downSpeed = parseFloat(downResult ? downResult.innerText : 0);
+                    let recommendedPlan = "";
+                    let advice = "";
+
+                    if (downSpeed < 150) {
+                        recommendedPlan = "와이파이기본_광랜안심 100M (월 23,900원)";
+                        advice = "현재 속도가 비교적 기본적인 수준입니다. 일반적인 재택 근무, 영상 시청 및 웹서핑 목적이라면 실속형 100M 요금제가 비용 부담 없는 최적의 매칭입니다.";
+                    } else if (downSpeed < 450) {
+                        recommendedPlan = "와이파이기본_기가안심 500M (월 31,350원)";
+                        advice = "초고화질 OTT 영상 시청과 다중 기기 스마트폰 동시 접속에 아주 준수한 속도 대역입니다. 끊김 없는 쾌적한 전송 품질을 보장하는 베스트셀러 500M 요금제를 추천합니다.";
+                    } else {
+                        recommendedPlan = "와이파이기본_기가안심 1G (월 36,300원)";
+                        advice = "고사양 PC방급의 훌륭한 속도 환경을 지니고 있습니다. 실시간 대용량 파일 업/다운로드, 실시간 게이밍 트래픽을 빈틈없이 완벽 커버하고 기가 와이파이가 무상 지원되는 기가안심 1G가 완벽한 매칭입니다.";
+                    }
+
+                    if(recText) recText.innerHTML = `현재 회원님의 다운로드 속도는 매우 안정적입니다. 추천 요금 상품은 <strong>${recommendedPlan}</strong> 입니다.<br><span class="text-gray-500 mt-1 block">${advice}</span>`;
+                    if(recommendation) recommendation.classList.remove('hidden');
+
+                    if(startBtn) {
+                        startBtn.disabled = false;
+                        startBtn.classList.remove('opacity-50');
+                    }
+                    isTesting = false;
+                }
+            }, 100);
+        }
+
+        // 초기 시작 상태 세팅 (가정용 인터넷 탭을 활성화)
+        window.onload = function() {
+            switchMainTab('home');
+
+            // 발행 날짜 기본 오늘 지정
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const docDateInput = document.getElementById('sim-docDate');
+            if (docDateInput) {
+                docDateInput.value = `${yyyy}-${mm}-${dd}`;
+            }
+
+            // 시뮬레이터 옵션 이벤트 리스너 일괄 연결
+            const simInputs = ['sim-contract', 'sim-internet', 'sim-tv', 'sim-tvTotal', 'sim-facility', 'sim-freeWifi', 'sim-freeUHD3'];
+            simInputs.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('change', updateSimTable);
+                    if (el.tagName === 'INPUT') el.addEventListener('input', updateSimTable);
+                }
+            });
+        };
+    </script>
+</body>
+</html>
