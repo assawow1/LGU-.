@@ -65,13 +65,25 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
         
-        /* 스마트홈 및 모바일 가로 스크롤바 감추기 */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
+        /* 가로 스크롤바 커스텀 (시각적 표시) */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 5px;
         }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F3F4F6; /* gray-100 */
+            border-radius: 4px;
+            margin: 0 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D1D5DB; /* gray-300 */
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #E6007E; /* uplusPink 포인트 색상 */
+        }
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #D1D5DB #F3F4F6;
         }
     </style>
 </head>
@@ -170,7 +182,7 @@
         </div>
 
         <!-- Plan Grid - 스크립트 기반으로 동적 렌더링 지원 (모바일 가로 스크롤 적용) -->
-        <div id="plan-grid" class="flex flex-nowrap md:grid md:grid-cols-3 gap-2 md:gap-8 mb-6 md:mb-16 overflow-x-auto pb-4 hide-scrollbar snap-x snap-mandatory w-full">
+        <div id="plan-grid" class="flex flex-nowrap md:grid md:grid-cols-3 gap-2 md:gap-8 mb-6 md:mb-16 overflow-x-auto pb-4 custom-scrollbar snap-x snap-mandatory w-full">
             <!-- 기본 렌더링: 자바스크립트에 의해 자동 렌더링 -->
         </div>
 
@@ -184,7 +196,7 @@
             </div>
             
             <!-- 모바일 최적화: 가로 스와이프 그리드 -->
-            <div class="flex overflow-x-auto gap-2 md:gap-4 pb-4 hide-scrollbar snap-x snap-mandatory">
+            <div class="flex overflow-x-auto gap-2 md:gap-4 pb-4 custom-scrollbar snap-x snap-mandatory">
                 
                 <!-- Card 1 -->
                 <div class="bg-white p-2.5 md:p-5 rounded-xl md:rounded-2xl border border-gray-200 shadow-sm flex flex-col relative hover:border-uplusPink transition-colors w-[130px] md:w-auto md:flex-1 shrink-0 snap-center">
@@ -394,7 +406,7 @@
                         </li>
                     </ul>
 
-                    <div class="flex flex-nowrap md:grid md:grid-cols-3 gap-2 md:gap-8 overflow-x-auto pb-3 md:pb-4 hide-scrollbar snap-x snap-mandatory px-0.5 md:px-0">
+                    <div class="flex flex-nowrap md:grid md:grid-cols-3 gap-2 md:gap-8 overflow-x-auto pb-3 md:pb-4 custom-scrollbar snap-x snap-mandatory px-0.5 md:px-0">
                         <!-- AI Card 1 -->
                         <div class="flex flex-col items-center w-[140px] md:w-auto shrink-0 snap-center">
                             <div class="w-full h-[170px] md:h-[320px] bg-white border-[1px] md:border-2 border-gray-100 rounded-xl md:rounded-[2rem] shadow-sm p-2 md:p-4 flex flex-col relative overflow-hidden mb-2 md:mb-3">
@@ -510,7 +522,7 @@
                         </li>
                     </ul>
 
-                    <div class="flex flex-nowrap md:grid md:grid-cols-3 gap-2 md:gap-8 overflow-x-auto pb-3 md:pb-4 hide-scrollbar snap-x snap-mandatory px-0.5 md:px-0">
+                    <div class="flex flex-nowrap md:grid md:grid-cols-3 gap-2 md:gap-8 overflow-x-auto pb-3 md:pb-4 custom-scrollbar snap-x snap-mandatory px-0.5 md:px-0">
                         <!-- CCTV Card 1 -->
                         <div class="flex flex-col items-center w-[140px] md:w-auto shrink-0 snap-center">
                             <div class="w-full h-[170px] md:h-[320px] bg-white border-[1px] md:border-2 border-gray-100 rounded-xl md:rounded-[2rem] shadow-sm p-2 md:p-4 flex flex-col relative overflow-hidden mb-2 md:mb-3">
@@ -1030,23 +1042,6 @@
         </div>
     </div>
 
-
-    <!-- 카카오톡 연동 원형 플로팅 버튼 -->
-    <div class="fixed bottom-2 right-2 md:bottom-6 md:right-6 z-40 flex flex-col items-end gap-1 md:gap-2 group">
-        <div class="bg-slate-900 text-white text-[8px] md:text-[11px] font-bold py-1 md:py-2 px-2 md:px-3.5 rounded-md md:rounded-2xl shadow-xl whitespace-nowrap animate-bounce relative right-1 md:right-2 flex items-center gap-0.5 md:gap-1.5 border border-slate-800 tracking-tight">
-            <span class="w-1 h-1 md:w-2 md:h-2 rounded-full bg-green-400 animate-ping"></span>
-            실시간 카카오톡 1:1 상담 중!
-            <div class="absolute bottom-[-2px] md:bottom-[-5px] right-2 md:right-6 w-1.5 h-1.5 md:w-2.5 md:h-2.5 bg-slate-900 rotate-45 border-r border-b border-slate-800"></div>
-        </div>
-        
-        <button onclick="openKakaoTalk()" class="bg-kakaoYellow hover:bg-yellow-400 hover:scale-105 active:scale-95 text-kakaoDark p-2 md:p-4 rounded-full shadow-2xl flex items-center justify-center gap-1 md:gap-2 transition-all duration-300 ring-2 md:ring-4 ring-white/80">
-            <svg class="w-3 h-3 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3c-5.522 0-10 3.513-10 7.848 0 2.812 1.9 5.277 4.747 6.643-.328 1.218-1.185 4.398-1.221 4.542-.054.211.077.411.282.411.144 0 .28-.052.383-.122.083-.056 1.636-1.111 3.553-2.417.755.127 1.543.193 2.256.193 5.522 0 10-3.513 10-7.848s-4.478-7.85-10-7.85z"/>
-            </svg>
-            <span class="font-extrabold text-[9px] md:text-sm tracking-tight pr-0.5 md:pr-1 leading-none">카톡상담</span>
-        </button>
-    </div>
-
     <!-- 5. 혜택 안내 공통 팝업 모달 (결합/제휴/이벤트) -->
     <div id="info-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-xl md:rounded-3xl max-w-sm md:max-w-4xl w-full p-4 md:p-8 shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300 max-h-[90vh] overflow-y-auto" id="info-modal-content">
@@ -1379,11 +1374,11 @@
                 icon: "🏬",
                 html: `
                     <div class="col-span-1 md:col-span-2">
-                        <div class="flex flex-nowrap md:grid md:grid-cols-3 gap-2.5 md:gap-6 text-center items-stretch overflow-x-auto pb-2 hide-scrollbar snap-x snap-mandatory px-1 md:px-0">
+                        <div class="flex flex-nowrap md:grid md:grid-cols-3 gap-1.5 md:gap-6 text-center items-stretch overflow-x-auto pb-3 custom-scrollbar snap-x snap-mandatory px-1 md:px-0">
                             <!-- 1. 우리가게홍보 -->
-                            <div class="flex flex-col items-center w-full min-w-[160px] md:min-w-0 snap-center shrink-0">
+                            <div class="flex flex-col items-center w-full min-w-[145px] md:min-w-0 snap-center shrink-0">
                                 <h5 class="text-[11px] md:text-[19px] font-black text-indigo-900 mb-1.5 md:mb-3 bg-indigo-50 px-3 md:px-6 py-1 md:py-2 rounded-full tracking-tight">우리가게홍보</h5>
-                                <div class="w-full max-w-[160px] md:max-w-[240px] h-[190px] md:h-[300px] bg-white border-[2px] md:border-[4px] border-slate-100 rounded-[1.2rem] md:rounded-[2rem] shadow-lg p-2 md:p-4 mb-2 md:mb-3 flex flex-col relative overflow-hidden justify-between">
+                                <div class="w-full max-w-[150px] md:max-w-[240px] h-[190px] md:h-[300px] bg-white border-[2px] md:border-[4px] border-slate-100 rounded-[1.2rem] md:rounded-[2rem] shadow-lg p-2 md:p-4 mb-2 md:mb-3 flex flex-col relative overflow-hidden justify-between">
                                     <div class="absolute top-1 md:top-1.5 left-1/2 -translate-x-1/2 w-6 md:w-10 h-1 md:h-1.5 bg-slate-200 rounded-full"></div>
                                     <div class="mt-2 md:mt-3 bg-indigo-900 text-white text-[7px] md:text-[11px] rounded-full px-2 md:px-4 py-0.5 md:py-1 inline-block mx-auto mb-1 md:mb-2 font-bold shadow-sm">우리가게 홍보</div>
                                     <p class="font-black text-[9px] md:text-[14px] text-slate-800 leading-snug mb-1 break-keep">200만 LG U+ 고객에게<br>우리 가게를<br>무료로 홍보하세요!</p>
@@ -1399,9 +1394,9 @@
                                 </p>
                             </div>
                             <!-- 2. 사장님광장 -->
-                            <div class="flex flex-col items-center w-full min-w-[160px] md:min-w-0 snap-center shrink-0">
+                            <div class="flex flex-col items-center w-full min-w-[145px] md:min-w-0 snap-center shrink-0">
                                 <h5 class="text-[11px] md:text-[19px] font-black text-indigo-900 mb-1.5 md:mb-3 bg-indigo-50 px-3 md:px-6 py-1 md:py-2 rounded-full tracking-tight">사장님광장</h5>
-                                <div class="w-full max-w-[160px] md:max-w-[240px] h-[190px] md:h-[300px] bg-white border-[2px] md:border-[4px] border-slate-100 rounded-[1.2rem] md:rounded-[2rem] shadow-lg p-2 md:p-4 mb-2 md:mb-3 flex flex-col relative overflow-hidden text-left">
+                                <div class="w-full max-w-[150px] md:max-w-[240px] h-[190px] md:h-[300px] bg-white border-[2px] md:border-[4px] border-slate-100 rounded-[1.2rem] md:rounded-[2rem] shadow-lg p-2 md:p-4 mb-2 md:mb-3 flex flex-col relative overflow-hidden text-left">
                                     <div class="absolute top-1 md:top-1.5 left-1/2 -translate-x-1/2 w-6 md:w-10 h-1 md:h-1.5 bg-slate-200 rounded-full"></div>
                                     <div class="mt-1.5 md:mt-3 mb-1.5 md:mb-3">
                                         <h6 class="font-black text-[9px] md:text-[15px] text-slate-800 tracking-tight">사장님 광장</h6>
@@ -1431,9 +1426,9 @@
                                 </p>
                             </div>
                             <!-- 3. 상권 분석 -->
-                            <div class="flex flex-col items-center w-full min-w-[160px] md:min-w-0 snap-center shrink-0">
+                            <div class="flex flex-col items-center w-full min-w-[145px] md:min-w-0 snap-center shrink-0">
                                 <h5 class="text-[11px] md:text-[19px] font-black text-indigo-900 mb-1.5 md:mb-3 bg-indigo-50 px-3 md:px-6 py-1 md:py-2 rounded-full tracking-tight">상권 분석</h5>
-                                <div class="w-full max-w-[160px] md:max-w-[240px] h-[190px] md:h-[300px] bg-white border-[2px] md:border-[4px] border-slate-100 rounded-[1.2rem] md:rounded-[2rem] shadow-lg p-2 md:p-4 mb-2 md:mb-3 flex flex-col relative overflow-hidden text-left">
+                                <div class="w-full max-w-[150px] md:max-w-[240px] h-[190px] md:h-[300px] bg-white border-[2px] md:border-[4px] border-slate-100 rounded-[1.2rem] md:rounded-[2rem] shadow-lg p-2 md:p-4 mb-2 md:mb-3 flex flex-col relative overflow-hidden text-left">
                                     <div class="absolute top-1 md:top-1.5 left-1/2 -translate-x-1/2 w-6 md:w-10 h-1 md:h-1.5 bg-slate-200 rounded-full"></div>
                                     <div class="mt-1.5 md:mt-3 flex items-center bg-slate-50 border border-slate-200 rounded-full px-1.5 md:px-2.5 py-0.5 md:py-1.5 mb-1.5 md:mb-3 shadow-sm">
                                         <svg class="w-2.5 h-2.5 md:w-3 md:h-3 text-uplusPink mr-0.5 md:mr-1 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
@@ -1665,7 +1660,6 @@
                     `;
                 });
             } else if (category === 'home') {
-                htmlContent += `<div class="col-span-1 md:col-span-3 text-center md:text-left mb-1 w-full"><h2 class="text-base md:text-3xl font-black text-gray-900 tracking-tight ml-1 md:ml-0">인터넷+IPTV 결합 상품을 추천해 드려요</h2></div>`;
                 data.forEach(item => {
                     htmlContent += `
                     <div class="plan-card w-[200px] md:w-auto shrink-0 snap-center bg-white rounded-[1.2rem] md:rounded-3xl border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300 relative flex flex-col py-3 px-3 md:py-5 md:px-5 mt-1 md:mt-2">
@@ -2313,7 +2307,7 @@
                             <p class="text-[9px] md:text-xs font-bold text-gray-700">휴대폰+인터넷 결합할인 (휴대폰은 10대까지, 인터넷은 3대까지 결합 가능)</p>
                             <p class="text-[8px] md:text-[11px] text-uplusPink font-medium">· U+알뜰폰 고객도 소상공인 인터넷 결합 할인 혜택을 받을 수 있어요.</p>
                             
-                            <div class="overflow-x-auto hide-scrollbar border border-gray-200 rounded-lg">
+                            <div class="overflow-x-auto custom-scrollbar pb-2 border border-gray-200 rounded-lg">
                                 <table class="w-full text-[8px] md:text-xs min-w-[600px] text-center">
                                     <thead class="bg-gray-50 text-gray-600 font-bold border-b border-gray-200">
                                         <tr>
