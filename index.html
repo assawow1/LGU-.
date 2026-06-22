@@ -330,7 +330,7 @@
         </div>
 
         <!-- ========================================================= -->
-        <!-- 2. 숙박업소 인터넷 전용 Section -->
+        <!-- 2. 숙박업소 인터넷 전용 Section (즐거움 섹션 복구) -->
         <!-- ========================================================= -->
         <div id="lodging-benefits-section" class="hidden mb-8 md:mb-16 bg-blue-50/40 border border-blue-100 rounded-2xl md:rounded-[2rem] p-4 md:p-8 shadow-sm">
             <h2 class="text-base md:text-3xl font-extrabold text-gray-900 text-center mb-1 md:mb-2 tracking-tight flex items-center justify-center gap-2"><span class="text-xl md:text-4xl drop-shadow-sm">🏨</span> U+인터넷만 누릴 수 있는 특별한 즐거움</h2>
@@ -383,7 +383,7 @@
         </div>
 
         <!-- ========================================================= -->
-        <!-- 3. 소호인터넷 전용 탭 Section -->
+        <!-- 3. 소호인터넷 전용 탭 Section (주요 제공 기능 모바일 스크롤화) -->
         <!-- ========================================================= -->
         <div id="soho-benefits-section" class="hidden mb-8 md:mb-16 bg-indigo-50/50 border border-indigo-100 rounded-2xl md:rounded-[2rem] p-4 md:p-8 shadow-sm max-w-5xl mx-auto w-full">
             <h2 class="text-base md:text-2xl font-extrabold text-indigo-900 mb-2 md:mb-4 px-1 tracking-tight flex items-center gap-2"><span class="text-xl md:text-3xl drop-shadow-sm">🏬</span> 우리가게 주요 제공 기능</h2>
@@ -700,10 +700,10 @@
     </div>
 
     <!-- 5. U+ONE App Modal -->
-    <div id="uplus-one-modal" class="fixed inset-0 bg-black/60 z-[70] flex items-center justify-center p-2 md:p-4 hidden backdrop-blur-sm">
-        <div class="bg-white rounded-2xl md:rounded-3xl w-full max-w-[480px] h-[90vh] md:h-[85vh] shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300 flex flex-col overflow-hidden" id="uplus-one-modal-content">
+    <div id="uplus-one-modal" class="fixed inset-0 bg-black/60 z-[70] flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white rounded-2xl w-full max-w-[440px] h-[80vh] md:h-[85vh] shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300 flex flex-col overflow-hidden" id="uplus-one-modal-content">
             <div class="flex justify-between items-center p-3 md:p-4 border-b border-gray-100 bg-white z-10 shrink-0">
-                <h3 class="text-sm md:text-lg font-black text-gray-900 tracking-tight flex items-center gap-1.5"><span class="text-uplusPink">📱</span> U+ONE 체험 가이드</h3>
+                <h3 class="text-base md:text-lg font-black text-gray-900 tracking-tight flex items-center gap-1.5"><span class="text-uplusPink">📱</span> U+ONE 체험 가이드</h3>
                 <button onclick="closeUplusOneModal()" class="text-gray-400 hover:text-gray-600 font-bold text-xl md:text-2xl w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 hover:bg-gray-100 transition-colors">&times;</button>
             </div>
             <div class="flex-grow w-full relative bg-gray-50">
@@ -2592,6 +2592,352 @@
                     dateInput.style.display = '';
                     dateSpan.remove();
                 }
+            }
+        }
+
+        const INFO_DATA = {
+            '결합할인': {
+                icon: '👨‍👩‍👧‍👦',
+                title: '모바일 + 인터넷 스마트 결합',
+                content: `
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-br from-indigo-50 to-uplusLightPink border border-pink-100 rounded-xl p-4 md:p-6 text-center shadow-sm relative overflow-hidden">
+                            <span class="inline-block bg-white text-uplusPink border border-uplusPink text-[8px] md:text-xs font-bold px-2 py-0.5 rounded-full mb-2 md:mb-3">U+휴대폰 결합할인</span>
+                            <h4 class="text-sm md:text-xl font-black text-gray-900 leading-snug break-keep tracking-tight">
+                                사장님 <span class="bg-uplusPink text-white px-1">또는</span> 사장님의 가족이<br>
+                                U+휴대폰/알뜰폰이나 인터넷을 사용한다면<br>
+                                요금을 <span class="text-uplusPink">최대 47만원</span> 할인해드려요!
+                            </h4>
+                            <p class="text-[7px] md:text-[10px] text-gray-500 mt-2">· 인터넷 1G + 휴대폰 결합 할인 시 (3년 약정 기준)</p>
+                        </div>
+
+                        <div class="space-y-2 md:space-y-3">
+                            <h5 class="font-extrabold text-gray-900 text-sm md:text-lg tracking-tight">참 쉬운 가족 결합</h5>
+                            <p class="text-[9px] md:text-xs font-bold text-gray-700">휴대폰+인터넷 결합할인 (휴대폰은 10대까지, 인터넷은 3대까지 결합 가능)</p>
+                            <p class="text-[8px] md:text-[11px] text-uplusPink font-medium">· U+알뜰폰 고객도 소상공인 인터넷 결합 할인 혜택을 받을 수 있어요.</p>
+                            
+                            <div class="overflow-x-auto custom-scrollbar pb-2 border border-gray-200 rounded-lg">
+                                <table class="w-full text-[8px] md:text-xs min-w-[600px] text-center">
+                                    <thead class="bg-gray-50 text-gray-600 font-bold border-b border-gray-200">
+                                        <tr>
+                                            <th class="py-2 border-r border-gray-200 align-middle" rowspan="2">결합한<br>U+ 휴대폰 수</th>
+                                            <th class="py-1 border-r border-gray-200 border-b" colspan="3">U+ 휴대폰 요금할인 금액</th>
+                                            <th class="py-2 border-r border-gray-200 align-middle" rowspan="2">알뜰폰결합<br>추가할인 금액</th>
+                                            <th class="py-2 border-r border-gray-200 align-middle" rowspan="2">가족사랑<br>데이터</th>
+                                            <th class="py-1 border-gray-200 border-b" colspan="3">U+ 인터넷 요금할인금액<br><span class="text-[7px] md:text-[9px] font-normal">(3년약정 기준)</span></th>
+                                        </tr>
+                                        <tr>
+                                            <th class="py-1 border-r border-gray-200 font-medium">69,000원<br>미만</th>
+                                            <th class="py-1 border-r border-gray-200 font-medium">69,000원<br>이상</th>
+                                            <th class="py-1 border-r border-gray-200 font-medium">88,000원<br>이상</th>
+                                            <th class="py-1 border-r border-gray-200 font-medium">100Mbps</th>
+                                            <th class="py-1 border-r border-gray-200 font-medium">500Mbps</th>
+                                            <th class="py-1 font-medium">1Gbps</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 text-gray-700 bg-white">
+                                        <tr>
+                                            <td class="py-2 border-r border-gray-200 font-bold bg-gray-50">1개</td>
+                                            <td class="py-2 border-r border-gray-200">-</td>
+                                            <td class="py-2 border-r border-gray-200">-</td>
+                                            <td class="py-2 border-r border-gray-200">-</td>
+                                            <td class="py-2 border-r border-gray-200 text-[7px] md:text-[10px] leading-tight" rowspan="4">결합 내 알뜰폰<br>개수 X 440원<br>추가할인 제공</td>
+                                            <td class="py-2 border-r border-gray-200 text-[7px] md:text-[10px] leading-tight" rowspan="4">결합한<br>휴대폰 수<br>X 1,000MB</td>
+                                            <td class="py-2 border-r border-gray-200 font-bold" rowspan="4">월 5,500원</td>
+                                            <td class="py-2 border-r border-gray-200 font-bold" rowspan="4">월 9,900원</td>
+                                            <td class="py-2 font-bold" rowspan="4">월 13,200원</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 border-r border-gray-200 font-bold bg-gray-50">2개</td>
+                                            <td class="py-2 border-r border-gray-200">월 2,200원</td>
+                                            <td class="py-2 border-r border-gray-200">월 3,300원</td>
+                                            <td class="py-2 border-r border-gray-200">월 4,400원</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 border-r border-gray-200 font-bold bg-gray-50">3개</td>
+                                            <td class="py-2 border-r border-gray-200">월 3,300원</td>
+                                            <td class="py-2 border-r border-gray-200">월 5,500원</td>
+                                            <td class="py-2 border-r border-gray-200">월 6,600원</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 border-r border-gray-200 font-bold bg-gray-50">4~10개</td>
+                                            <td class="py-2 border-r border-gray-200">월 4,400원</td>
+                                            <td class="py-2 border-r border-gray-200">월 6,600원</td>
+                                            <td class="py-2 border-r border-gray-200">월 8,800원</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 md:space-y-3 pt-4 border-t border-gray-100">
+                            <h5 class="font-extrabold text-gray-900 text-sm md:text-lg tracking-tight">U+투게더 결합</h5>
+                            <p class="text-[9px] md:text-[13px] font-bold text-gray-800 break-keep leading-tight">U+고객이라면 누구나, 지인끼리도 결합을 통해 <span class="text-uplusPink">U+휴대폰과 소상공인 인터넷도 함께 할인</span> 혜택을 받을 수 있어요</p>
+                            
+                            <div class="text-[8px] md:text-xs text-gray-600 bg-gray-50 p-2 md:p-3 rounded-lg border border-gray-200">
+                                <span class="font-bold text-gray-800 block mb-1">결합 조건</span>
+                                <ul class="space-y-0.5">
+                                    <li>- 최소 결합 : <span class="text-uplusPink font-bold">U+휴대폰 1개 + 인터넷 1개</span> 또는 <span class="text-uplusPink font-bold">U+휴대폰 2개</span></li>
+                                    <li>- 최대 결합 : <span class="text-uplusPink font-bold">U+휴대폰 5회선 + 인터넷 5회선</span> (가정용 및 소상공인 모두 포함)</li>
+                                </ul>
+                            </div>
+
+                            <p class="text-[9px] md:text-xs font-bold text-gray-800 mt-2">- 휴대폰 할인 : 4명이 모이면 1인당 <span class="text-uplusPink">매달 20,000원</span> 할인 가능</p>
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <table class="w-full text-[8px] md:text-xs text-center bg-white">
+                                    <thead class="bg-gray-50 border-b border-gray-200">
+                                        <tr>
+                                            <th class="py-1.5 md:py-2 border-r border-gray-200 font-bold">모바일 결합</th>
+                                            <th class="py-1.5 md:py-2 border-r border-gray-200">1명</th>
+                                            <th class="py-1.5 md:py-2 border-r border-gray-200">2명</th>
+                                            <th class="py-1.5 md:py-2 border-r border-gray-200">3명</th>
+                                            <th class="py-1.5 md:py-2">4~5명</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-gray-700">
+                                        <tr>
+                                            <td class="py-1.5 md:py-2 border-r border-gray-200 bg-gray-50 font-bold">1인당 할인 요금</td>
+                                            <td class="py-1.5 md:py-2 border-r border-gray-200">-</td>
+                                            <td class="py-1.5 md:py-2 border-r border-gray-200">월 10,000원</td>
+                                            <td class="py-1.5 md:py-2 border-r border-gray-200">월 14,000원</td>
+                                            <td class="py-1.5 md:py-2 font-bold text-uplusPink">월 20,000원</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <p class="text-[9px] md:text-xs font-bold text-gray-800 mt-2">- 소상공인 인터넷 할인 : <span class="text-uplusPink">500M 이상</span> 요금제 사용 시 <span class="text-uplusPink">매달 11,000원</span> 추가 할인</p>
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <table class="w-full text-[8px] md:text-xs text-center bg-white">
+                                    <thead class="bg-gray-50 border-b border-gray-200">
+                                        <tr>
+                                            <th class="py-1.5 md:py-2 border-r border-gray-200 font-bold w-1/3">인터넷 요금제</th>
+                                            <th class="py-1.5 md:py-2 border-r border-gray-200 w-1/3">100M</th>
+                                            <th class="py-1.5 md:py-2 w-1/3">500M / 1G 이상</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-gray-700">
+                                        <tr>
+                                            <td class="py-1.5 md:py-2 border-r border-gray-200 bg-gray-50 font-bold">회선당 할인 요금</td>
+                                            <td class="py-1.5 md:py-2 border-r border-gray-200 text-gray-400">결합 불가</td>
+                                            <td class="py-1.5 md:py-2 font-bold text-uplusPink">월 11,000원</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 md:space-y-3 pt-4 border-t border-gray-100">
+                            <h5 class="font-extrabold text-gray-900 text-sm md:text-lg tracking-tight">인터넷 가족끼리 모여 할인</h5>
+                            <p class="text-[9px] md:text-[13px] font-bold text-gray-800 break-keep leading-tight">본인 또는 가족 명의 인터넷을 결합하면 <span class="text-uplusPink">5,500원</span> 추가 할인받는 혜택</p>
+                            
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <table class="w-full text-[8px] md:text-xs text-center bg-white">
+                                    <thead class="bg-gray-50 border-b border-gray-200">
+                                        <tr>
+                                            <th class="py-1.5 md:py-2 border-r border-gray-200 font-bold w-1/2">할인 내용</th>
+                                            <th class="py-1.5 md:py-2 font-bold w-1/2">신청시 필요 서류</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-gray-700">
+                                        <tr>
+                                            <td class="py-2 md:py-3 border-r border-gray-200 font-bold text-uplusPink">월 5,500원</td>
+                                            <td class="py-2 md:py-3">서비스 가입 신청서, 가족관계 증명서</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            '제휴카드': {
+                icon: '💳',
+                title: '제휴카드 할인',
+                content: `
+                    <div class="space-y-3 pb-2">
+                        <!-- 1. 롯데카드 -->
+                        <div class="border border-gray-200 rounded-xl p-3 flex flex-col gap-2.5 bg-white shadow-sm hover:border-uplusPink/40 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-[70px] h-12 rounded-lg bg-gray-900 shrink-0 flex items-center justify-center relative overflow-hidden text-white shadow-inner">
+                                    <span class="absolute text-[8px] font-serif italic tracking-widest opacity-80">L O C A</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-gray-900 text-[12px] md:text-[13px] mb-0.5 tracking-tight">LG U+ X LOCA 롯데카드</h5>
+                                    <span class="text-[8px] font-bold bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">청구할인형</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] md:text-[11px] text-gray-600 leading-relaxed break-keep">
+                                통신 요금을 자동이체하면 지난달 카드 결제 금액에 따라 매달 최대 20,000원 청구 할인 (25개월부터는 최대 1만원)
+                            </p>
+                            <div class="text-right pt-2 border-t border-gray-50">
+                                <span class="font-black text-uplusPink text-[12px] md:text-[13px] tracking-tighter">월 10,000원~20,000원 할인</span>
+                            </div>
+                        </div>
+
+                        <!-- 2. 신한카드 -->
+                        <div class="border border-gray-200 rounded-xl p-3 flex flex-col gap-2.5 bg-white shadow-sm hover:border-uplusPink/40 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-[70px] h-12 rounded-lg bg-gray-50 border border-gray-200 shrink-0 flex items-center justify-center relative overflow-hidden">
+                                    <span class="text-2xl z-10">🐻</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-gray-900 text-[12px] md:text-[13px] mb-0.5 tracking-tight">LG U+ 스마트플랜Plus 신한</h5>
+                                    <span class="text-[8px] font-bold bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">유플러스닷컴 전용</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] md:text-[11px] text-gray-600 leading-relaxed break-keep">
+                                휴대폰을 할부로 구매하고, 통신 요금을 자동이체하면 매달 최대 15,000원 청구 할인
+                            </p>
+                            <div class="text-right pt-2 border-t border-gray-50">
+                                <span class="font-black text-uplusPink text-[12px] md:text-[13px] tracking-tighter">월 10,000원~15,000원 할인</span>
+                            </div>
+                        </div>
+
+                        <!-- 3. 하나카드 -->
+                        <div class="border border-gray-200 rounded-xl p-3 flex flex-col gap-2.5 bg-white shadow-sm hover:border-uplusPink/40 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-[70px] h-12 rounded-lg bg-blue-600 shrink-0 flex items-center justify-center relative overflow-hidden text-white shadow-inner">
+                                    <span class="text-[6px] font-bold opacity-80" style="writing-mode: vertical-rl;">the simple</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-gray-900 text-[12px] md:text-[13px] mb-0.5 tracking-tight">더 심플 하나카드</h5>
+                                    <span class="text-[8px] font-bold bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">청구할인형</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] md:text-[11px] text-gray-600 leading-relaxed break-keep">
+                                통신요금 자동이체하면 지난달 카드 결제 금액에 따라 매달 최대 15,000원 청구 할인
+                            </p>
+                            <div class="text-right pt-2 border-t border-gray-50">
+                                <span class="font-black text-uplusPink text-[12px] md:text-[13px] tracking-tighter">월 10,000원~15,000원 할인</span>
+                            </div>
+                        </div>
+
+                        <!-- 4. 신한 소호카드 -->
+                        <div class="border border-gray-200 rounded-xl p-3 flex flex-col gap-2.5 bg-white shadow-sm hover:border-uplusPink/40 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-[70px] h-12 rounded-lg bg-[#2A3469] shrink-0 flex flex-col justify-end items-end relative text-white shadow-inner p-1.5">
+                                    <span class="text-[6px] text-right font-bold opacity-90 leading-tight">응원해요<br>사장님!</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-gray-900 text-[12px] md:text-[13px] mb-0.5 tracking-tight">LG U+ 사장님 통할인 신한</h5>
+                                    <span class="text-[8px] font-bold bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">소호/매장 전용</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] md:text-[11px] text-gray-600 leading-relaxed break-keep">
+                                매장 전용 카드로 통신 요금을 자동이체하면 매달 최대 42,000원 파격 청구 할인
+                            </p>
+                            <div class="text-right pt-2 border-t border-gray-50">
+                                <span class="font-black text-uplusPink text-[12px] md:text-[13px] tracking-tighter">월 10,000~42,000원 할인</span>
+                            </div>
+                        </div>
+
+                        <!-- 5. 현대카드 -->
+                        <div class="border border-gray-200 rounded-xl p-3 flex flex-col gap-2.5 bg-white shadow-sm hover:border-uplusPink/40 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-[70px] h-12 rounded-lg bg-teal-300 shrink-0 flex items-center justify-center relative text-white shadow-inner">
+                                    <span class="text-2xl font-black text-pink-500 transform -rotate-12 drop-shadow-md">M</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-gray-900 text-[12px] md:text-[13px] mb-0.5 tracking-tight">현대카드M Edition3</h5>
+                                    <span class="text-[8px] font-bold bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">통신할인형</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] md:text-[11px] text-gray-600 leading-relaxed break-keep">
+                                애플페이 결제가 가능한 현대카드로, 매월 최대 2.5만원 통신비 청구 할인 혜택 제공
+                            </p>
+                            <div class="text-right pt-2 border-t border-gray-50">
+                                <span class="font-black text-uplusPink text-[12px] md:text-[13px] tracking-tighter">월 15,000원~25,000원 할인</span>
+                            </div>
+                        </div>
+
+                        <!-- 6. 하나 패밀리카드 -->
+                        <div class="border border-gray-200 rounded-xl p-3 flex flex-col gap-2.5 bg-white shadow-sm hover:border-uplusPink/40 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-[70px] h-12 rounded-lg bg-cyan-400 shrink-0 flex items-center justify-center relative text-white shadow-inner">
+                                    <span class="absolute top-1 right-1 text-[6px] font-black bg-uplusPink px-1 py-0.5 rounded-sm">LG U+</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-gray-900 text-[12px] md:text-[13px] mb-0.5 tracking-tight">LG U+ FAMILY 하나카드</h5>
+                                    <span class="text-[8px] font-bold bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">가족통신비 특화</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] md:text-[11px] text-gray-600 leading-relaxed break-keep">
+                                통신 요금 자동이체 시 전월 실적에 따라 매달 15~25% 청구 할인 (최대 2.5만원)
+                            </p>
+                            <div class="text-right pt-2 border-t border-gray-50">
+                                <span class="font-black text-uplusPink text-[12px] md:text-[13px] tracking-tighter">월 17,000원~25,000원 할인</span>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            '이벤트': {
+                icon: '🎁',
+                title: '본사직영점 단독 가입 이벤트',
+                content: `
+                    <div class="space-y-3">
+                        <p class="font-extrabold text-uplusPink text-[12px] md:text-sm">"오직 이곳에서만 챙겨드리는 시크릿 보너스!"</p>
+                        <p class="text-[10px] md:text-xs">중간 대리점 수수료 0%! 본사직영점을 통해 다이렉트로 가입하시는 고객님들을 위해 온라인 최고 수준의 풍성한 이벤트를 준비했습니다.</p>
+                        <ul class="list-disc pl-4 space-y-2 text-gray-500 mt-2 text-[10px] md:text-xs">
+                            <li><b class="text-gray-700">전액 모바일 상품권:</b> 최대 45만원! 가입 즉시 신세계, 롯데, 홈플러스 등 원하시는 백화점 모바일 상품권 발송.</li>
+                            <li><b class="text-gray-700">가전 무상 업그레이드:</b> 삼성/LG 43인치 스마트TV, 다이슨 청소기, 공기청정기 등 원하는 사은품으로 변경 및 대체 수령 가능.</li>
+                            <li><b class="text-gray-700">비밀 장려금 지원:</b> 빠른 상담 예약 후 최종 개통 시 직영점 전용으로 추가 시크릿 장려금을 얹어 드립니다.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'U+ONE': {
+                icon: '📱',
+                title: 'U+ONE (유플러스 원)',
+                content: `
+                    <div class="space-y-3">
+                        <p class="font-extrabold text-uplusPink text-[12px] md:text-sm">"내 손안의 매장, U+ONE 앱!"</p>
+                        <p class="text-[10px] md:text-xs">U+ONE 앱 하나로 요금 조회부터 데이터 관리, 다양한 멤버십 혜택까지 빠르고 스마트하게 관리할 수 있습니다.</p>
+                        <ul class="list-disc pl-4 space-y-2 text-gray-500 mt-2 text-[10px] md:text-xs">
+                            <li><b class="text-gray-700">실시간 요금 & 데이터 확인:</b> 이번 달 납부할 요금과 남은 데이터양을 한눈에 즉시 확인할 수 있습니다.</li>
+                            <li><b class="text-gray-700">다양한 혜택 모아보기:</b> 내 멤버십 등급에 맞는 제휴처 쿠폰과 혜택을 손쉽게 발급받고 관리하세요.</li>
+                            <li><b class="text-gray-700">맞춤형 서비스 추천:</b> 고객님의 사용 패턴을 분석해 알맞은 요금제와 부가서비스를 제안해 드립니다.</li>
+                        </ul>
+                    </div>
+                `
+            }
+        };
+
+        function openInfoModal(categoryId) {
+            const modal = document.getElementById('info-modal');
+            const content = document.getElementById('info-modal-content');
+            const titleEl = document.getElementById('info-modal-title');
+            const bodyEl = document.getElementById('info-modal-body');
+            
+            const data = INFO_DATA[categoryId];
+            
+            if(data && titleEl && bodyEl) {
+                titleEl.innerText = data.title;
+                bodyEl.innerHTML = data.content;
+            }
+            
+            if (modal) modal.classList.remove('hidden');
+            if (content) {
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+        }
+
+        function closeInfoModal() {
+            const modal = document.getElementById('info-modal');
+            const content = document.getElementById('info-modal-content');
+            
+            if (content) {
+                content.classList.remove('scale-100', 'opacity-100');
+                content.classList.add('scale-95', 'opacity-0');
+            }
+            if (modal) {
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
             }
         }
 
