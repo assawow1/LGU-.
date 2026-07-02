@@ -2065,6 +2065,24 @@
                                 parent.style.overflow = 'visible';
                                 parent = parent.parentElement;
                             }
+
+                            // [TV채널 편성표 전용] 텍스트 잘림 및 겹침 방지를 위한 캡처용 스타일 강제 덮어쓰기
+                            if (captureAreaId === 'channel-capture-area') {
+                                const listItems = clonedEl.querySelectorAll('.ch-li');
+                                listItems.forEach(li => {
+                                    li.style.overflow = 'visible';
+                                    li.style.lineHeight = 'normal';
+                                    li.style.paddingTop = '2px';
+                                    li.style.paddingBottom = '2px';
+                                    li.style.height = 'auto';
+                                });
+                                
+                                const textItems = clonedEl.querySelectorAll('.ch-name, .ch-no');
+                                textItems.forEach(txt => {
+                                    txt.style.overflow = 'visible';
+                                    txt.style.lineHeight = 'normal';
+                                });
+                            }
                         }
                     }
                 });
