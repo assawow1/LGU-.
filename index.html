@@ -1117,17 +1117,17 @@
                         <div id="channel-capture-area" class="bg-white p-2 md:p-4 rounded-xl border border-gray-200 shadow-sm max-h-[55vh] md:max-h-[60vh] overflow-y-auto custom-scrollbar">
                             <!-- 헤더 타이틀 -->
                             <div id="ch-head-value" class="text-center mb-3 border-b border-gray-100 pb-3">
-                                <span class="bg-green-100 text-green-700 text-[8px] font-black px-2 py-0.5 rounded-full mb-1 inline-block">가성비 1위</span>
+                                <span data-html2canvas-ignore="true" class="bg-green-100 text-green-700 text-[8px] font-black px-2 py-0.5 rounded-full mb-1 inline-block">가성비 1위</span>
                                 <h4 class="font-black text-[14px] md:text-lg text-gray-900 leading-none">U+tv 실속형 <span class="text-uplusPink">217채널</span></h4>
                                 <p class="text-[8px] md:text-[10px] text-gray-500 mt-1.5 break-keep">지상파부터 종편, 필수 예능까지 핵심 채널 총망라 (아래 전 채널 기본 포함)</p>
                             </div>
                             <div id="ch-head-basic" class="text-center mb-3 border-b border-gray-100 pb-3 hidden">
-                                <span class="bg-orange-100 text-orange-700 text-[8px] font-black px-2 py-0.5 rounded-full mb-1 inline-block">가장 인기</span>
+                                <span data-html2canvas-ignore="true" class="bg-orange-100 text-orange-700 text-[8px] font-black px-2 py-0.5 rounded-full mb-1 inline-block">가장 인기</span>
                                 <h4 class="font-black text-[14px] md:text-lg text-gray-900 leading-none">U+tv 기본형 <span class="text-orange-600">223채널</span></h4>
                                 <p class="text-[8px] md:text-[10px] text-gray-500 mt-1.5 break-keep">실속형 전 채널 포함 + <span class="text-orange-600 font-bold bg-orange-50 px-1 rounded">인기 영화/해외드라마 특화 채널 추가</span></p>
                             </div>
                             <div id="ch-head-premium" class="text-center mb-3 border-b border-gray-100 pb-3 hidden">
-                                <span class="bg-pink-100 text-uplusPink text-[8px] font-black px-2 py-0.5 rounded-full mb-1 inline-block">최대 혜택</span>
+                                <span data-html2canvas-ignore="true" class="bg-pink-100 text-uplusPink text-[8px] font-black px-2 py-0.5 rounded-full mb-1 inline-block">최대 혜택</span>
                                 <h4 class="font-black text-[14px] md:text-lg text-gray-900 leading-none">U+tv 프리미엄형 <span class="text-uplusPink">254채널</span></h4>
                                 <p class="text-[8px] md:text-[10px] text-gray-500 mt-1.5 break-keep">기본형 전 채널 포함 + <span class="text-uplusPink font-bold bg-pink-50 px-1 rounded">글로벌 뉴스/다큐/키즈 VVIP 채널 전면 개방</span></p>
                             </div>
@@ -2038,6 +2038,11 @@
         async function performCapture(captureAreaId, fileNameBase, btn) {
             const captureArea = document.getElementById(captureAreaId);
             if (!captureArea) return;
+            
+            // ★ 스크롤된 상태에서 캡처 시 상단이 잘리는 현상 방지 ★
+            const originalScrollTop = captureArea.scrollTop;
+            captureArea.scrollTop = 0;
+
             const originalHTML = btn.innerHTML;
             btn.innerHTML = '이미지 생성 중... ⏳';
             btn.style.pointerEvents = 'none'; 
@@ -2049,9 +2054,11 @@
                     useCORS: true, 
                     backgroundColor: '#ffffff',
                     windowWidth: 440, 
+                    scrollY: 0,
                     onclone: (clonedDoc) => {
                         const clonedEl = clonedDoc.getElementById(captureAreaId);
                         if(clonedEl) {
+                            clonedEl.scrollTop = 0;
                             clonedEl.style.width = '440px';
                             clonedEl.style.maxWidth = 'none';
                             clonedEl.style.maxHeight = 'none';
@@ -2068,13 +2075,11 @@
 
                             // [TV채널 편성표 전용] 모바일 캡처 시 텍스트 겹침/잘림 완전 방지를 위한 넉넉한 여백 확보
                             if (captureAreaId === 'channel-capture-area') {
-                                // 그리드 행 간격 대폭 확대
                                 const grids = clonedEl.querySelectorAll('.ch-grid, .ch-grid-4');
                                 grids.forEach(grid => {
                                     grid.style.rowGap = '10px'; 
                                 });
 
-                                // 각 채널 항목 상하 여백 및 줄간격 확보
                                 const listItems = clonedEl.querySelectorAll('.ch-li');
                                 listItems.forEach(li => {
                                     li.style.overflow = 'visible';
@@ -2084,7 +2089,6 @@
                                     li.style.height = 'auto';
                                 });
                                 
-                                // 텍스트 자체의 잘림 방지
                                 const textItems = clonedEl.querySelectorAll('.ch-name, .ch-no');
                                 textItems.forEach(txt => {
                                     txt.style.overflow = 'visible';
@@ -2104,6 +2108,7 @@
                     const file = new File([blob], fileName, { type: 'image/png' });
                     if (navigator.canShare && navigator.canShare({ files: [file] })) {
                         await navigator.share({ files: [file], title: fileNameBase });
+                        captureArea.scrollTop = originalScrollTop; // 완료 후 스크롤 복구
                         return; 
                     }
                 } catch (e) { console.log('다운로드로 전환'); }
@@ -2111,8 +2116,10 @@
                 const link = document.createElement('a');
                 link.download = fileName; link.href = imageURI; document.body.appendChild(link);
                 link.click(); document.body.removeChild(link);
+                captureArea.scrollTop = originalScrollTop; // 완료 후 스크롤 복구
             } catch (error) { 
                 console.error('캡쳐 오류:', error); 
+                captureArea.scrollTop = originalScrollTop; // 오류 시 스크롤 복구
             } finally {
                 btn.innerHTML = originalHTML; btn.style.pointerEvents = 'auto'; btn.style.opacity = '1';
             }
