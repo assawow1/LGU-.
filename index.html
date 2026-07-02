@@ -2066,21 +2066,30 @@
                                 parent = parent.parentElement;
                             }
 
-                            // [TV채널 편성표 전용] 텍스트 잘림 및 겹침 방지를 위한 캡처용 스타일 강제 덮어쓰기
+                            // [TV채널 편성표 전용] 모바일 캡처 시 텍스트 겹침/잘림 완전 방지를 위한 넉넉한 여백 확보
                             if (captureAreaId === 'channel-capture-area') {
+                                // 그리드 행 간격 대폭 확대
+                                const grids = clonedEl.querySelectorAll('.ch-grid, .ch-grid-4');
+                                grids.forEach(grid => {
+                                    grid.style.rowGap = '10px'; 
+                                });
+
+                                // 각 채널 항목 상하 여백 및 줄간격 확보
                                 const listItems = clonedEl.querySelectorAll('.ch-li');
                                 listItems.forEach(li => {
                                     li.style.overflow = 'visible';
-                                    li.style.lineHeight = 'normal';
-                                    li.style.paddingTop = '2px';
-                                    li.style.paddingBottom = '2px';
+                                    li.style.lineHeight = '2'; 
+                                    li.style.paddingTop = '5px';
+                                    li.style.paddingBottom = '5px';
                                     li.style.height = 'auto';
                                 });
                                 
+                                // 텍스트 자체의 잘림 방지
                                 const textItems = clonedEl.querySelectorAll('.ch-name, .ch-no');
                                 textItems.forEach(txt => {
                                     txt.style.overflow = 'visible';
-                                    txt.style.lineHeight = 'normal';
+                                    txt.style.lineHeight = '2';
+                                    txt.style.paddingTop = '2px';
                                 });
                             }
                         }
