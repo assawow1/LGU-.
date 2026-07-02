@@ -434,6 +434,9 @@
         </div>
     </div>
 
+    <!-- ========================================================================= -->
+    <!-- ▼▼▼ [수정 포인트 1-1] U+ONE 모달 레이아웃 HTML 영역 시작 ▼▼▼ -->
+    <!-- ========================================================================= -->
     <div id="uplus-one-modal" class="fixed inset-0 bg-black/60 z-[70] flex items-center justify-center p-4 hidden backdrop-blur-sm">
         <div class="bg-white rounded-2xl w-full max-w-[440px] h-[80vh] md:h-[85vh] shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300 flex flex-col overflow-hidden" id="uplus-one-modal-content">
             <div class="flex justify-between items-center p-3 md:p-4 border-b border-gray-100 bg-white z-10 shrink-0">
@@ -445,6 +448,9 @@
             </div>
         </div>
     </div>
+    <!-- ========================================================================= -->
+    <!-- ▲▲▲ [수정 포인트 1-1] U+ONE 모달 레이아웃 HTML 영역 끝 ▲▲▲ -->
+    <!-- ========================================================================= -->
 
     <div id="consult-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 md:p-4 hidden">
         <div class="bg-white rounded-xl md:rounded-3xl max-w-md w-full p-4 md:p-8 shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300 max-h-[90vh] overflow-y-auto" id="consult-modal-content">
@@ -474,6 +480,9 @@
         </div>
     </div>
 
+    <!-- ========================================================================= -->
+    <!-- ▼▼▼ [수정 포인트 2-1] 숙박업소 견적 시뮬레이터 HTML 팝업 영역 시작 ▼▼▼ -->
+    <!-- ========================================================================= -->
     <!-- 수정된 견적 시뮬레이터 모달 -->
     <div id="simulator-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
         <div class="bg-white rounded-2xl max-w-[440px] w-full max-h-[90vh] overflow-y-auto p-4 md:p-6 shadow-2xl relative transition-all duration-300 transform scale-95 opacity-0 custom-scrollbar" id="simulator-modal-content">
@@ -523,6 +532,9 @@
             <button id="sim-captureBtn" onclick="captureAndSaveSim(this)" class="w-full bg-slate-900 text-white py-2.5 md:py-3 rounded-lg text-xs md:text-sm font-bold mt-3 shadow-md tracking-tight">견적서 이미지 저장하기</button>
         </div>
     </div>
+    <!-- ========================================================================= -->
+    <!-- ▲▲▲ [수정 포인트 2-1] 숙박업소 견적 시뮬레이터 HTML 팝업 영역 끝 ▲▲▲ -->
+    <!-- ========================================================================= -->
 
     <div id="speed-test-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-xl md:rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300" id="speed-modal-content">
@@ -545,9 +557,15 @@
         </div>
     </div>
 
+<!-- ========================================================================= -->
+<!-- ▼▼▼ [수정 포인트 1-2] U+ONE iframe 내부에 들어갈 실제 HTML 소스 영역 시작 ▼▼▼ -->
+<!-- ========================================================================= -->
 <textarea id="uplus-one-raw" style="display:none;">
 <!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>U+One 사용 가이드</title><style>body{box-sizing:border-box;margin:0;font-family:'Noto Sans KR',sans-serif;background:#f9fafb;color:#333;font-size:14px;}html,body,#wrapper{height:100%;width:100%;}button{border:none;background:transparent;cursor:pointer;font-family:inherit;}#wrapper{max-width:100%;min-height:100%;background:#fff;overflow-y:auto;}#header{position:sticky;top:0;background:#fff;padding:16px;border-bottom:1px solid #eee;z-index:10;}#title-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}.logo{color:#E6007E;font-weight:900;font-size:20px;}.title-text{font-weight:700;font-size:18px;}.source-text{font-size:11px;color:#999;margin-top:4px;font-weight:400;}#controls{display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px;}.btn-control{background:#f1f3f5;padding:6px 12px;border-radius:16px;font-size:12px;color:#555;transition:all 0.2s;}.btn-control:hover{background:#e9ecef;}#search-input{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;background:#f8f9fa;box-sizing:border-box;font-size:18px;}#search-input:focus{outline:none;border-color:#E6007E;background:#fff;}#list-container{padding:12px;}.section{margin-bottom:12px;border:1px solid #eee;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.04);}.section-header{background:linear-gradient(135deg,#E6007E,#FF6B9D);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700;font-size:15px;}.section-header:hover{background:linear-gradient(135deg,#d1006f,#ff5a8d);}.section-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}.section-body.open{max-height:5000px;}.question{border-bottom:1px solid #f5f5f5;}.question-header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}.question-title{font-size:14px;display:flex;align-items:center;gap:6px;}.q-mark{color:#E6007E;font-weight:700;}.question-icon{font-size:10px;color:#999;}.question-body{max-height:0;overflow:hidden;background:#fafafa;padding:0 16px;transition:all 0.2s ease;}.question-body.open{max-height:120px;padding:14px 16px;}.action-buttons{display:flex;justify-content:flex-end;gap:8px;}.btn{text-decoration:none;padding:8px 14px;border-radius:6px;font-size:12px;color:#fff;background:#E6007E;display:inline-flex;align-items:center;gap:4px;}.btn-gray{background:#6c757d;}.hidden{display:none!important;}.no-results{text-align:center;padding:40px 20px;color:#999;}</style></head><body><div id="wrapper"><div id="header"><div id="title-row"><div><div><span class="logo">U+</span><span class="title-text">one 사용 가이드</span></div><div class="source-text">[호남 영업 연구소]</div></div></div><div id="controls"><button class="btn-control" onclick="toggleAll(true)">+ 전체열기</button><button class="btn-control" onclick="toggleAll(false)">- 전체닫기</button></div><input id="search-input" placeholder="검색 (예: 요금)" onkeyup="filterContent()"></div><div id="list-container"></div><div id="no-results" class="no-results hidden"><div>🔍</div><div>검색 결과가 없습니다</div></div></div><script>const data=[{title:"💰 요금 조회 및 납부 관리",items:[["실시간 요금을 확인하고 싶어요","bhKDRixKUec"],["이번 달 청구요금과 납부 방법이 궁금해요","bQ1SZMZR54M"],["입금전용계좌로 요금을 납부하고 싶어요","KyFnJQU3QMY"],["미납요금을 납부하고 싶어요","xPl9uD2dF_g"],["다른 사람 명의의 카드로 요금을 납부하고 싶어요","EjOcf-aQQP4"],["자동이체 변경 방법과 청구지 변경 방법이 궁금해요","HlHr8Z0HM7A"],["결제일 변경 방법이 궁금해요","lBd6QAcL_og"],["선택약정 할인반환금을 확인하는 방법이 궁금해요","TOUos9Iyz0g"]]},{title:"📱 데이터, 요금제, 로밍",items:[["사용 중인 요금제와 부가서비스가 궁금해요","-LPHSD1PEQk"],["휴대폰 데이터 사용량 확인 방법과 U+데이터 상품권 등록 방법이 궁금해요","bnW-a__BGIc"],["내 데이터를 가족 친구에게 나눠주고 싶어요","YNMjF24083c"],["로밍 서비스를 신청하고 싶어요","hzkbklYEm4I"]]},{title:"🔗 결합 상품 및 할인",items:[["결합 상품을 다른 결합으로 변경하고 싶어요","IU8U79c5A1E"],["할인 나눔을 변경하고 싶어요","FuwXinCJQvk"],["셀프 결합을 신청하고 싶어요","WkFMoW7ULN8"],["셀프 결합으로 가족을 추가하고 싶어요","YpCeq-9_X2Y"]]},{title:"🏠 홈 서비스 (인터넷/TV)",items:[["홈 상품 사용내역을 알고 싶어요","s77t2tV71CE"],["홈 상품 개통 설치 가능 지역을 확인하고 싶어요","pixD_1Kc6hE"],["TV나 인터넷 설치 장소를 변경하고 싶어요","CzKAUTS9a2I"]]},{title:"💳 휴대폰 소액결제",items:[["U+휴대폰결제 이용 한도를 변경하고 싶어요","y_dbJT2nY5c"],["U+휴대폰결제를 선결제로 이용하고 싶어요","_z_VspdFnKk"]]},{title:"📄 서류 발급",items:[["가입확인서를 발급하는 방법이 궁금해요","eiynh9tP6Ps"],["납부확인서, 세금계산서 신청 및 청구서 재발행 방법이 궁금해요","zqXNGL63zRo"]]},{title:"💎 멤버십 혜택",items:[["VIP콕 무료영화 예매혜택을 이용하고 싶어요","RXD5C-cHAhg"]]}];function init(){let h='';data.forEach(s=>{let q='';s.items.forEach(i=>{q+='<div class="question" data-search="'+i[0].toLowerCase()+'"><div class="question-header" onclick="tQ(this)"><div class="question-title"><span class="q-mark">Q.</span><span>'+i[0]+'</span></div><span class="question-icon">▼</span></div><div class="question-body"><div class="action-buttons"><a href="https://youtu.be/'+i[1]+'" target="_blank" class="btn">▶ 보기</a></div></div></div>';});h+='<div class="section" data-search="'+s.title.toLowerCase()+'"><div class="section-header" onclick="tS(this)"><span>'+s.title+'</span><span style="font-size:12px;">▼</span></div><div class="section-body">'+q+'</div></div>';});document.getElementById('list-container').innerHTML=h;}function tS(h){const b=h.nextElementSibling;const o=b.classList.contains('open');document.querySelectorAll('.section-body.open').forEach(x=>{if(x!==b){x.classList.remove('open');x.previousElementSibling.lastElementChild.textContent='▼';}});b.classList.toggle('open');h.lastElementChild.textContent=o?'▼':'▲';}function tQ(h){const b=h.nextElementSibling;const o=b.classList.contains('open');h.closest('.section-body').querySelectorAll('.question-body.open').forEach(x=>{if(x!==b){x.classList.remove('open');x.previousElementSibling.querySelector('.question-icon').textContent='▼';}});b.classList.toggle('open');h.querySelector('.question-icon').textContent=o?'▼':'▲';}function toggleAll(o){document.querySelectorAll('.section-body').forEach(b=>{if(o){b.classList.add('open');b.previousElementSibling.lastElementChild.textContent='▲';}else{b.classList.remove('open');b.previousElementSibling.lastElementChild.textContent='▼';}});if(!o)document.querySelectorAll('.question-body').forEach(b=>{b.classList.remove('open');b.previousElementSibling.querySelector('.question-icon').textContent='▼';});}function filterContent(){const q=document.getElementById('search-input').value.toLowerCase().trim();let f=false;document.querySelectorAll('.section').forEach(s=>{let sh=false;s.querySelectorAll('.question').forEach(qu=>{const m=q===''||qu.dataset.search.includes(q);qu.style.display=m?'':'none';if(m)sh=true;});if(q===''||s.dataset.search.includes(q)||sh){s.style.display='';f=true;if(q!==''&&sh){s.querySelector('.section-body').classList.add('open');s.querySelector('.section-header').lastElementChild.textContent='▲';}}else{s.style.display='none';}});document.getElementById('no-results').classList.toggle('hidden',f||q==='');}init();</script></body></html>
 </textarea>
+<!-- ========================================================================= -->
+<!-- ▲▲▲ [수정 포인트 1-2] U+ONE iframe 내부에 들어갈 실제 HTML 소스 영역 끝 ▲▲▲ -->
+<!-- ========================================================================= -->
 
     <script>
         const TELEGRAM_CONFIG = { token: '8542782104:AAEf3rcE3ByJvj0OwIYTGv22u0_h56v99Xw', chatId: '6675909268' };
@@ -583,12 +601,18 @@
         function getCctvSvg() { return `<svg class="w-4 h-4 md:w-8 md:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11a9 9 0 0 0-18 0" fill="currentColor" fill-opacity="0.1"/><path d="M12 2v3" /><circle cx="12" cy="13" r="3" /><path d="M9 13h6" /></svg>`; }
         function getTvSvg() { return `<svg class="w-4 h-4 md:w-8 md:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="13" rx="2" fill="currentColor" fill-opacity="0.1"/><line x1="12" y1="16" x2="12" y2="21" /><line x1="8" y1="21" x2="16" y2="21" /></svg>`; }
 
+        // =========================================================================
+        // ▼▼▼ [수정 포인트 2-2] 숙박업소 견적 시뮬레이터 요금/DB 설정 스크립트 시작 ▼▼▼
+        // =========================================================================
         const simPriceDB = {
             "3": { internet: { "광랜": { price: 25000, desc: "100Mbps 광랜 기본 서비스" }, "기가Slim": { price: 30000, desc: "500Mbps 기가속도 안정적 서비스" }, "기가1G": { price: 35000, desc: "1Gbps 기가속도 가장 빠른 서비스" } }, tv: { "실속형": { main: 12000, sub: 7000, desc: "217개 채널" }, "기본형": { main: 13000, sub: 7500, desc: "223개 채널" } } },
             "5": { internet: { "광랜": { price: 20000, desc: "100Mbps 광랜 기본 서비스" }, "기가Slim": { price: 25000, desc: "500Mbps 기가속도 안정적 서비스" }, "기가1G": { price: 30000, desc: "1Gbps 기가속도 가장 빠른 서비스" } }, tv: { "실속형": { main: 10000, sub: 6000, desc: "217개 채널" }, "기본형": { main: 11000, sub: 6500, desc: "223개 채널" } } },
             equipment: { "WIFI": { price: 1000, desc: "정품 통합형 WIFI (무료정책)" }, "구글셋탑": { price: 1000, desc: "구글 셋탑박스" }, "UHD3셋탑": { price: 3000, desc: "UHD화질/넷플릭스 등 OTT 지원" } },
             voucherDB: { "3": { "광랜": { "모텔": 200000, "원룸": 180000 }, "기가Slim": { "모텔": 230000, "원룸": 210000 }, "기가1G": { "모텔": 240000, "원룸": 220000 } }, "5": { "광랜": { "모텔": 250000, "원룸": 230000 }, "기가Slim": { "모텔": 280000, "원룸": 260000 }, "기가1G": { "모텔": 290000, "원룸": 270000 } } }
         };
+        // =========================================================================
+        // ▲▲▲ [수정 포인트 2-2] 숙박업소 견적 시뮬레이터 요금/DB 설정 스크립트 끝 ▲▲▲
+        // =========================================================================
 
         const PLAN_DATA = {
             home: [
@@ -1884,6 +1908,9 @@
             }
         }
 
+        // =========================================================================
+        // ▼▼▼ [수정 포인트 2-3] 숙박업소 견적 시뮬레이터 자바스크립트 로직 시작 ▼▼▼
+        // =========================================================================
         function openSimulator() {
             const modal = document.getElementById('simulator-modal');
             const content = document.getElementById('simulator-modal-content');
@@ -2083,6 +2110,9 @@
                 dateSpan.remove();
             }
         }
+        // =========================================================================
+        // ▲▲▲ [수정 포인트 2-3] 숙박업소 견적 시뮬레이터 자바스크립트 로직 끝 ▲▲▲
+        // =========================================================================
 
         async function captureAndSaveChannel(btn) {
             let planName = '실속형';
@@ -2126,6 +2156,9 @@
             document.querySelectorAll('.ch-premium').forEach(el => el.classList.toggle('hidden', plan !== 'premium'));
         }
 
+        // =========================================================================
+        // ▼▼▼ [수정 포인트 1-3] U+ONE 관련 JS 함수 영역 시작 ▼▼▼
+        // =========================================================================
         function openUplusOneModal() {
             const iframe = document.getElementById('uplus-one-iframe');
             if(iframe && !iframe.srcdoc) iframe.srcdoc = document.getElementById('uplus-one-raw').value;
@@ -2141,6 +2174,9 @@
             if (content) { content.classList.remove('scale-100', 'opacity-100'); content.classList.add('scale-95', 'opacity-0'); }
             if (modal) setTimeout(() => modal.classList.add('hidden'), 300);
         }
+        // =========================================================================
+        // ▲▲▲ [수정 포인트 1-3] U+ONE 관련 JS 함수 영역 끝 ▲▲▲
+        // =========================================================================
     </script>
 </body>
 </html>
