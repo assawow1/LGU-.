@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -409,6 +408,51 @@
         </div>
     </footer>
 
+    <!-- AI Chat Floating Button -->
+    <button onclick="toggleAiChat()" class="fixed bottom-20 right-4 md:bottom-20 md:right-8 z-50 bg-gradient-to-r from-uplusPink to-pink-500 text-white rounded-full p-3 md:p-4 shadow-xl hover:scale-105 transition-transform flex items-center justify-center group border-2 border-white/20">
+        <span class="text-2xl md:text-3xl relative">
+            🤖
+            <span class="absolute -top-1 -right-1 flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-white shadow-sm"></span>
+            </span>
+        </span>
+    </button>
+
+    <!-- AI Chat Modal -->
+    <div id="ai-chat-modal" class="fixed inset-0 bg-black/60 z-[80] hidden flex-col items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl w-full max-w-[400px] h-[80vh] flex flex-col shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="ai-chat-content">
+            <div class="bg-gradient-to-r from-uplusPink to-pink-600 p-3 md:p-4 flex justify-between items-center text-white shrink-0 shadow-sm relative z-10">
+                <div class="flex items-center gap-2 md:gap-3">
+                    <span class="text-2xl bg-white/20 rounded-full p-1.5 shadow-inner">🤖</span>
+                    <div>
+                        <h3 class="font-black text-sm md:text-base leading-tight flex items-center gap-1">AI 맞춤 상담사 유플봇 <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span></h3>
+                        <p class="text-[9px] md:text-[10px] text-pink-100 font-medium mt-0.5">Gemini AI가 실시간으로 분석하여 답변합니다.</p>
+                    </div>
+                </div>
+                <button onclick="toggleAiChat()" class="text-white/80 hover:text-white font-black text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors">&times;</button>
+            </div>
+            <div id="ai-chat-messages" class="flex-grow overflow-y-auto p-4 space-y-4 bg-slate-50 custom-scrollbar relative">
+                <!-- Initial Welcome Message -->
+                <div class="flex gap-2 items-start">
+                    <span class="text-xl shrink-0 mt-1 drop-shadow-sm">🤖</span>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-sm border border-slate-200 shadow-sm text-[11px] md:text-sm text-slate-700 break-keep leading-relaxed">
+                        안녕하세요! LG U+ 본사직영점 AI 상담사 <b>유플봇</b>입니다.<br><br>가정용 인터넷, 소상공인(우리가게패키지), 숙박업소 다회선 등 고객님께 딱 맞는 <b>최적의 요금제</b>와 <b>사은품 혜택</b>을 즉시 추천해 드릴게요! 어떤 점이 궁금하신가요? 😊<br><br>
+                        <span class="text-[9px] text-gray-400 font-bold block mt-1">💡 예시: "원룸에서 혼자 쓸건데 어떤 요금제가 좋아?", "소호 100M 혜택 알려줘"</span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 bg-white border-t border-slate-100 shrink-0 relative z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.02)]">
+                <form onsubmit="handleChatSubmit(event)" class="flex gap-2 relative">
+                    <input type="text" id="ai-chat-input" autocomplete="off" placeholder="궁금한 내용을 입력해보세요..." class="flex-grow bg-slate-100 border border-slate-200 rounded-full pl-4 pr-10 py-2.5 text-[11px] md:text-sm text-slate-800 outline-none focus:ring-2 focus:ring-uplusPink/30 focus:bg-white transition-all placeholder-slate-400">
+                    <button type="submit" id="ai-send-btn" class="absolute right-1 top-1/2 -translate-y-1/2 bg-uplusPink hover:bg-pink-600 text-white rounded-full w-8 h-8 md:w-9 md:h-9 flex items-center justify-center shrink-0 shadow-sm transition-all active:scale-95 disabled:bg-slate-300 disabled:cursor-not-allowed">
+                        <svg class="w-3.5 h-3.5 md:w-4 md:h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Fixed Bottom Navigation -->
     <div class="fixed bottom-0 left-0 w-full z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
         <div class="max-w-6xl mx-auto w-full px-2 py-2 md:px-4 md:py-2.5 flex justify-between items-center gap-2 md:gap-6">
@@ -586,6 +630,9 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             switchMainTab('soho');
+            
+            renderLodgingTable();
+
             const simInputs = ['sim-contract', 'sim-internet', 'sim-tv', 'sim-tvTotal', 'sim-freeWifi', 'sim-facility'];
             simInputs.forEach(id => {
                 const el = document.getElementById(id);
@@ -2267,9 +2314,151 @@
             if (content) { content.classList.remove('scale-100', 'opacity-100'); content.classList.add('scale-95', 'opacity-0'); }
             if (modal) setTimeout(() => modal.classList.add('hidden'), 300);
         }
-        // =========================================================================
-        // ▲▲▲ [수정 포인트 1-3] U+ONE 관련 JS 함수 영역 끝 ▲▲▲
-        // =========================================================================
+
+        const GEMINI_API_KEY = ""; // 캔버스 환경에서 자동으로 주입됩니다.
+        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${GEMINI_API_KEY}`;
+        let aiChatHistory = [];
+
+        function toggleAiChat() {
+            const modal = document.getElementById('ai-chat-modal');
+            const content = document.getElementById('ai-chat-content');
+            
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                    document.getElementById('ai-chat-input').focus();
+                }, 10);
+            } else {
+                content.classList.remove('scale-100', 'opacity-100');
+                content.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300);
+            }
+        }
+
+        function handleChatSubmit(e) {
+            e.preventDefault();
+            const inputEl = document.getElementById('ai-chat-input');
+            const text = inputEl.value.trim();
+            if (!text) return;
+
+            appendChatMessage('user', text);
+            inputEl.value = '';
+            
+            callGeminiAPI(text);
+        }
+
+        function appendChatMessage(sender, text) {
+            const messagesContainer = document.getElementById('ai-chat-messages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = sender === 'user' ? 'flex gap-2 items-end justify-end pl-8 animate-fade-in' : 'flex gap-2 items-start pr-8 animate-fade-in';
+            
+            // 간단한 마크다운 처리 (줄바꿈 및 볼드체)
+            const formatText = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+
+            let contentHtml = '';
+            if (sender === 'user') {
+                contentHtml = `
+                    <div class="bg-gray-800 text-white p-2.5 md:p-3 rounded-2xl rounded-br-sm shadow-sm text-[11px] md:text-sm break-keep leading-relaxed">${formatText}</div>
+                `;
+            } else {
+                contentHtml = `
+                    <span class="text-xl shrink-0 mt-1 drop-shadow-sm">🤖</span>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-sm border border-slate-200 shadow-sm text-[11px] md:text-sm text-slate-700 break-keep leading-relaxed">${formatText}</div>
+                `;
+            }
+            
+            msgDiv.innerHTML = contentHtml;
+            messagesContainer.appendChild(msgDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messagesContainer = document.getElementById('ai-chat-messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'ai-typing-indicator';
+            typingDiv.className = 'flex gap-2 items-center text-gray-400 p-2 animate-pulse';
+            typingDiv.innerHTML = `<span class="text-xl shrink-0">🤖</span><span class="text-[10px] md:text-xs">유플봇이 맞춤 정보를 검색중입니다...</span>`;
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            const btn = document.getElementById('ai-send-btn');
+            if (btn) btn.disabled = true;
+        }
+
+        function removeTypingIndicator() {
+            const typingDiv = document.getElementById('ai-typing-indicator');
+            if (typingDiv) typingDiv.remove();
+            
+            const btn = document.getElementById('ai-send-btn');
+            if (btn) btn.disabled = false;
+        }
+
+        async function callGeminiAPI(userText) {
+            showTypingIndicator();
+            
+            aiChatHistory.push({ role: "user", parts: [{ text: userText }] });
+
+            const systemInstruction = "당신은 LG U+ 인터넷 가입센터의 최고 전문 AI 상담원 '유플봇'입니다. \n" +
+                "다음 정보를 기반으로 고객의 질문에 한국어로 친절하고 간결하게 답변하세요.\n" +
+                "[정보]\n" +
+                "- 가정용 요금제: 1G 실속형(48,400원, 상품권 46만원 증정), 1G 단독(31,900원, 상품권 30만원 증정)\n" +
+                "- 소상공인(상가) 요금제: 1G+AI전화+CCTV(48,400원), 100M+AI전화(28,300원), 1G+AI전화+CCTV+IPTV(68,200원). 모두 상품권 5만원 증정.\n" +
+                "- 숙박업소 요금제: 다객실 맞춤 시뮬레이터 제공 (객실별 최소 19,800원 부터). 기가와이파이 무료, 노후선로 무상교체 혜택 존재.\n" +
+                "- 결합할인: 휴대폰 결합 시 최대 47만원 할인, 제휴카드 결제 시 최대 42,000원 청구할인\n" +
+                "항상 공손하고 부드러운 톤을 유지하며, 너무 길지 않게 핵심만 답변하세요. 필요한 경우 화면의 '빠른상담 예약' 메뉴를 통해 상담을 접수하도록 유도하세요.";
+
+            const payload = {
+                contents: aiChatHistory,
+                systemInstruction: { parts: [{ text: systemInstruction }] },
+                tools: [{"google_search": {}}] // 검색 그라운딩 기능을 켜 최신 정보에 대응
+            };
+
+            let retryDelay = 1000;
+            const maxRetries = 3;
+
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(GEMINI_API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (response.status === 429) {
+                        await new Promise(r => setTimeout(r, retryDelay));
+                        retryDelay *= 2;
+                        continue;
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+                    
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        const aiText = candidate.content.parts[0].text;
+                        removeTypingIndicator();
+                        appendChatMessage('model', aiText);
+                        aiChatHistory.push({ role: "model", parts: [{ text: aiText }] });
+                        return;
+                    } else {
+                        throw new Error("Invalid response format");
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        removeTypingIndicator();
+                        appendChatMessage('model', '죄송합니다. 네트워크 통신 중 오류가 발생했습니다. 잠시 후 다시 질문해주세요.');
+                        console.error('Gemini API Error:', error);
+                    }
+                    await new Promise(r => setTimeout(r, retryDelay));
+                    retryDelay *= 2;
+                }
+            }
+        }
     </script>
 </body>
 </html>
