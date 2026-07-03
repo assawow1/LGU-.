@@ -578,7 +578,6 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             switchMainTab('soho');
-            renderLodgingTable();
             const simInputs = ['sim-contract', 'sim-internet', 'sim-tv', 'sim-tvTotal', 'sim-freeWifi', 'sim-facility'];
             simInputs.forEach(id => {
                 const el = document.getElementById(id);
@@ -587,6 +586,47 @@
             const today = new Date().toISOString().split('T')[0];
             const dateInput = document.getElementById('sim-docDate');
             if (dateInput) dateInput.value = today;
+
+            // 모바일 환경 총 회선수 스와이프 숫자 증감 로직 추가
+            const tvTotalInput = document.getElementById('sim-tvTotal');
+            if (tvTotalInput) {
+                let startY = 0;
+                let isMoving = false;
+
+                tvTotalInput.addEventListener('touchstart', function(e) {
+                    startY = e.touches[0].clientY;
+                    isMoving = false;
+                }, { passive: true });
+
+                tvTotalInput.addEventListener('touchmove', function(e) {
+                    const currentY = e.touches[0].clientY;
+                    const diffY = startY - currentY;
+
+                    // 15px 단위로 변경 민감도 설정
+                    if (Math.abs(diffY) > 15) {
+                        e.preventDefault(); // 스와이프 시 화면 스크롤 방지
+                        isMoving = true;
+                        let currentValue = parseInt(this.value) || 0;
+                        
+                        if (diffY > 0) {
+                            this.value = currentValue + 1; // 위로 밀 때 증가
+                        } else {
+                            if (currentValue > 1) { // 최소 회선수 1 이상 유지
+                                this.value = currentValue - 1; // 아래로 밀 때 감소
+                            }
+                        }
+                        startY = currentY; // 기준점 갱신
+                        updateSimTable(); // 실시간 요금표 반영
+                    }
+                }, { passive: false });
+
+                tvTotalInput.addEventListener('touchend', function(e) {
+                    // 스와이프 이동 없이 가볍게 터치(톡)만 했을 경우 키패드 활성화
+                    if (!isMoving) {
+                        this.focus();
+                    }
+                });
+            }
         });
 
         async function openKakaoTalk() {
