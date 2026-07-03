@@ -577,6 +577,7 @@
         let gaugeInterval;
 
         document.addEventListener('DOMContentLoaded', () => {
+            renderLodgingTable(); // 표 데이터 생성 및 렌더링 함수 호출 복구
             switchMainTab('soho');
             const simInputs = ['sim-contract', 'sim-internet', 'sim-tv', 'sim-tvTotal', 'sim-freeWifi', 'sim-facility'];
             simInputs.forEach(id => {
@@ -587,41 +588,44 @@
             const dateInput = document.getElementById('sim-docDate');
             if (dateInput) dateInput.value = today;
 
-            // 모바일 환경 총 회선수 스와이프 숫자 증감 로직 추가
+            // 모바일 환경 총 회선수 스와이프 숫자 증감 로직 개선
             const tvTotalInput = document.getElementById('sim-tvTotal');
             if (tvTotalInput) {
                 let startY = 0;
+                let initialValue = 0;
                 let isMoving = false;
 
                 tvTotalInput.addEventListener('touchstart', function(e) {
                     startY = e.touches[0].clientY;
+                    initialValue = parseInt(this.value) || 0;
                     isMoving = false;
                 }, { passive: true });
 
                 tvTotalInput.addEventListener('touchmove', function(e) {
                     const currentY = e.touches[0].clientY;
-                    const diffY = startY - currentY;
+                    const diffY = startY - currentY; // 위로 밀면 양수
 
-                    // 15px 단위로 변경 민감도 설정
-                    if (Math.abs(diffY) > 15) {
-                        e.preventDefault(); // 스와이프 시 화면 스크롤 방지
+                    // 약간의 터치 떨림 방지를 위한 임계값(5px)
+                    if (Math.abs(diffY) > 5) {
+                        e.preventDefault(); // 스크롤 방지
                         isMoving = true;
-                        let currentValue = parseInt(this.value) || 0;
                         
-                        if (diffY > 0) {
-                            this.value = currentValue + 1; // 위로 밀 때 증가
-                        } else {
-                            if (currentValue > 1) { // 최소 회선수 1 이상 유지
-                                this.value = currentValue - 1; // 아래로 밀 때 감소
-                            }
+                        // 이동 거리에 비례하여 부드럽게 숫자 증감 (10px당 1씩)
+                        let change = Math.floor(diffY / 10);
+                        let newValue = initialValue + change;
+                        
+                        if (newValue < 1) newValue = 1; // 1 회선 이상 유지
+                        
+                        // 숫자가 바뀌었을 때만 렌더링 업데이트
+                        if (this.value != newValue) {
+                            this.value = newValue;
+                            updateSimTable();
                         }
-                        startY = currentY; // 기준점 갱신
-                        updateSimTable(); // 실시간 요금표 반영
                     }
                 }, { passive: false });
 
                 tvTotalInput.addEventListener('touchend', function(e) {
-                    // 스와이프 이동 없이 가볍게 터치(톡)만 했을 경우 키패드 활성화
+                    // 스와이프 이동 없이 가볍게 톡 쳤을 경우 키패드 활성화
                     if (!isMoving) {
                         this.focus();
                     }
