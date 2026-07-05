@@ -377,6 +377,19 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- AI 우리가게 홍보 문구 자동 생성기 -->
+            <div class="mt-8 p-4 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-2xl border border-indigo-200">
+                <h3 class="text-sm md:text-lg font-black text-indigo-900 mb-2 flex items-center gap-1">
+                    <span class="text-xl">✨</span> AI 우리가게 홍보 문구 생성기
+                </h3>
+                <p class="text-[10px] md:text-sm text-gray-600 mb-3 break-keep">가게 이름과 업종을 간단히 입력하시면, U+ AI가 고객의 눈길을 사로잡는 매력적인 홍보 문구(인스타그램, 문자용)를 뚝딱 만들어 드립니다! 만들어진 문구를 '우리가게 홍보' 앱에 바로 활용해보세요.</p>
+                <div class="flex flex-col md:flex-row gap-2 mb-3">
+                    <input type="text" id="ai-promo-input" placeholder="예: 맛나식당 (홍대입구역 근처 일식 돈까스 전문점)" class="flex-grow bg-white border border-indigo-200 rounded-lg px-3 py-2.5 text-[10px] md:text-sm outline-none focus:ring-2 focus:ring-indigo-400">
+                    <button onclick="generateSOHOPromo()" id="ai-promo-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2.5 rounded-lg text-[10px] md:text-sm shrink-0 transition-colors shadow-sm">문구 생성 ✨</button>
+                </div>
+                <div id="ai-promo-result" class="hidden bg-white p-4 rounded-xl border border-indigo-100 text-[10px] md:text-sm text-gray-700 whitespace-pre-wrap leading-relaxed shadow-inner"></div>
+            </div>
         </div>
 
         <section class="mb-6 md:mb-16">
@@ -407,51 +420,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- AI Chat Floating Button -->
-    <button onclick="toggleAiChat()" class="fixed bottom-20 right-4 md:bottom-20 md:right-8 z-50 bg-gradient-to-r from-uplusPink to-pink-500 text-white rounded-full p-3 md:p-4 shadow-xl hover:scale-105 transition-transform flex items-center justify-center group border-2 border-white/20">
-        <span class="text-2xl md:text-3xl relative">
-            🤖
-            <span class="absolute -top-1 -right-1 flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-white shadow-sm"></span>
-            </span>
-        </span>
-    </button>
-
-    <!-- AI Chat Modal -->
-    <div id="ai-chat-modal" class="fixed inset-0 bg-black/60 z-[80] hidden flex-col items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-2xl w-full max-w-[400px] h-[80vh] flex flex-col shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="ai-chat-content">
-            <div class="bg-gradient-to-r from-uplusPink to-pink-600 p-3 md:p-4 flex justify-between items-center text-white shrink-0 shadow-sm relative z-10">
-                <div class="flex items-center gap-2 md:gap-3">
-                    <span class="text-2xl bg-white/20 rounded-full p-1.5 shadow-inner">🤖</span>
-                    <div>
-                        <h3 class="font-black text-sm md:text-base leading-tight flex items-center gap-1">AI 맞춤 상담사 유플봇 <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span></h3>
-                        <p class="text-[9px] md:text-[10px] text-pink-100 font-medium mt-0.5">Gemini AI가 실시간으로 분석하여 답변합니다.</p>
-                    </div>
-                </div>
-                <button onclick="toggleAiChat()" class="text-white/80 hover:text-white font-black text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors">&times;</button>
-            </div>
-            <div id="ai-chat-messages" class="flex-grow overflow-y-auto p-4 space-y-4 bg-slate-50 custom-scrollbar relative">
-                <!-- Initial Welcome Message -->
-                <div class="flex gap-2 items-start">
-                    <span class="text-xl shrink-0 mt-1 drop-shadow-sm">🤖</span>
-                    <div class="bg-white p-3 rounded-2xl rounded-tl-sm border border-slate-200 shadow-sm text-[11px] md:text-sm text-slate-700 break-keep leading-relaxed">
-                        안녕하세요! LG U+ 본사직영점 AI 상담사 <b>유플봇</b>입니다.<br><br>가정용 인터넷, 소상공인(우리가게패키지), 숙박업소 다회선 등 고객님께 딱 맞는 <b>최적의 요금제</b>와 <b>사은품 혜택</b>을 즉시 추천해 드릴게요! 어떤 점이 궁금하신가요? 😊<br><br>
-                        <span class="text-[9px] text-gray-400 font-bold block mt-1">💡 예시: "원룸에서 혼자 쓸건데 어떤 요금제가 좋아?", "소호 100M 혜택 알려줘"</span>
-                    </div>
-                </div>
-            </div>
-            <div class="p-3 bg-white border-t border-slate-100 shrink-0 relative z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.02)]">
-                <form onsubmit="handleChatSubmit(event)" class="flex gap-2 relative">
-                    <input type="text" id="ai-chat-input" autocomplete="off" placeholder="궁금한 내용을 입력해보세요..." class="flex-grow bg-slate-100 border border-slate-200 rounded-full pl-4 pr-10 py-2.5 text-[11px] md:text-sm text-slate-800 outline-none focus:ring-2 focus:ring-uplusPink/30 focus:bg-white transition-all placeholder-slate-400">
-                    <button type="submit" id="ai-send-btn" class="absolute right-1 top-1/2 -translate-y-1/2 bg-uplusPink hover:bg-pink-600 text-white rounded-full w-8 h-8 md:w-9 md:h-9 flex items-center justify-center shrink-0 shadow-sm transition-all active:scale-95 disabled:bg-slate-300 disabled:cursor-not-allowed">
-                        <svg class="w-3.5 h-3.5 md:w-4 md:h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <!-- Fixed Bottom Navigation -->
     <div class="fixed bottom-0 left-0 w-full z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
@@ -2316,107 +2284,31 @@
         }
 
         const GEMINI_API_KEY = ""; // 캔버스 환경에서 자동으로 주입됩니다.
-        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${GEMINI_API_KEY}`;
-        let aiChatHistory = [];
+        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
 
-        function toggleAiChat() {
-            const modal = document.getElementById('ai-chat-modal');
-            const content = document.getElementById('ai-chat-content');
-            
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                setTimeout(() => {
-                    content.classList.remove('scale-95', 'opacity-0');
-                    content.classList.add('scale-100', 'opacity-100');
-                    document.getElementById('ai-chat-input').focus();
-                }, 10);
-            } else {
-                content.classList.remove('scale-100', 'opacity-100');
-                content.classList.add('scale-95', 'opacity-0');
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
-                }, 300);
+        async function generateSOHOPromo() {
+            const inputEl = document.getElementById('ai-promo-input');
+            const btn = document.getElementById('ai-promo-btn');
+            const resultEl = document.getElementById('ai-promo-result');
+            const storeInfo = inputEl.value.trim();
+
+            if (!storeInfo) {
+                inputEl.placeholder = "가게 이름과 업종을 적어주세요! (예: 맛나식당 일식 돈까스)";
+                inputEl.focus();
+                return;
             }
-        }
 
-        function handleChatSubmit(e) {
-            e.preventDefault();
-            const inputEl = document.getElementById('ai-chat-input');
-            const text = inputEl.value.trim();
-            if (!text) return;
+            btn.disabled = true;
+            btn.innerHTML = '생성 중... ⏳';
+            resultEl.classList.remove('hidden');
+            resultEl.innerHTML = '<span class="animate-pulse text-indigo-500 font-bold">AI가 사장님을 위한 찰떡 맞춤 홍보 문구를 고민하고 있습니다...</span>';
 
-            appendChatMessage('user', text);
-            inputEl.value = '';
-            
-            callGeminiAPI(text);
-        }
-
-        function appendChatMessage(sender, text) {
-            const messagesContainer = document.getElementById('ai-chat-messages');
-            const msgDiv = document.createElement('div');
-            msgDiv.className = sender === 'user' ? 'flex gap-2 items-end justify-end pl-8 animate-fade-in' : 'flex gap-2 items-start pr-8 animate-fade-in';
-            
-            // 간단한 마크다운 처리 (줄바꿈 및 볼드체)
-            const formatText = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-
-            let contentHtml = '';
-            if (sender === 'user') {
-                contentHtml = `
-                    <div class="bg-gray-800 text-white p-2.5 md:p-3 rounded-2xl rounded-br-sm shadow-sm text-[11px] md:text-sm break-keep leading-relaxed">${formatText}</div>
-                `;
-            } else {
-                contentHtml = `
-                    <span class="text-xl shrink-0 mt-1 drop-shadow-sm">🤖</span>
-                    <div class="bg-white p-3 rounded-2xl rounded-tl-sm border border-slate-200 shadow-sm text-[11px] md:text-sm text-slate-700 break-keep leading-relaxed">${formatText}</div>
-                `;
-            }
-            
-            msgDiv.innerHTML = contentHtml;
-            messagesContainer.appendChild(msgDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            const messagesContainer = document.getElementById('ai-chat-messages');
-            const typingDiv = document.createElement('div');
-            typingDiv.id = 'ai-typing-indicator';
-            typingDiv.className = 'flex gap-2 items-center text-gray-400 p-2 animate-pulse';
-            typingDiv.innerHTML = `<span class="text-xl shrink-0">🤖</span><span class="text-[10px] md:text-xs">유플봇이 맞춤 정보를 검색중입니다...</span>`;
-            messagesContainer.appendChild(typingDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            
-            const btn = document.getElementById('ai-send-btn');
-            if (btn) btn.disabled = true;
-        }
-
-        function removeTypingIndicator() {
-            const typingDiv = document.getElementById('ai-typing-indicator');
-            if (typingDiv) typingDiv.remove();
-            
-            const btn = document.getElementById('ai-send-btn');
-            if (btn) btn.disabled = false;
-        }
-
-        async function callGeminiAPI(userText) {
-            showTypingIndicator();
-            
-            aiChatHistory.push({ role: "user", parts: [{ text: userText }] });
-
-            const systemInstruction = "당신은 LG U+ 인터넷 가입센터의 최고 전문 AI 상담원 '유플봇'입니다. \n" +
-                "다음 정보를 기반으로 고객의 질문에 한국어로 친절하고 간결하게 답변하세요.\n" +
-                "[정보]\n" +
-                "- 가정용 요금제: 1G 실속형(48,400원, 상품권 46만원 증정), 1G 단독(31,900원, 상품권 30만원 증정)\n" +
-                "- 소상공인(상가) 요금제: 1G+AI전화+CCTV(48,400원), 100M+AI전화(28,300원), 1G+AI전화+CCTV+IPTV(68,200원). 모두 상품권 5만원 증정.\n" +
-                "- 숙박업소 요금제: 다객실 맞춤 시뮬레이터 제공 (객실별 최소 19,800원 부터). 기가와이파이 무료, 노후선로 무상교체 혜택 존재.\n" +
-                "- 결합할인: 휴대폰 결합 시 최대 47만원 할인, 제휴카드 결제 시 최대 42,000원 청구할인\n" +
-                "항상 공손하고 부드러운 톤을 유지하며, 너무 길지 않게 핵심만 답변하세요. 필요한 경우 화면의 '빠른상담 예약' 메뉴를 통해 상담을 접수하도록 유도하세요.";
+            const prompt = `당신은 성공적인 소상공인 마케팅 전문가입니다. 다음 가게 정보를 바탕으로 고객의 방문을 유도하는 매력적인 홍보 문구를 작성해주세요.
+가게 정보: ${storeInfo}
+조건: 인스타그램이나 문자로 고객에게 보내기 좋게 이모지를 듬뿍 사용하고, 3~4문장으로 짧고 강렬하게 작성하세요. "LG U+ 우리가게홍보" 앱에 바로 복사해서 쓸 수 있는 형태여야 합니다.`;
 
             const payload = {
-                contents: aiChatHistory,
-                systemInstruction: { parts: [{ text: systemInstruction }] },
-                tools: [{"google_search": {}}] // 검색 그라운딩 기능을 켜 최신 정보에 대응
+                contents: [{ parts: [{ text: prompt }] }]
             };
 
             let retryDelay = 1000;
@@ -2429,35 +2321,23 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
-                    
-                    if (response.status === 429) {
-                        await new Promise(r => setTimeout(r, retryDelay));
-                        retryDelay *= 2;
-                        continue;
-                    }
 
+                    if (!response.ok) throw new Error('API Error');
                     const result = await response.json();
-                    const candidate = result.candidates?.[0];
-                    
-                    if (candidate && candidate.content?.parts?.[0]?.text) {
-                        const aiText = candidate.content.parts[0].text;
-                        removeTypingIndicator();
-                        appendChatMessage('model', aiText);
-                        aiChatHistory.push({ role: "model", parts: [{ text: aiText }] });
-                        return;
-                    } else {
-                        throw new Error("Invalid response format");
-                    }
+                    const generatedText = result.candidates?.[0]?.content?.parts?.[0]?.text || '생성 실패';
+
+                    resultEl.innerHTML = generatedText.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+                    break;
                 } catch (error) {
                     if (i === maxRetries - 1) {
-                        removeTypingIndicator();
-                        appendChatMessage('model', '죄송합니다. 네트워크 통신 중 오류가 발생했습니다. 잠시 후 다시 질문해주세요.');
-                        console.error('Gemini API Error:', error);
+                        resultEl.innerHTML = '<span class="text-red-500">문구 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</span>';
                     }
                     await new Promise(r => setTimeout(r, retryDelay));
                     retryDelay *= 2;
                 }
             }
+            btn.disabled = false;
+            btn.innerHTML = '문구 생성 ✨';
         }
     </script>
 </body>
