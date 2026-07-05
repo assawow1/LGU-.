@@ -377,19 +377,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- AI 우리가게 홍보 문구 자동 생성기 -->
-            <div class="mt-8 p-4 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-2xl border border-indigo-200">
-                <h3 class="text-sm md:text-lg font-black text-indigo-900 mb-2 flex items-center gap-1">
-                    <span class="text-xl">✨</span> AI 우리가게 홍보 문구 생성기
-                </h3>
-                <p class="text-[10px] md:text-sm text-gray-600 mb-3 break-keep">가게 이름과 업종을 간단히 입력하시면, U+ AI가 고객의 눈길을 사로잡는 매력적인 홍보 문구(인스타그램, 문자용)를 뚝딱 만들어 드립니다! 만들어진 문구를 '우리가게 홍보' 앱에 바로 활용해보세요.</p>
-                <div class="flex flex-col md:flex-row gap-2 mb-3">
-                    <input type="text" id="ai-promo-input" placeholder="예: 맛나식당 (홍대입구역 근처 일식 돈까스 전문점)" class="flex-grow bg-white border border-indigo-200 rounded-lg px-3 py-2.5 text-[10px] md:text-sm outline-none focus:ring-2 focus:ring-indigo-400">
-                    <button onclick="generateSOHOPromo()" id="ai-promo-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2.5 rounded-lg text-[10px] md:text-sm shrink-0 transition-colors shadow-sm">문구 생성 ✨</button>
-                </div>
-                <div id="ai-promo-result" class="hidden bg-white p-4 rounded-xl border border-indigo-100 text-[10px] md:text-sm text-gray-700 whitespace-pre-wrap leading-relaxed shadow-inner"></div>
-            </div>
         </div>
 
         <section class="mb-6 md:mb-16">
@@ -735,8 +722,8 @@
                 html: `
                     <div class="col-span-1 md:col-span-2">
                         <p class="text-[9px] md:hidden font-bold text-uplusPink mb-2 animate-pulse text-center tracking-tight">👈 좌우로 넘겨서 확인하세요 👉</p>
-                        <div class="flex flex-nowrap md:grid md:grid-cols-3 gap-1.5 md:gap-6 text-center items-stretch overflow-x-auto pb-3 custom-scrollbar snap-x snap-mandatory px-1 md:px-0">
-                            <div class="flex flex-col items-center w-full min-w-[145px] md:min-w-0 snap-center shrink-0">
+                        <div class="flex flex-nowrap md:grid md:grid-cols-3 gap-2 md:gap-6 text-center items-stretch overflow-x-auto pb-3 custom-scrollbar snap-x snap-mandatory px-1 md:px-0">
+                            <div class="flex flex-col items-center w-[160px] md:w-auto shrink-0 snap-center">
                                 <h5 class="text-[11px] md:text-[19px] font-black text-indigo-900 mb-1.5 md:mb-3 bg-indigo-50 px-3 md:px-6 py-1 md:py-2 rounded-full tracking-tight">우리가게홍보</h5>
                                 <div class="w-full max-w-[150px] md:max-w-[240px] h-[190px] md:h-[300px] bg-white border-[2px] md:border-[4px] border-slate-100 rounded-[1.2rem] md:rounded-[2rem] shadow-lg p-2 md:p-4 mb-2 md:mb-3 flex flex-col relative overflow-hidden justify-between">
                                     <div class="absolute top-1 md:top-1.5 left-1/2 -translate-x-1/2 w-6 md:w-10 h-1 md:h-1.5 bg-slate-200 rounded-full"></div>
@@ -753,7 +740,7 @@
                                     U+one 앱에 <span class="text-uplusPink font-bold">사장님 매장을 무료로 홍보</span>할 수 있어요.
                                 </p>
                             </div>
-                            <div class="flex flex-col items-center w-full min-w-[145px] md:min-w-0 snap-center shrink-0">
+                            <div class="flex flex-col items-center w-[160px] md:w-auto shrink-0 snap-center">
                                 <h5 class="text-[11px] md:text-[19px] font-black text-indigo-900 mb-1.5 md:mb-3 bg-indigo-50 px-3 md:px-6 py-1 md:py-2 rounded-full tracking-tight">사장님광장</h5>
                                 <div class="w-full max-w-[150px] md:max-w-[240px] h-[190px] md:h-[300px] bg-white border-[2px] md:border-[4px] border-slate-100 rounded-[1.2rem] md:rounded-[2rem] shadow-lg p-2 md:p-4 mb-2 md:mb-3 flex flex-col relative overflow-hidden text-left">
                                     <div class="absolute top-1 md:top-1.5 left-1/2 -translate-x-1/2 w-6 md:w-10 h-1 md:h-1.5 bg-slate-200 rounded-full"></div>
@@ -780,7 +767,7 @@
                                     골라서 이용할 수 있어요.
                                 </p>
                             </div>
-                            <div class="flex flex-col items-center w-full min-w-[145px] md:min-w-0 snap-center shrink-0">
+                            <div class="flex flex-col items-center w-[160px] md:w-auto shrink-0 snap-center">
                                 <h5 class="text-[11px] md:text-[19px] font-black text-indigo-900 mb-1.5 md:mb-3 bg-indigo-50 px-3 md:px-6 py-1 md:py-2 rounded-full tracking-tight">상권 분석</h5>
                                 <div class="w-full max-w-[150px] md:max-w-[240px] h-[190px] md:h-[300px] bg-white border-[2px] md:border-[4px] border-slate-100 rounded-[1.2rem] md:rounded-[2rem] shadow-lg p-2 md:p-4 mb-2 md:mb-3 flex flex-col relative overflow-hidden text-left">
                                     <div class="absolute top-1 md:top-1.5 left-1/2 -translate-x-1/2 w-6 md:w-10 h-1 md:h-1.5 bg-slate-200 rounded-full"></div>
@@ -1543,7 +1530,7 @@
                     });
 
                     htmlContent += `
-                    <div class="plan-card w-[180px] md:w-auto shrink-0 snap-center h-full bg-white rounded-2xl md:rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 relative flex flex-col py-3 px-2.5 md:py-6 md:px-4">
+                    <div class="plan-card w-[200px] md:w-auto shrink-0 snap-center h-full bg-white rounded-2xl md:rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 relative flex flex-col py-3 px-2.5 md:py-6 md:px-4">
                         <h2 class="text-[11px] md:text-[19px] font-black text-slate-900 text-center mb-1.5 md:mb-3 tracking-tighter break-keep leading-snug min-h-[28px] md:min-h-[48px] flex items-center justify-center">${item.title}</h2>
                         
                         <div class="flex justify-center items-start w-full mb-2 md:mb-4 flex-grow">
@@ -2281,63 +2268,6 @@
             const content = document.getElementById('uplus-one-modal-content');
             if (content) { content.classList.remove('scale-100', 'opacity-100'); content.classList.add('scale-95', 'opacity-0'); }
             if (modal) setTimeout(() => modal.classList.add('hidden'), 300);
-        }
-
-        const GEMINI_API_KEY = ""; // 캔버스 환경에서 자동으로 주입됩니다.
-        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
-
-        async function generateSOHOPromo() {
-            const inputEl = document.getElementById('ai-promo-input');
-            const btn = document.getElementById('ai-promo-btn');
-            const resultEl = document.getElementById('ai-promo-result');
-            const storeInfo = inputEl.value.trim();
-
-            if (!storeInfo) {
-                inputEl.placeholder = "가게 이름과 업종을 적어주세요! (예: 맛나식당 일식 돈까스)";
-                inputEl.focus();
-                return;
-            }
-
-            btn.disabled = true;
-            btn.innerHTML = '생성 중... ⏳';
-            resultEl.classList.remove('hidden');
-            resultEl.innerHTML = '<span class="animate-pulse text-indigo-500 font-bold">AI가 사장님을 위한 찰떡 맞춤 홍보 문구를 고민하고 있습니다...</span>';
-
-            const prompt = `당신은 성공적인 소상공인 마케팅 전문가입니다. 다음 가게 정보를 바탕으로 고객의 방문을 유도하는 매력적인 홍보 문구를 작성해주세요.
-가게 정보: ${storeInfo}
-조건: 인스타그램이나 문자로 고객에게 보내기 좋게 이모지를 듬뿍 사용하고, 3~4문장으로 짧고 강렬하게 작성하세요. "LG U+ 우리가게홍보" 앱에 바로 복사해서 쓸 수 있는 형태여야 합니다.`;
-
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }]
-            };
-
-            let retryDelay = 1000;
-            const maxRetries = 3;
-
-            for (let i = 0; i < maxRetries; i++) {
-                try {
-                    const response = await fetch(GEMINI_API_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) throw new Error('API Error');
-                    const result = await response.json();
-                    const generatedText = result.candidates?.[0]?.content?.parts?.[0]?.text || '생성 실패';
-
-                    resultEl.innerHTML = generatedText.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-                    break;
-                } catch (error) {
-                    if (i === maxRetries - 1) {
-                        resultEl.innerHTML = '<span class="text-red-500">문구 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</span>';
-                    }
-                    await new Promise(r => setTimeout(r, retryDelay));
-                    retryDelay *= 2;
-                }
-            }
-            btn.disabled = false;
-            btn.innerHTML = '문구 생성 ✨';
         }
     </script>
 </body>
