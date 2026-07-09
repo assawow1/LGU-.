@@ -105,10 +105,10 @@
             <button onclick="document.getElementById('main-event-banner').style.display='none'" class="absolute top-2 right-2 md:top-3 md:right-3 bg-black/30 hover:bg-black/50 text-white w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full z-10 transition-colors backdrop-blur-sm">
                 <svg class="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <!-- 이벤트 링크 및 이미지 (href에 이동할 링크, src에 이미지 주소 입력) -->
-            <a href="#none" class="block w-full h-full">
-                <!-- GitHub Pages용 이미지 첨부 방식: 같은 폴더에 event-banner.jpg 를 올리시면 자동으로 뜹니다. -->
-                <img src="./event-banner.jpg" alt="특별 이벤트 안내" class="w-full h-auto object-cover min-h-[100px] md:min-h-[150px] bg-uplusLightPink" onerror="this.src='https://via.placeholder.com/1200x300/FFF0F6/E6007E?text=이벤트+이미지(event-banner.jpg)를+같은+폴더에+올려주세요'">
+            <!-- 이벤트 링크 및 이미지 -->
+            <a id="event-banner-link" href="#none" class="block w-full h-full">
+                <!-- 탭별로 달라질 이벤트 배너 이미지 -->
+                <img id="event-banner-img" src="./event-banner-soho.jpg" alt="특별 이벤트 안내" class="w-full h-auto object-cover min-h-[100px] md:min-h-[150px] bg-uplusLightPink" onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x300/FFF0F6/E6007E?text=이벤트+이미지(event-banner-soho.jpg)를+같은+폴더에+올려주세요'">
             </a>
         </div>
 
@@ -1410,6 +1410,21 @@
                 }
             });
 
+            // 탭별 이벤트 배너 이미지 변경 로직
+            const bannerImg = document.getElementById('event-banner-img');
+            if (bannerImg) {
+                if (tabName === 'soho') {
+                    bannerImg.src = './event-banner-soho.jpg';
+                    bannerImg.onerror = function() { this.onerror = null; this.src='https://via.placeholder.com/1200x300/FFF0F6/E6007E?text=이벤트+이미지(event-banner-soho.jpg)를+같은+폴더에+올려주세요'; };
+                } else if (tabName === 'home') {
+                    bannerImg.src = './event-banner-home.jpg';
+                    bannerImg.onerror = function() { this.onerror = null; this.src='https://via.placeholder.com/1200x300/FFF0F6/E6007E?text=이벤트+이미지(event-banner-home.jpg)를+같은+폴더에+올려주세요'; };
+                } else if (tabName === 'lodging') {
+                    bannerImg.src = './event-banner-lodging.jpg';
+                    bannerImg.onerror = function() { this.onerror = null; this.src='https://via.placeholder.com/1200x300/FFF0F6/E6007E?text=이벤트+이미지(event-banner-lodging.jpg)를+같은+폴더에+올려주세요'; };
+                }
+            }
+
             const benefitData = BENEFIT_DETAILS_DATA[tabName];
             if (benefitData) {
                 const bIcon = document.getElementById('benefit-icon');
@@ -1702,15 +1717,6 @@
                             </div>
                             <div class="flex items-start gap-1.5 md:gap-2">
                                 <div class="w-4 h-4 md:w-6 md:h-6 rounded-full bg-white flex items-center justify-center shadow-sm text-[8px] md:text-xs shrink-0 mt-0.5">
-                                    📶
-                                </div>
-                                <div class="tracking-tight break-keep leading-snug">
-                                    <span class="font-bold text-gray-700 block">와이파이 사양</span>
-                                    ${item.wifi}
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-1.5 md:gap-2">
-                                <div class="w-4 h-4 md:w-6 md:h-6 rounded-full bg-white flex items-center justify-center shadow-sm text-[8px] md:text-xs shrink-0 mt-0.5">
                                     🛡️
                                 </div>
                                 <div class="tracking-tight break-keep leading-snug">
@@ -1900,11 +1906,11 @@
             
             const btn = document.getElementById('start-test-btn');
             if (btn) {
-                btn.innerText = '속도 테스트 시작하기';
+                btn.innerText = '속도 테스트 시작';
                 btn.disabled = false;
             }
             const status = document.getElementById('test-status');
-            if (status) status.innerText = '진단 버튼을 클릭하시면 테스트가 진행됩니다.';
+            if (status) status.innerText = '시작 버튼을 눌러주세요.';
         }
 
         function startGaugeSimulation() {
@@ -1982,9 +1988,6 @@
             }
         }
 
-        // =========================================================================
-        // ▼▼▼ [수정 포인트 2-3] 숙박업소 견적 시뮬레이터 자바스크립트 로직 시작 ▼▼▼
-        // =========================================================================
         function openSimulator() {
             const modal = document.getElementById('simulator-modal');
             const content = document.getElementById('simulator-modal-content');
@@ -2113,7 +2116,6 @@
             const captureArea = document.getElementById(captureAreaId);
             if (!captureArea) return;
             
-            // ★ 스크롤된 상태에서 캡처 시 상단이 잘리는 현상 방지 ★
             const originalScrollTop = captureArea.scrollTop;
             captureArea.scrollTop = 0;
 
@@ -2147,7 +2149,6 @@
                                 parent = parent.parentElement;
                             }
 
-                            // [TV채널 편성표 전용] 모바일 캡처 시 텍스트 겹침/잘림 완전 방지를 위한 넉넉한 여백 확보
                             if (captureAreaId === 'channel-capture-area') {
                                 const grids = clonedEl.querySelectorAll('.ch-grid, .ch-grid-4');
                                 grids.forEach(grid => {
@@ -2182,7 +2183,7 @@
                     const file = new File([blob], fileName, { type: 'image/png' });
                     if (navigator.canShare && navigator.canShare({ files: [file] })) {
                         await navigator.share({ files: [file], title: fileNameBase });
-                        captureArea.scrollTop = originalScrollTop; // 완료 후 스크롤 복구
+                        captureArea.scrollTop = originalScrollTop; 
                         return; 
                     }
                 } catch (e) { console.log('다운로드로 전환'); }
@@ -2190,10 +2191,10 @@
                 const link = document.createElement('a');
                 link.download = fileName; link.href = imageURI; document.body.appendChild(link);
                 link.click(); document.body.removeChild(link);
-                captureArea.scrollTop = originalScrollTop; // 완료 후 스크롤 복구
+                captureArea.scrollTop = originalScrollTop; 
             } catch (error) { 
                 console.error('캡쳐 오류:', error); 
-                captureArea.scrollTop = originalScrollTop; // 오류 시 스크롤 복구
+                captureArea.scrollTop = originalScrollTop; 
             } finally {
                 btn.innerHTML = originalHTML; btn.style.pointerEvents = 'auto'; btn.style.opacity = '1';
             }
@@ -2218,9 +2219,6 @@
                 dateSpan.remove();
             }
         }
-        // =========================================================================
-        // ▲▲▲ [수정 포인트 2-3] 숙박업소 견적 시뮬레이터 자바스크립트 로직 끝 ▲▲▲
-        // =========================================================================
 
         async function captureAndSaveChannel(btn) {
             let planName = '실속형';
@@ -2264,9 +2262,6 @@
             document.querySelectorAll('.ch-premium').forEach(el => el.classList.toggle('hidden', plan !== 'premium'));
         }
 
-        // =========================================================================
-        // ▼▼▼ [수정 포인트 1-3] U+ONE 관련 JS 함수 영역 시작 ▼▼▼
-        // =========================================================================
         function openUplusOneModal() {
             const iframe = document.getElementById('uplus-one-iframe');
             if(iframe && !iframe.srcdoc) iframe.srcdoc = document.getElementById('uplus-one-raw').value;
