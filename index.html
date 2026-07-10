@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>U+인터넷 - 본사직영점 특별 혜택</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 견적서 캡처를 위한 html2canvas 라이브러리 추가 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         tailwind.config = {
@@ -23,7 +21,6 @@
             }
         }
     </script>
-    <!-- Google Fonts (Noto Sans KR) -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; background-color: #F8F9FA; }
@@ -61,7 +58,6 @@
 </head>
 <body class="text-gray-800 antialiased selection:bg-uplusPink selection:text-white overflow-x-hidden">
 
-    <!-- Top Promo Banner -->
     <div class="bg-gradient-to-r from-pink-500 via-uplusPink to-purple-600 text-white py-1.5 md:py-4 px-1.5 md:px-4 shadow-md">
         <div class="max-w-6xl mx-auto flex justify-center items-center">
             <div class="flex items-center gap-1.5 md:gap-3 justify-center">
@@ -71,7 +67,6 @@
         </div>
     </div>
 
-    <!-- Main Header / Navigation -->
     <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 shadow-sm flex flex-col transition-all">
         <div class="max-w-6xl mx-auto w-full px-2 md:px-4 py-2 md:py-4 flex justify-between items-center">
             <div class="flex items-center gap-1 md:gap-2 cursor-pointer" onclick="window.location.reload()">
@@ -99,16 +94,12 @@
 
     <main class="max-w-md md:max-w-6xl mx-auto px-2 md:px-4 py-4 md:py-8 overflow-hidden">
         
-        <!-- 이벤트 배너 영역 (이미지 첨부용) -->
         <div id="main-event-banner" class="max-w-4xl mx-auto mb-4 md:mb-8 relative rounded-xl md:rounded-2xl overflow-hidden shadow-md group mt-2 transition-all duration-300">
-            <!-- 이벤트 링크 및 이미지 -->
             <a id="event-banner-link" href="#none" class="block w-full h-full">
-                <!-- 탭별로 달라질 이벤트 배너 이미지 -->
                 <img id="event-banner-img" src="./event-banner-lodging.jpg" alt="특별 이벤트 안내" class="w-full h-auto object-cover min-h-[100px] md:min-h-[150px] bg-uplusLightPink" onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x300/FFF0F6/E6007E?text=이벤트+이미지(event-banner-lodging.jpg)를+같은+폴더에+올려주세요'">
             </a>
         </div>
 
-        <!-- 종류별 혜택 자세히 보기 -->
         <div class="max-w-4xl mx-auto mb-4 md:mb-10 bg-white rounded-xl md:rounded-[1.5rem] border border-gray-100 shadow-sm overflow-hidden transition-all duration-300 mt-2">
             <button onclick="toggleBenefitDetails()" class="w-full px-3 py-2 md:px-6 md:py-5 flex justify-between items-center bg-gradient-to-r from-uplusLightPink/30 to-white hover:bg-uplusLightPink/50 transition-colors text-left focus:outline-none">
                 <div class="flex items-center gap-2 md:gap-3">
@@ -128,7 +119,6 @@
             </div>
         </div>
 
-        <!-- 숙박업소 견적 시뮬레이터 배너 -->
         <div id="lodging-simulator-banner" class="max-w-4xl mx-auto mb-4 md:mb-8 bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 text-white rounded-xl md:rounded-[1.5rem] p-3 md:p-8 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6 shadow-xl relative overflow-hidden animate-fade-in border border-indigo-500/20">
             <div class="absolute -right-4 -top-4 md:-right-10 md:-top-10 opacity-15 text-5xl md:text-8xl pointer-events-none">📊</div>
             <div class="relative z-10 text-center md:text-left">
@@ -139,13 +129,10 @@
             <button onclick="openSimulator()" class="w-full md:w-auto relative z-10 bg-uplusPink hover:bg-pink-700 text-white font-extrabold py-2 md:py-3.5 px-4 md:px-6 rounded-lg md:rounded-2xl shadow-lg shadow-pink-500/20 transition-all text-[11px] md:text-sm shrink-0 flex items-center justify-center gap-1.5 md:gap-2 hover:scale-105 active:scale-95"><span>견적 시뮬레이션 시작하기</span> 📊</button>
         </div>
 
-        <!-- Plan Grid -->
         <div id="plan-grid" class="flex flex-nowrap justify-center md:grid md:grid-cols-2 lg:flex lg:justify-center gap-2 md:gap-8 mb-6 md:mb-16 overflow-x-auto pb-4 custom-scrollbar snap-x snap-mandatory w-full"></div>
 
-        <!-- 숙박업소 요금제 표 (동적 렌더링) -->
         <div id="lodging-promo-table" class="max-w-5xl mx-auto mb-8 md:mb-16 animate-fade-in w-full px-1">
             <div class="bg-white border-2 border-gray-900 shadow-xl w-full">
-                <!-- Header part 1 -->
                 <div class="p-3 md:p-6 text-center border-b border-gray-400">
                     <h2 class="text-lg md:text-3xl font-black text-red-600 mb-1.5 md:mb-3 tracking-tighter">LGU+ 숙박업소 특별정책 프로모션</h2>
                     <p class="text-[9px] md:text-sm font-bold text-gray-800 break-keep leading-relaxed">
@@ -153,7 +140,6 @@
                         <span class="text-sm md:text-xl font-black tracking-tight">IPTV 상품을 한번에 제공하고 가정용 상품대비 <span class="text-red-600 text-base md:text-2xl drop-shadow-sm">79%이상</span> 대폭 할인된 프로모션</span> 상품입니다
                     </p>
                 </div>
-                <!-- Header part 2 -->
                 <div class="p-2 md:p-5 text-center border-b-[3px] border-gray-900 bg-white">
                     <p class="text-[8px] md:text-[13px] text-gray-800 font-bold break-keep leading-relaxed tracking-tight">
                         <span class="text-blue-700 font-black text-[10px] md:text-base">대표님</span> 정말 간단한 문의라도 해주세요- 
@@ -167,14 +153,12 @@
                     </div>
                 </div>
 
-                <!-- Table Content -->
                 <div class="p-2 md:p-4 bg-white">
                     <div class="flex justify-between items-end mb-1 md:mb-2 px-1">
                         <div class="text-red-600 font-black text-sm md:text-2xl tracking-tighter">★신요금제★</div>
                         <div class="text-[6px] md:text-xs font-bold text-blue-600 tracking-tight">5년약정기준/ <span class="text-red-600">3년약정은 별도 문의</span></div>
                     </div>
                     <div class="flex flex-col md:flex-row gap-2 md:gap-4">
-                        <!-- Table 1 -->
                         <table class="w-full md:w-1/2 border-[1.5px] border-gray-900 text-center">
                             <thead class="bg-gray-50 border-b-[1.5px] border-gray-900">
                                 <tr>
@@ -186,7 +170,6 @@
                             </thead>
                             <tbody id="lodging-table-1" class="divide-y divide-gray-300"></tbody>
                         </table>
-                        <!-- Table 2 -->
                         <table class="w-full md:w-1/2 border-[1.5px] border-gray-900 text-center">
                             <thead class="bg-gray-50 border-b-[1.5px] border-gray-900">
                                 <tr>
@@ -203,7 +186,6 @@
             </div>
         </div>
 
-        <!-- 1. 가정용 인터넷 전용 Section -->
         <div id="home-benefits-section" class="hidden mb-8 md:mb-16 bg-pink-50/50 border border-pink-100 rounded-2xl md:rounded-[2rem] p-4 md:p-8 shadow-sm">
             <div class="flex justify-between items-end mb-2.5 md:mb-6 border-b border-pink-200 pb-1.5 md:pb-3">
                 <h2 class="text-base md:text-3xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2"><span class="text-xl md:text-4xl drop-shadow-sm">🏠</span> 스마트홈 요금제</h2>
@@ -244,7 +226,6 @@
             </div>
         </div>
 
-        <!-- 2. 숙박업소 인터넷 전용 Section -->
         <div id="lodging-benefits-section" class="mb-8 md:mb-16 bg-blue-50/40 border border-blue-100 rounded-2xl md:rounded-[2rem] p-4 md:p-8 shadow-sm">
             <h2 class="text-base md:text-3xl font-extrabold text-gray-900 text-center mb-1 md:mb-2 tracking-tight flex items-center justify-center gap-2"><span class="text-xl md:text-4xl drop-shadow-sm">🏨</span> U+인터넷만 누릴 수 있는 특별한 즐거움</h2>
             <p class="text-[9px] md:text-base text-gray-500 text-center mb-4 md:mb-10 break-keep">다양하고 차별화된 핵심 가치를 제공합니다.</p>
@@ -294,7 +275,6 @@
             </div>
         </div>
 
-        <!-- 3. 소호인터넷 전용 탭 Section -->
         <div id="soho-benefits-section" class="hidden mb-8 md:mb-16 bg-indigo-50/50 border border-indigo-100 rounded-2xl md:rounded-[2rem] p-4 md:p-8 shadow-sm max-w-5xl mx-auto w-full">
             <h2 class="text-base md:text-2xl font-extrabold text-indigo-900 mb-2 md:mb-4 px-1 tracking-tight flex items-center gap-2"><span class="text-xl md:text-3xl drop-shadow-sm">🏬</span> 우리가게 주요 제공 기능</h2>
             <div class="bg-white border border-indigo-50 rounded-xl md:rounded-[2rem] p-3 md:p-10 shadow-sm overflow-hidden">
@@ -303,7 +283,6 @@
                     <button onclick="switchSohoBenefit('cctv')" id="soho-btn-cctv" class="text-sm md:text-2xl font-bold text-gray-400 hover:text-gray-600 border-b-[2px] md:border-b-[3px] border-transparent pb-1 md:pb-2 -mb-[1px] md:-mb-[2px] z-10 transition-all outline-none tracking-tight">지능형CCTV</button>
                 </div>
                 
-                <!-- 콘텐츠: U+AI전화 -->
                 <div id="soho-content-ai" class="animate-fade-in w-full">
                     <ul class="space-y-1 md:space-y-2 mb-4 md:mb-10 px-1.5">
                         <li class="flex items-start gap-1 md:gap-2 text-gray-600 font-medium text-[9px] md:text-base break-keep leading-snug"><span class="text-gray-400 mt-0.5">•</span> AI가 고객을 응대할 수 있도록 영업 시간, 매장 위치, 주차 정보 등 가게 정보를 등록할 수 있어요.</li>
@@ -344,7 +323,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- 콘텐츠: 지능형CCTV -->
                 <div id="soho-content-cctv" class="hidden w-full">
                     <ul class="space-y-1 md:space-y-2 mb-4 md:mb-10 px-1.5">
                         <li class="flex items-start gap-1 md:gap-2 text-gray-600 font-medium text-[9px] md:text-base break-keep leading-snug"><span class="text-uplusPink font-bold mt-0.5">•</span> 영상 분석 기능으로 외부인 침입이나 카메라 훼손 등의 행동이 감지되면 자동으로 알림을 보내요.</li>
@@ -396,7 +374,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 pt-4 pb-16 md:pt-12 md:pb-20 px-3 md:px-4 border-t border-gray-800">
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 md:gap-8 mb-3 md:mb-8 pb-3 md:pb-8 border-b border-gray-800">
@@ -412,7 +389,6 @@
         </div>
     </footer>
 
-    <!-- Fixed Bottom Navigation -->
     <div class="fixed bottom-0 left-0 w-full z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
         <div class="max-w-6xl mx-auto w-full px-2 py-2 md:px-4 md:py-2.5 flex justify-between items-center gap-2 md:gap-6">
             <div class="hidden md:flex shrink-0 mr-4 border-r border-gray-200 pr-6 flex-col justify-center">
@@ -428,7 +404,6 @@
         </div>
     </div>
 
-    <!-- Modals -->
     <div id="info-modal" class="fixed inset-0 bg-black/60 z-[60] flex items-center justify-center p-4 hidden backdrop-blur-sm">
         <div class="bg-white rounded-2xl w-full max-w-[440px] max-h-[85vh] overflow-y-auto p-4 md:p-6 shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300 custom-scrollbar" id="info-modal-content">
             <button onclick="closeInfoModal()" class="absolute top-3 right-4 text-gray-400 hover:text-gray-600 font-bold text-xl md:text-2xl">&times;</button>
@@ -482,7 +457,6 @@
         </div>
     </div>
 
-    <!-- 수정된 견적 시뮬레이터 모달 -->
     <div id="simulator-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
         <div class="bg-white rounded-2xl max-w-[440px] w-full max-h-[90vh] overflow-y-auto p-4 md:p-6 shadow-2xl relative transition-all duration-300 transform scale-95 opacity-0 custom-scrollbar" id="simulator-modal-content">
             <button onclick="closeSimulator()" class="absolute top-3 right-4 text-gray-400 hover:text-gray-600 font-bold text-xl md:text-2xl z-20">&times;</button>
@@ -921,7 +895,6 @@
                             </div>
                         </div>
 
-                        <!-- Features list in card footer -->
                         <div class="bg-gray-50 p-2 md:p-4 border-t border-gray-100 text-[7px] md:text-[11px] text-gray-500 space-y-1.5 md:space-y-2">
                             <div class="flex items-start gap-1.5 md:gap-2">
                                 <div class="w-4 h-4 md:w-6 md:h-6 rounded-full bg-white flex items-center justify-center shadow-sm text-[8px] md:text-xs shrink-0 mt-0.5">
