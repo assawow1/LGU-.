@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>U+인터넷 - 본사직영점 특별 혜택</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 견적서 캡처를 위한 html2canvas 라이브러리 추가 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         tailwind.config = {
@@ -21,7 +23,9 @@
             }
         }
     </script>
+    <!-- Google Fonts (Noto Sans KR) -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; background-color: #F8F9FA; }
         .tab-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -58,6 +62,7 @@
 </head>
 <body class="text-gray-800 antialiased selection:bg-uplusPink selection:text-white overflow-x-hidden">
 
+    <!-- Top Promo Banner -->
     <div class="bg-gradient-to-r from-pink-500 via-uplusPink to-purple-600 text-white py-1.5 md:py-4 px-1.5 md:px-4 shadow-md">
         <div class="max-w-6xl mx-auto flex justify-center items-center">
             <div class="flex items-center gap-1.5 md:gap-3 justify-center">
@@ -66,10 +71,12 @@
             </div>
         </div>
     </div>
+
     <!-- Main Header / Navigation -->
     <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 shadow-sm flex flex-col transition-all">
         <div class="max-w-6xl mx-auto w-full px-2 md:px-4 py-2 md:py-4 flex justify-between items-center">
             <div class="flex items-center gap-1 md:gap-2 cursor-pointer" onclick="window.location.reload()">
+                <!-- 이미지 로고로 대체 -->
                 <img src="./logo.png" alt="LG U+" class="h-4 md:h-6 w-auto object-contain" onerror="this.onerror=null; this.src='https://via.placeholder.com/80x24/FFF0F6/E6007E?text=로고(logo.png)'">
                 <span class="text-[9px] md:text-sm font-bold text-gray-500 tracking-wide">인터넷 본사직영점</span>
             </div>
@@ -84,8 +91,9 @@
             </div>
         </div>
         <div class="flex justify-center w-full border-t border-gray-100 bg-white/95 backdrop-blur-md">
+            <!-- 카테고리 순서: 숙박업소 -> 소호 -> 가정용 -->
             <nav class="flex gap-1 md:gap-8 justify-center flex-nowrap md:flex-wrap w-full md:w-auto max-w-6xl mx-auto px-2 overflow-x-auto custom-scrollbar" aria-label="Tabs">
-                <button onclick="switchMainTab('lodging')" id="tab-lodging" class="flex-1 md:flex-none border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink px-1 md:px-6 py-2.5 md:py-3.5 font-medium text-[11px] md:text-lg tab-transition whitespace-nowrap tracking-tight outline-none">숙박업소<span class="hidden sm:inline"> 인터넷</span></button>
+                <button onclick="switchMainTab('lodging')" id="tab-lodging" class="flex-1 md:flex-none border-b-[3px] border-uplusPink text-uplusPink px-1 md:px-6 py-2.5 md:py-3.5 font-bold text-[11px] md:text-lg tab-transition whitespace-nowrap tracking-tight outline-none">숙박업소<span class="hidden sm:inline"> 인터넷</span></button>
                 <button onclick="switchMainTab('soho')" id="tab-soho" class="flex-1 md:flex-none border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink px-1 md:px-6 py-2.5 md:py-3.5 font-medium text-[11px] md:text-lg tab-transition whitespace-nowrap tracking-tight outline-none">소호인터넷<span class="hidden sm:inline"> (상가/매장)</span></button>
                 <button onclick="switchMainTab('home')" id="tab-home" class="flex-1 md:flex-none border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink px-1 md:px-6 py-2.5 md:py-3.5 font-medium text-[11px] md:text-lg tab-transition whitespace-nowrap tracking-tight outline-none">가정용 인터넷</button>
             </nav>
@@ -94,13 +102,17 @@
 
     <main class="max-w-md md:max-w-6xl mx-auto px-2 md:px-4 py-4 md:py-8 overflow-hidden">
         
+        <!-- 이벤트 배너 영역 -->
         <div id="main-event-banner" class="max-w-4xl mx-auto mb-4 md:mb-8 relative rounded-xl md:rounded-2xl overflow-hidden shadow-md group mt-2 transition-all duration-300">
+            <!-- 이벤트 링크 및 이미지 -->
             <a id="event-banner-link" href="#none" class="block w-full h-full">
+                <!-- 탭별로 달라질 이벤트 배너 이미지 -->
                 <img id="event-banner-img" src="./event-banner-lodging.jpg" alt="특별 이벤트 안내" class="w-full h-auto object-cover min-h-[100px] md:min-h-[150px] bg-uplusLightPink" onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x300/FFF0F6/E6007E?text=이벤트+이미지(event-banner-lodging.jpg)를+같은+폴더에+올려주세요'">
             </a>
         </div>
 
-        <div class="max-w-4xl mx-auto mb-4 md:mb-10 bg-white rounded-xl md:rounded-[1.5rem] border border-gray-100 shadow-sm overflow-hidden transition-all duration-300 mt-2">
+        <!-- 종류별 혜택 자세히 보기 (소호 탭에서는 숨김 처리됨) -->
+        <div id="benefit-details-wrapper" class="max-w-4xl mx-auto mb-4 md:mb-10 bg-white rounded-xl md:rounded-[1.5rem] border border-gray-100 shadow-sm overflow-hidden transition-all duration-300 mt-2">
             <button onclick="toggleBenefitDetails()" class="w-full px-3 py-2 md:px-6 md:py-5 flex justify-between items-center bg-gradient-to-r from-uplusLightPink/30 to-white hover:bg-uplusLightPink/50 transition-colors text-left focus:outline-none">
                 <div class="flex items-center gap-2 md:gap-3">
                     <span class="text-lg md:text-3xl" id="benefit-icon">🏨</span>
@@ -119,6 +131,7 @@
             </div>
         </div>
 
+        <!-- 숙박업소 견적 시뮬레이터 배너 -->
         <div id="lodging-simulator-banner" class="max-w-4xl mx-auto mb-4 md:mb-8 bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 text-white rounded-xl md:rounded-[1.5rem] p-3 md:p-8 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6 shadow-xl relative overflow-hidden animate-fade-in border border-indigo-500/20">
             <div class="absolute -right-4 -top-4 md:-right-10 md:-top-10 opacity-15 text-5xl md:text-8xl pointer-events-none">📊</div>
             <div class="relative z-10 text-center md:text-left">
@@ -129,10 +142,13 @@
             <button onclick="openSimulator()" class="w-full md:w-auto relative z-10 bg-uplusPink hover:bg-pink-700 text-white font-extrabold py-2 md:py-3.5 px-4 md:px-6 rounded-lg md:rounded-2xl shadow-lg shadow-pink-500/20 transition-all text-[11px] md:text-sm shrink-0 flex items-center justify-center gap-1.5 md:gap-2 hover:scale-105 active:scale-95"><span>견적 시뮬레이션 시작하기</span> 📊</button>
         </div>
 
+        <!-- Plan Grid (가정용 등에서 사용) -->
         <div id="plan-grid" class="flex flex-nowrap justify-center md:grid md:grid-cols-2 lg:flex lg:justify-center gap-2 md:gap-8 mb-6 md:mb-16 overflow-x-auto pb-4 custom-scrollbar snap-x snap-mandatory w-full"></div>
 
+        <!-- 숙박업소 요금제 표 -->
         <div id="lodging-promo-table" class="max-w-5xl mx-auto mb-8 md:mb-16 animate-fade-in w-full px-1">
             <div class="bg-white border-2 border-gray-900 shadow-xl w-full">
+                <!-- Header part 1 -->
                 <div class="p-3 md:p-6 text-center border-b border-gray-400">
                     <h2 class="text-lg md:text-3xl font-black text-red-600 mb-1.5 md:mb-3 tracking-tighter">LGU+ 숙박업소 특별정책 프로모션</h2>
                     <p class="text-[9px] md:text-sm font-bold text-gray-800 break-keep leading-relaxed">
@@ -140,6 +156,7 @@
                         <span class="text-sm md:text-xl font-black tracking-tight">IPTV 상품을 한번에 제공하고 가정용 상품대비 <span class="text-red-600 text-base md:text-2xl drop-shadow-sm">79%이상</span> 대폭 할인된 프로모션</span> 상품입니다
                     </p>
                 </div>
+                <!-- Header part 2 -->
                 <div class="p-2 md:p-5 text-center border-b-[3px] border-gray-900 bg-white">
                     <p class="text-[8px] md:text-[13px] text-gray-800 font-bold break-keep leading-relaxed tracking-tight">
                         <span class="text-blue-700 font-black text-[10px] md:text-base">대표님</span> 정말 간단한 문의라도 해주세요- 
@@ -153,6 +170,7 @@
                     </div>
                 </div>
 
+                <!-- Table Content -->
                 <div class="p-2 md:p-4 bg-white">
                     <div class="flex justify-between items-end mb-1 md:mb-2 px-1">
                         <div class="text-red-600 font-black text-sm md:text-2xl tracking-tighter">★신요금제★</div>
@@ -186,6 +204,7 @@
             </div>
         </div>
 
+        <!-- 1. 가정용 인터넷 전용 Section -->
         <div id="home-benefits-section" class="hidden mb-8 md:mb-16 bg-pink-50/50 border border-pink-100 rounded-2xl md:rounded-[2rem] p-4 md:p-8 shadow-sm">
             <div class="flex justify-between items-end mb-2.5 md:mb-6 border-b border-pink-200 pb-1.5 md:pb-3">
                 <h2 class="text-base md:text-3xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2"><span class="text-xl md:text-4xl drop-shadow-sm">🏠</span> 스마트홈 요금제</h2>
@@ -226,7 +245,8 @@
             </div>
         </div>
 
-        <div id="lodging-benefits-section" class="mb-8 md:mb-16 bg-blue-50/40 border border-blue-100 rounded-2xl md:rounded-[2rem] p-4 md:p-8 shadow-sm">
+        <!-- 2. 숙박업소 인터넷 전용 Section -->
+        <div id="lodging-benefits-section" class="hidden mb-8 md:mb-16 bg-blue-50/40 border border-blue-100 rounded-2xl md:rounded-[2rem] p-4 md:p-8 shadow-sm">
             <h2 class="text-base md:text-3xl font-extrabold text-gray-900 text-center mb-1 md:mb-2 tracking-tight flex items-center justify-center gap-2"><span class="text-xl md:text-4xl drop-shadow-sm">🏨</span> U+인터넷만 누릴 수 있는 특별한 즐거움</h2>
             <p class="text-[9px] md:text-base text-gray-500 text-center mb-4 md:mb-10 break-keep">다양하고 차별화된 핵심 가치를 제공합니다.</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-6">
@@ -275,20 +295,22 @@
             </div>
         </div>
 
-        <div id="soho-benefits-section" class="hidden mb-8 md:mb-16 bg-indigo-50/50 border border-indigo-100 rounded-2xl md:rounded-[2rem] p-4 md:p-8 shadow-sm max-w-5xl mx-auto w-full">
-            <h2 class="text-base md:text-2xl font-extrabold text-indigo-900 mb-2 md:mb-4 px-1 tracking-tight flex items-center gap-2"><span class="text-xl md:text-3xl drop-shadow-sm">🏬</span> 우리가게 주요 제공 기능</h2>
-            <div class="bg-white border border-indigo-50 rounded-xl md:rounded-[2rem] p-3 md:p-10 shadow-sm overflow-hidden">
-                <div class="flex gap-3 md:gap-6 border-b border-gray-200 mb-3 md:mb-8 relative px-1 md:px-0">
-                    <button onclick="switchSohoBenefit('ai')" id="soho-btn-ai" class="text-sm md:text-2xl font-black text-uplusPink border-b-[2px] md:border-b-[3px] border-uplusPink pb-1 md:pb-2 -mb-[1px] md:-mb-[2px] z-10 transition-all outline-none tracking-tight">U+AI전화</button>
-                    <button onclick="switchSohoBenefit('cctv')" id="soho-btn-cctv" class="text-sm md:text-2xl font-bold text-gray-400 hover:text-gray-600 border-b-[2px] md:border-b-[3px] border-transparent pb-1 md:pb-2 -mb-[1px] md:-mb-[2px] z-10 transition-all outline-none tracking-tight">지능형CCTV</button>
-                </div>
-                
-                <div id="soho-content-ai" class="animate-fade-in w-full overflow-x-auto pb-2 custom-scrollbar">
-                    <img src="./1.png" alt="U+AI 전화 기능 안내" class="w-full min-w-[600px] sm:min-w-full h-auto rounded-lg shadow-sm" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x400/EEF2FF/4F46E5?text=AI전화+이미지(1.png)를+같은+폴더에+올려주세요'">
-                </div>
-                <div id="soho-content-cctv" class="hidden w-full overflow-x-auto pb-2 custom-scrollbar">
-                    <img src="./2.png" alt="지능형 CCTV 기능 안내" class="w-full min-w-[600px] sm:min-w-full h-auto rounded-lg shadow-sm" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x400/EEF2FF/4F46E5?text=CCTV+이미지(2.png)를+같은+폴더에+올려주세요'">
-                </div>
+        <!-- 3. 소호인터넷 전용 탭 Section (새로운 구조 적용) -->
+        <div id="soho-new-section" class="hidden mb-8 md:mb-16">
+            <!-- 소호 전용 서브 메뉴 -->
+            <div class="flex gap-4 justify-center border-b border-gray-200 mb-4 md:mb-6 max-w-4xl mx-auto px-2">
+                <button onclick="switchSohoSubTab('plaza')" id="soho-tab-plaza" class="pb-2 font-bold border-b-[3px] border-uplusPink text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap">사장님광장</button>
+                <button onclick="switchSohoSubTab('app')" id="soho-tab-app" class="pb-2 font-medium border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap">우리가게패키지앱</button>
+            </div>
+            
+            <!-- 사장님광장 내용 -->
+            <div id="soho-content-plaza" class="max-w-4xl mx-auto w-full animate-fade-in overflow-x-auto custom-scrollbar px-1">
+                <img src="gwangjang.png" alt="사장님광장 혜택 안내" class="w-full min-w-[700px] md:min-w-full h-auto rounded-xl shadow-sm" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x400/FFF0F6/E6007E?text=gwangjang.png'">
+            </div>
+            
+            <!-- 우리가게패키지앱 내용 -->
+            <div id="soho-content-app" class="hidden max-w-4xl mx-auto w-full animate-fade-in overflow-x-auto custom-scrollbar px-1">
+                <img src="woori.png" alt="우리가게패키지앱 안내" class="w-full min-w-[700px] md:min-w-full h-auto rounded-xl shadow-sm" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x400/FFF0F6/E6007E?text=woori.png'">
             </div>
         </div>
 
@@ -305,6 +327,7 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 pt-4 pb-16 md:pt-12 md:pb-20 px-3 md:px-4 border-t border-gray-800">
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 md:gap-8 mb-3 md:mb-8 pb-3 md:pb-8 border-b border-gray-800">
@@ -320,6 +343,7 @@
         </div>
     </footer>
 
+    <!-- Fixed Bottom Navigation -->
     <div class="fixed bottom-0 left-0 w-full z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
         <div class="max-w-6xl mx-auto w-full px-2 py-2 md:px-4 md:py-2.5 flex justify-between items-center gap-2 md:gap-6">
             <div class="hidden md:flex shrink-0 mr-4 border-r border-gray-200 pr-6 flex-col justify-center">
@@ -335,6 +359,7 @@
         </div>
     </div>
 
+    <!-- Modals -->
     <div id="info-modal" class="fixed inset-0 bg-black/60 z-[60] flex items-center justify-center p-4 hidden backdrop-blur-sm">
         <div class="bg-white rounded-2xl w-full max-w-[440px] max-h-[85vh] overflow-y-auto p-4 md:p-6 shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300 custom-scrollbar" id="info-modal-content">
             <button onclick="closeInfoModal()" class="absolute top-3 right-4 text-gray-400 hover:text-gray-600 font-bold text-xl md:text-2xl">&times;</button>
@@ -388,6 +413,7 @@
         </div>
     </div>
 
+    <!-- 수정된 견적 시뮬레이터 모달 -->
     <div id="simulator-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
         <div class="bg-white rounded-2xl max-w-[440px] w-full max-h-[90vh] overflow-y-auto p-4 md:p-6 shadow-2xl relative transition-all duration-300 transform scale-95 opacity-0 custom-scrollbar" id="simulator-modal-content">
             <button onclick="closeSimulator()" class="absolute top-3 right-4 text-gray-400 hover:text-gray-600 font-bold text-xl md:text-2xl z-20">&times;</button>
@@ -466,7 +492,7 @@
     </div>
 
 <textarea id="uplus-one-raw" style="display:none;">
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>U+One 사용 가이드</title><style>body{box-sizing:border-box;margin:0;font-family:'Noto Sans KR',sans-serif;background:#f9fafb;color:#333;font-size:14px;}html,body,#wrapper{height:100%;width:100%;}button{border:none;background:transparent;cursor:pointer;font-family:inherit;}#wrapper{max-width:100%;min-height:100%;background:#fff;overflow-y:auto;}#header{position:sticky;top:0;background:#fff;padding:16px;border-bottom:1px solid #eee;z-index:10;}#title-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}.logo{color:#E6007E;font-weight:900;font-size:20px;}.title-text{font-weight:700;font-size:18px;}.source-text{font-size:11px;color:#999;margin-top:4px;font-weight:400;}#controls{display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px;}.btn-control{background:#f1f3f5;padding:6px 12px;border-radius:16px;font-size:12px;color:#555;transition:all 0.2s;}.btn-control:hover{background:#e9ecef;}#search-input{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;background:#f8f9fa;box-sizing:border-box;font-size:18px;}#search-input:focus{outline:none;border-color:#E6007E;background:#fff;}#list-container{padding:12px;}.section{margin-bottom:12px;border:1px solid #eee;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.04);}.section-header{background:linear-gradient(135deg,#E6007E,#FF6B9D);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700;font-size:15px;}.section-header:hover{background:linear-gradient(135deg,#d1006f,#ff5a8d);}.section-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}.section-body.open{max-height:5000px;}.question{border-bottom:1px solid #f5f5f5;}.question-header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}.question-title{font-size:14px;display:flex;align-items:center;gap:6px;}.q-mark{color:#E6007E;font-weight:700;}.question-icon{font-size:10px;color:#999;}.question-body{max-height:0;overflow:hidden;background:#fafafa;padding:0 16px;transition:all 0.2s ease;}.question-body.open{max-height:120px;padding:14px 16px;}.action-buttons{display:flex;justify-content:flex-end;gap:8px;}.btn{text-decoration:none;padding:8px 14px;border-radius:6px;font-size:12px;color:#fff;background:#E6007E;display:inline-flex;align-items:center;gap:4px;}.btn-gray{background:#6c757d;}.hidden{display:none!important;}.no-results{text-align:center;padding:40px 20px;color:#999;}</style></head><body><div id="wrapper"><div id="header"><div id="title-row"><div><div><span class="logo">U+</span><span class="title-text">one 사용 가이드</span></div><div class="source-text">[호남 영업 연구소]</div></div></div><div id="controls"><button class="btn-control" onclick="toggleAll(true)">+ 전체열기</button><button class="btn-control" onclick="toggleAll(false)">- 전체닫기</button></div><input id="search-input" placeholder="검색 (예: 요금)" onkeyup="filterContent()"></div><div id="list-container"></div><div id="no-results" class="no-results hidden"><div>🔍</div><div>검색 결과가 없습니다</div></div></div><script>const data=[{title:"💰 요금 조회 및 납부 관리",items:[["실시간 요금을 확인하고 싶어요","bhKDRixKUec"],["이번 달 청구요금과 납부 방법이 궁금해요","bQ1SZMZR54M"],["입금전용계좌로 요금을 납부하고 싶어요","KyFnJQU3QMY"],["미납요금을 납부하고 싶어요","xPl9uD2dF_g"],["다른 사람 명의의 카드로 요금을 납부하고 싶어요","EjOcf-aQQP4"],["자동이체 변경 방법과 청구지 변경 방법이 궁금해요","HlHr8Z0HM7A"],["결제일 변경 방법이 궁금해요","lBd6QAcL_og"],["선택약정 할인반환금을 확인하는 방법이 궁금해요","TOUos9Iyz0g"]]},{title:"📱 데이터, 요금제, 로밍",items:[["사용 중인 요금제와 부가서비스가 궁금해요","-LPHSD1PEQk"],["휴대폰 데이터 사용량 확인 방법과 U+데이터 상품권 등록 정 방법이 궁금해요","bnW-a__BGIc"],["내 데이터를 가족 친구에게 나눠주고 싶어요","YNMjF24083c"],["로밍 서비스를 신청하고 싶어요","hzkbklYEm4I"]]},{title:"🔗 결합 상품 및 할인",items:[["결합 상품을 다른 결합으로 변경하고 싶어요","IU8U79c5A1E"],["할인 나눔을 변경하고 싶어요","FuwXinCJQvk"],["셀프 결합을 신청하고 싶어요","WkFMoW7ULN8"],["셀프 결합으로 가족을 추가하고 싶어요","YpCeq-9_X2Y"]]},{title:"🏠 홈 서비스 (인터넷/TV)",items:[["홈 상품 사용내역을 알고 싶어요","s77t2tV71CE"],["홈 상품 개통 설치 가능 지역을 확인하고 싶어요","pixD_1Kc6hE"],["TV나 인터넷 설치 장소를 변경하고 싶어요","CzKAUTS9a2I"]]},{title:"💳 휴대폰 소액결제",items:[["U+휴대폰결제 이용 한도를 변경하고 싶어요","y_dbJT2nY5c"],["U+휴대폰결제를 선결제로 이용하고 싶어요","_z_VspdFnKk"]]},{title:"📄 서류 발급",items:[["가입확인서를 발급하는 방법이 궁금해요","eiynh9tP6Ps"],["납부확인서, 세금계산서 신청 및 청구서 재발행 방법이 궁금해요","zqXNGL63zRo"]]},{title:"💎 멤버십 혜택",items:[["VIP콕 무료영화 예매혜택을 이용하고 싶어요","RXD5C-cHAhg"]]}];function init(){let h='';data.forEach(s=>{let q='';s.items.forEach(i=>{q+='<div class="question" data-search="'+i[0].toLowerCase()+'"><div class="question-header" onclick="tQ(this)"><div class="question-title"><span class="q-mark">Q.</span><span>'+i[0]+'</span></div><span class="question-icon">▼</span></div><div class="question-body"><div class="action-buttons"><a href="https://youtu.be/'+i[1]+'" target="_blank" class="btn">▶ 보기</a></div></div></div>';});h+='<div class="section" data-search="'+s.title.toLowerCase()+'"><div class="section-header" onclick="tS(this)"><span>'+s.title+'</span><span style="font-size:12px;">▼</span></div><div class="section-body">'+q+'</div></div>';});document.getElementById('list-container').innerHTML=h;}function tS(h){const b=h.nextElementSibling;const o=b.classList.contains('open');document.querySelectorAll('.section-body.open').forEach(x=>{if(x!==b){x.classList.remove('open');x.previousElementSibling.lastElementChild.textContent='▼';}});b.classList.toggle('open');h.lastElementChild.textContent=o?'▼':'▲';}function tQ(h){const b=h.nextElementSibling;const o=b.classList.contains('open');h.closest('.section-body').querySelectorAll('.question-body.open').forEach(x=>{if(x!==b){x.classList.remove('open');x.previousElementSibling.querySelector('.question-icon').textContent='▼';}});b.classList.toggle('open');h.querySelector('.question-icon').textContent=o?'▼':'▲';}function toggleAll(o){document.querySelectorAll('.section-body').forEach(b=>{if(o){b.classList.add('open');b.previousElementSibling.lastElementChild.textContent='▲';}else{b.classList.remove('open');b.previousElementSibling.lastElementChild.textContent='▼';}});if(!o)document.querySelectorAll('.question-body').forEach(b=>{b.classList.remove('open');b.previousElementSibling.querySelector('.question-icon').textContent='▼';});}function filterContent(){const q=document.getElementById('search-input').value.toLowerCase().trim();let f=false;document.querySelectorAll('.section').forEach(s=>{let sh=false;s.querySelectorAll('.question').forEach(qu=>{const m=q===''||qu.dataset.search.includes(q);qu.style.display=m?'':'none';if(m)sh=true;});if(q===''||s.dataset.search.includes(q)||sh){s.style.display='';f=true;if(q!==''&&sh){s.querySelector('.section-body').classList.add('open');s.querySelector('.section-header').lastElementChild.textContent='▲';}}else{s.style.display='none';}});document.getElementById('no-results').classList.toggle('hidden',f||q==='');}init();</script></body></html>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>U+One 사용 가이드</title><style>body{box-sizing:border-box;margin:0;font-family:'Noto Sans KR',sans-serif;background:#f9fafb;color:#333;font-size:14px;}html,body,#wrapper{height:100%;width:100%;}button{border:none;background:transparent;cursor:pointer;font-family:inherit;}#wrapper{max-width:100%;min-height:100%;background:#fff;overflow-y:auto;}#header{position:sticky;top:0;background:#fff;padding:16px;border-bottom:1px solid #eee;z-index:10;}#title-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}.logo{color:#E6007E;font-weight:900;font-size:20px;}.title-text{font-weight:700;font-size:18px;}.source-text{font-size:11px;color:#999;margin-top:4px;font-weight:400;}#controls{display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px;}.btn-control{background:#f1f3f5;padding:6px 12px;border-radius:16px;font-size:12px;color:#555;transition:all 0.2s;}.btn-control:hover{background:#e9ecef;}#search-input{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;background:#f8f9fa;box-sizing:border-box;font-size:18px;}#search-input:focus{outline:none;border-color:#E6007E;background:#fff;}#list-container{padding:12px;}.section{margin-bottom:12px;border:1px solid #eee;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.04);}.section-header{background:linear-gradient(135deg,#E6007E,#FF6B9D);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700;font-size:15px;}.section-header:hover{background:linear-gradient(135deg,#d1006f,#ff5a8d);}.section-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}.section-body.open{max-height:5000px;}.question{border-bottom:1px solid #f5f5f5;}.question-header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}.question-title{font-size:14px;display:flex;align-items:center;gap:6px;}.q-mark{color:#E6007E;font-weight:700;}.question-icon{font-size:10px;color:#999;}.question-body{max-height:0;overflow:hidden;background:#fafafa;padding:0 16px;transition:all 0.2s ease;}.question-body.open{max-height:120px;padding:14px 16px;}.action-buttons{display:flex;justify-content:flex-end;gap:8px;}.btn{text-decoration:none;padding:8px 14px;border-radius:6px;font-size:12px;color:#fff;background:#E6007E;display:inline-flex;align-items:center;gap:4px;}.btn-gray{background:#6c757d;}.hidden{display:none!important;}.no-results{text-align:center;padding:40px 20px;color:#999;}</style></head><body><div id="wrapper"><div id="header"><div id="title-row"><div><div><span class="logo">U+</span><span class="title-text">one 사용 가이드</span></div><div class="source-text">[호남 영업 연구소]</div></div></div><div id="controls"><button class="btn-control" onclick="toggleAll(true)">+ 전체열기</button><button class="btn-control" onclick="toggleAll(false)">- 전체닫기</button></div><input id="search-input" placeholder="검색 (예: 요금)" onkeyup="filterContent()"></div><div id="list-container"></div><div id="no-results" class="no-results hidden"><div>🔍</div><div>검색 결과가 없습니다</div></div></div><script>const data=[{title:"💰 요금 조회 및 납부 관리",items:[["실시간 요금을 확인하고 싶어요","bhKDRixKUec"],["이번 달 청구요금과 납부 방법이 궁금해요","bQ1SZMZR54M"],["입금전용계좌로 요금을 납부하고 싶어요","KyFnJQU3QMY"],["미납요금을 납부하고 싶어요","xPl9uD2dF_g"],["다른 사람 명의의 카드로 요금을 납부하고 싶어요","EjOcf-aQQP4"],["자동이체 변경 방법과 청구지 변경 방법이 궁금해요","HlHr8Z0HM7A"],["결제일 변경 방법이 궁금해요","lBd6QAcL_og"],["선택약정 할인반환금을 확인하는 방법이 궁금해요","TOUos9Iyz0g"]]},{title:"📱 데이터, 요금제, 로밍",items:[["사용 중인 요금제와 부가서비스가 궁금해요","-LPHSD1PEQk"],["휴대폰 데이터 사용량 확인 방법과 U+데이터 상품권 등록 방법이 궁금해요","bnW-a__BGIc"],["내 데이터를 가족 친구에게 나눠주고 싶어요","YNMjF24083c"],["로밍 서비스를 신청하고 싶어요","hzkbklYEm4I"]]},{title:"🔗 결합 상품 및 할인",items:[["결합 상품을 다른 결합으로 변경하고 싶어요","IU8U79c5A1E"],["할인 나눔을 변경하고 싶어요","FuwXinCJQvk"],["셀프 결합을 신청하고 싶어요","WkFMoW7ULN8"],["셀프 결합으로 가족을 추가하고 싶어요","YpCeq-9_X2Y"]]},{title:"🏠 홈 서비스 (인터넷/TV)",items:[["홈 상품 사용내역을 알고 싶어요","s77t2tV71CE"],["홈 상품 개통 설치 가능 지역을 확인하고 싶어요","pixD_1Kc6hE"],["TV나 인터넷 설치 장소를 변경하고 싶어요","CzKAUTS9a2I"]]},{title:"💳 휴대폰 소액결제",items:[["U+휴대폰결제 이용 한도를 변경하고 싶어요","y_dbJT2nY5c"],["U+휴대폰결제를 선결제로 이용하고 싶어요","_z_VspdFnKk"]]},{title:"📄 서류 발급",items:[["가입확인서를 발급하는 방법이 궁금해요","eiynh9tP6Ps"],["납부확인서, 세금계산서 신청 및 청구서 재발행 방법이 궁금해요","zqXNGL63zRo"]]},{title:"💎 멤버십 혜택",items:[["VIP콕 무료영화 예매혜택을 이용하고 싶어요","RXD5C-cHAhg"]]}];function init(){let h='';data.forEach(s=>{let q='';s.items.forEach(i=>{q+='<div class="question" data-search="'+i[0].toLowerCase()+'"><div class="question-header" onclick="tQ(this)"><div class="question-title"><span class="q-mark">Q.</span><span>'+i[0]+'</span></div><span class="question-icon">▼</span></div><div class="question-body"><div class="action-buttons"><a href="https://youtu.be/'+i[1]+'" target="_blank" class="btn">▶ 보기</a></div></div></div>';});h+='<div class="section" data-search="'+s.title.toLowerCase()+'"><div class="section-header" onclick="tS(this)"><span>'+s.title+'</span><span style="font-size:12px;">▼</span></div><div class="section-body">'+q+'</div></div>';});document.getElementById('list-container').innerHTML=h;}function tS(h){const b=h.nextElementSibling;const o=b.classList.contains('open');document.querySelectorAll('.section-body.open').forEach(x=>{if(x!==b){x.classList.remove('open');x.previousElementSibling.lastElementChild.textContent='▼';}});b.classList.toggle('open');h.lastElementChild.textContent=o?'▼':'▲';}function tQ(h){const b=h.nextElementSibling;const o=b.classList.contains('open');h.closest('.section-body').querySelectorAll('.question-body.open').forEach(x=>{if(x!==b){x.classList.remove('open');x.previousElementSibling.querySelector('.question-icon').textContent='▼';}});b.classList.toggle('open');h.querySelector('.question-icon').textContent=o?'▼':'▲';}function toggleAll(o){document.querySelectorAll('.section-body').forEach(b=>{if(o){b.classList.add('open');b.previousElementSibling.lastElementChild.textContent='▲';}else{b.classList.remove('open');b.previousElementSibling.lastElementChild.textContent='▼';}});if(!o)document.querySelectorAll('.question-body').forEach(b=>{b.classList.remove('open');b.previousElementSibling.querySelector('.question-icon').textContent='▼';});}function filterContent(){const q=document.getElementById('search-input').value.toLowerCase().trim();let f=false;document.querySelectorAll('.section').forEach(s=>{let sh=false;s.querySelectorAll('.question').forEach(qu=>{const m=q===''||qu.dataset.search.includes(q);qu.style.display=m?'':'none';if(m)sh=true;});if(q===''||s.dataset.search.includes(q)||sh){s.style.display='';f=true;if(q!==''&&sh){s.querySelector('.section-body').classList.add('open');s.querySelector('.section-header').lastElementChild.textContent='▲';}}else{s.style.display='none';}});document.getElementById('no-results').classList.toggle('hidden',f||q==='');}init();</script></body></html>
 </textarea>
 
     <script>
@@ -478,7 +504,7 @@
         let currentTabIndex = 0;
 
         document.addEventListener('DOMContentLoaded', () => {
-            switchMainTab('lodging');
+            switchMainTab('lodging'); // 처음 열리는 화면: 숙박업소
             
             renderLodgingTable();
 
@@ -508,6 +534,8 @@
                     }
                 });
             }
+
+            // 요청에 의해 모바일 스와이프 탭 전환 기능이 완전히 삭제되었습니다.
         });
 
         function toggleTvTotalMode() {
@@ -573,7 +601,6 @@
 
         const BENEFIT_DETAILS_DATA = {
             home: { tag: "가정용 인터넷 가입 특별 혜택", title: "본사직영점 단독 사은품 & 결합 혜택 상세", icon: "🏠", html: `<div class="space-y-2 md:space-y-4"><h5 class="font-extrabold text-[10px] md:text-base text-gray-900 border-b border-gray-100 pb-1.5 md:pb-2 flex items-center gap-1 md:gap-2 tracking-tight"><span class="text-sm md:text-lg">🎁</span> 최대 45만원 단독 사은품</h5><ul class="space-y-1 md:space-y-2.5 text-[8px] md:text-xs text-gray-600 leading-relaxed list-disc pl-4 break-keep"><li><strong>최대 45만원 전액 상품권 증정:</strong> 신세계, 홈플러스, L.POINT 등 고객 선호 모바일 백화점 상품권 즉시 모바일 발송.</li><li><strong>인기 가전 사은품 무상 업그레이드:</strong> 삼성/LG 32~43인치 스마트 TV, 다이슨 청소기, 공기청정기 등 원하는 사은품으로 대체 가입 가능.</li><li><strong>본사직영점 가입 추가 특별 장려금:</strong> 신규 가입 및 개통 완료 시 제공되는 본사 전용의 히든 보너스 혜택 적용.</li></ul></div><div class="space-y-2 md:space-y-4 mt-4 md:mt-6"><h5 class="font-extrabold text-[10px] md:text-base text-gray-900 border-b border-gray-100 pb-1.5 md:pb-2 flex items-center gap-1 md:gap-2 tracking-tight"><span class="text-sm md:text-lg">📉</span> 홈 특화 결합 및 공유기 무상</h5><ul class="space-y-1 md:space-y-2.5 text-[8px] md:text-xs text-gray-600 leading-relaxed list-disc pl-4 break-keep"><li><strong>모바일(휴대폰) 유무선 결합:</strong> 가구 내 U+ 모바일 요금제 사용자 결합 시 월 통신료 최대 44,000원 평생 세이브.</li><li><strong>최신형 기가 와이파이6 0원:</strong> 프리미엄 고화질 OTT 시청도 끊김없는 최신 고사양 공유기 임대료 월 4,400원 면제(3년 약정 기준 총 15만원 이득).</li><li><strong>패밀리 결합 추가 적용:</strong> 가족 구성원 중 이미 U+ 인터넷을 사용하고 있는 가구가 있다면 추가 회선 할인 기본 중복 적용.</li></ul></div>` },
-            soho: { tag: "소호인터넷 (상가/매장) 가입 특별 혜택", title: "우리가게 패키지 전용 특별 혜택", icon: "🏬", html: `<div class="w-full overflow-x-auto pb-2 custom-scrollbar"><img src="./soho-benefit.png" alt="우리가게 패키지 특별 혜택" class="w-full min-w-[600px] sm:min-w-full h-auto rounded-lg shadow-sm" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x400/FFF0F6/E6007E?text=소호+혜택+이미지(soho-benefit.png)를+같은+폴더에+올려주세요'"></div>` },
             lodging: { tag: "숙박업소 인터넷 가입 특별 혜택", title: "숙박업소·단체가입 전용 파격 혜택", icon: "🏨", html: `<div class="space-y-6"><div class="text-center space-y-2"><h5 class="text-[11px] md:text-sm font-black text-indigo-900 bg-indigo-50 inline-block px-3 py-1 rounded-full tracking-tight mb-1">이들이 유플러스를 선택한 이유는?</h5><div class="flex flex-wrap justify-center gap-1.5 md:gap-2 mt-1"><span class="text-[8px] md:text-xs font-bold text-gray-700 bg-white px-2 py-1 rounded-md border border-gray-200 shadow-sm">연세대학교</span><span class="text-[8px] md:text-xs font-bold text-gray-700 bg-white px-2 py-1 rounded-md border border-gray-200 shadow-sm">군산대학교</span><span class="text-[8px] md:text-xs font-bold text-gray-700 bg-white px-2 py-1 rounded-md border border-gray-200 shadow-sm">엘리시안 제주</span><span class="text-[8px] md:text-xs font-bold text-gray-700 bg-white px-2 py-1 rounded-md border border-gray-200 shadow-sm">호텔케니</span></div></div><div class="bg-gray-50 p-3 rounded-xl border border-gray-100"><h5 class="font-extrabold text-[10px] md:text-sm text-gray-900 pb-2 mb-3 text-center tracking-tight border-b border-gray-200">유플러스가 좋은 5가지 이유</h5><div class="flex justify-between items-start gap-1"><div class="flex flex-col items-center text-center flex-1"><div class="w-7 h-7 md:w-10 md:h-10 bg-gray-800 text-white rounded-md flex items-center justify-center text-[10px] md:text-sm shadow-sm mb-1.5">🎛️</div><span class="text-[6px] md:text-[9px] font-bold text-uplusPink leading-tight break-keep">무상지급<br><span class="text-gray-500 font-medium">(통합리모컨)</span></span></div><div class="flex flex-col items-center text-center flex-1"><div class="w-7 h-7 md:w-10 md:h-10 bg-white border border-gray-200 text-blue-500 rounded-md flex items-center justify-center text-[10px] md:text-sm shadow-sm mb-1.5">📶</div><span class="text-[6px] md:text-[9px] font-bold text-uplusPink leading-tight break-keep">기가와이파이<br><span class="text-gray-500 font-medium">프리미엄</span></span></div><div class="flex flex-col items-center text-center flex-1"><div class="w-7 h-7 md:w-10 md:h-10 bg-black text-red-600 rounded-md flex items-center justify-center text-[10px] md:text-sm font-black shadow-sm mb-1.5">N</div><span class="text-[6px] md:text-[9px] font-bold text-uplusPink leading-tight break-keep">넷플/디즈니/<br>쿠플/티빙<br><span class="text-gray-500 font-medium">구현가능</span></span></div><div class="flex flex-col items-center text-center flex-1"><div class="w-7 h-7 md:w-10 md:h-10 bg-red-600 text-white rounded-md flex items-center justify-center text-[10px] md:text-sm font-black shadow-sm mb-1.5">AS</div><span class="text-[6px] md:text-[9px] font-bold text-uplusPink leading-tight break-keep">단체가입<br>전용콜센터</span></div><div class="flex flex-col items-center text-center flex-1"><div class="w-7 h-7 md:w-10 md:h-10 bg-green-50 text-green-600 rounded-md flex items-center justify-center text-[10px] md:text-sm shadow-sm mb-1.5">💵</div><span class="text-[6px] md:text-[9px] font-bold text-uplusPink leading-tight break-keep">본사직영<br><span class="text-gray-500 font-medium">계약지원</span></span></div></div></div><div><h5 class="font-extrabold text-[11px] md:text-sm text-gray-900 mb-2.5 text-center tracking-tight">💡 대표님, 이것만은 꼭 확인하세요!</h5><div class="space-y-1.5 md:space-y-2"><div class="bg-gradient-to-r from-pink-50 to-white p-2.5 rounded-lg border border-pink-100 shadow-sm flex gap-2.5 items-center"><div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-lg shrink-0 shadow-sm border border-pink-50">📺</div><div><p class="text-[9px] md:text-xs font-black text-gray-800 tracking-tight mb-0.5">최신 OTT 구현가능 셋톱박스</p><p class="text-[7px] md:text-[9px] text-gray-500 leading-tight">넷플릭스, 디즈니플러스, 쿠팡플레이, 티빙 등 <span class="font-bold text-uplusPink">스마트TV가 아니어도 완벽 지원!</span></p></div></div><div class="bg-gradient-to-r from-blue-50 to-white p-2.5 rounded-lg border border-blue-100 shadow-sm flex gap-2.5 items-center"><div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-lg shrink-0 shadow-sm border border-blue-50">💸</div><div><p class="text-[9px] md:text-xs font-black text-gray-800 tracking-tight mb-0.5">요금은 싸게! 지원금은 많게!</p><p class="text-[7px] md:text-[9px] text-gray-500 leading-tight">본사직영 다이렉트 요금설계로 <span class="font-bold text-blue-600">중간마진 없이, 추가 혜택과 현금지원 최대!</span></p></div></div><div class="bg-gradient-to-r from-purple-50 to-white p-2.5 rounded-lg border border-purple-100 shadow-sm flex gap-2.5 items-center"><div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-lg shrink-0 shadow-sm border border-purple-50">🛠️</div><div><p class="text-[9px] md:text-xs font-black text-gray-800 tracking-tight mb-0.5">망 공사비 전면면제 & 전용 AS</p><p class="text-[7px] md:text-[9px] text-gray-500 leading-tight"><span class="font-bold text-purple-600">건물 내 노후 선로 무상 교체</span> 및 신속한 대처를 위한 전용 콜센터 운영!</p></div></div></div></div></div>` }
         };
 
@@ -634,24 +661,41 @@
                 }
             }
 
+            const benefitWrapper = document.getElementById('benefit-details-wrapper');
             const lodgingSimulatorBanner = document.getElementById('lodging-simulator-banner');
             const homeBenefitsSection = document.getElementById('home-benefits-section');
             const defaultBenefitsSection = document.getElementById('lodging-benefits-section');
-            const sohoBenefitsSection = document.getElementById('soho-benefits-section');
+            const sohoNewSection = document.getElementById('soho-new-section');
             const lodgingPromoTable = document.getElementById('lodging-promo-table');
+            const planGrid = document.getElementById('plan-grid');
             
+            if (benefitWrapper) {
+                if (tabName === 'home') {
+                    benefitWrapper.classList.remove('hidden');
+                } else {
+                    benefitWrapper.classList.add('hidden');
+                }
+            }
+            if (planGrid) {
+                if (tabName === 'soho') {
+                    planGrid.classList.add('hidden');
+                } else {
+                    planGrid.classList.remove('hidden');
+                }
+            }
+
             if (homeBenefitsSection) homeBenefitsSection.classList.add('hidden');
             if (defaultBenefitsSection) defaultBenefitsSection.classList.add('hidden');
-            if (sohoBenefitsSection) sohoBenefitsSection.classList.add('hidden');
+            if (sohoNewSection) sohoNewSection.classList.add('hidden');
             if (lodgingSimulatorBanner) lodgingSimulatorBanner.classList.add('hidden');
             if (lodgingPromoTable) lodgingPromoTable.classList.add('hidden');
 
             if (tabName === 'home') {
                 if (homeBenefitsSection) homeBenefitsSection.classList.remove('hidden');
             } else if (tabName === 'soho') {
-                if (sohoBenefitsSection) {
-                    sohoBenefitsSection.classList.remove('hidden');
-                    switchSohoBenefit('ai'); 
+                if (sohoNewSection) {
+                    sohoNewSection.classList.remove('hidden');
+                    switchSohoSubTab('plaza'); 
                 }
             } else if (tabName === 'lodging') {
                 if (lodgingSimulatorBanner) lodgingSimulatorBanner.classList.remove('hidden');
@@ -659,7 +703,28 @@
                 if (lodgingPromoTable) lodgingPromoTable.classList.remove('hidden');
             }
 
-            renderPlanGrid(tabName);
+            if (tabName !== 'soho') {
+                renderPlanGrid(tabName);
+            }
+        }
+
+        function switchSohoSubTab(tab) {
+            const btnPlaza = document.getElementById('soho-tab-plaza');
+            const btnApp = document.getElementById('soho-tab-app');
+            const contentPlaza = document.getElementById('soho-content-plaza');
+            const contentApp = document.getElementById('soho-content-app');
+
+            if (tab === 'plaza') {
+                if(btnPlaza) btnPlaza.className = 'pb-2 font-bold border-b-[3px] border-uplusPink text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap';
+                if(btnApp) btnApp.className = 'pb-2 font-medium border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap';
+                if(contentPlaza) { contentPlaza.classList.remove('hidden'); contentPlaza.classList.add('animate-fade-in'); }
+                if(contentApp) { contentApp.classList.add('hidden'); contentApp.classList.remove('animate-fade-in'); }
+            } else {
+                if(btnApp) btnApp.className = 'pb-2 font-bold border-b-[3px] border-uplusPink text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap';
+                if(btnPlaza) btnPlaza.className = 'pb-2 font-medium border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap';
+                if(contentApp) { contentApp.classList.remove('hidden'); contentApp.classList.add('animate-fade-in'); }
+                if(contentPlaza) { contentPlaza.classList.add('hidden'); contentPlaza.classList.remove('animate-fade-in'); }
+            }
         }
 
         function renderLodgingTable() {
@@ -698,34 +763,7 @@
 
             let htmlContent = '';
 
-            if (category === 'soho') {
-                data.forEach(item => {
-                    let itemsHtml = '';
-                    item.items.forEach((subItem, index) => {
-                        let iconSvg = '';
-                        if (subItem.type === 'router') iconSvg = `<div class="bg-indigo-50 p-1 md:p-2 rounded-lg md:rounded-2xl text-indigo-500 flex items-center justify-center">${getRouterSvg()}</div>`;
-                        else if (subItem.type === 'phone') iconSvg = `<div class="bg-blue-50 p-1 md:p-2 rounded-lg md:rounded-2xl text-blue-500 flex items-center justify-center">${getPhoneSvg()}</div>`;
-                        else if (subItem.type === 'cctv') iconSvg = `<div class="bg-purple-50 p-1 md:p-2 rounded-lg md:rounded-2xl text-purple-500 flex items-center justify-center">${getCctvSvg()}</div>`;
-                        else if (subItem.type === 'tv') iconSvg = `<div class="bg-teal-50 p-1 md:p-2 rounded-lg md:rounded-2xl text-teal-500 flex items-center justify-center">${getTvSvg()}</div>`;
-
-                        itemsHtml += `<div class="flex flex-col items-center justify-center flex-1 max-w-[45px] md:max-w-[80px]">${iconSvg}<span class="text-[6px] md:text-[10px] font-extrabold text-slate-800 text-center mt-0.5 md:mt-1.5 h-5 md:h-8 flex items-center justify-center break-keep leading-tight tracking-tighter">${subItem.name}</span></div>`;
-                        if (index < item.items.length - 1) itemsHtml += `<div class="flex items-center justify-center text-slate-300 font-black text-[10px] md:text-sm select-none h-6 md:h-12 self-start mt-1 md:mt-2 px-0.5 md:px-1">+</div>`;
-                    });
-
-                    htmlContent += `
-                    <div class="plan-card w-[200px] md:w-auto shrink-0 snap-center h-full bg-white rounded-2xl md:rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 relative flex flex-col py-3 px-2.5 md:py-6 md:px-4">
-                        <h2 class="text-[11px] md:text-[19px] font-black text-slate-900 text-center mb-1.5 md:mb-3 tracking-tighter break-keep leading-snug min-h-[28px] md:min-h-[48px] flex items-center justify-center">${item.title}</h2>
-                        <div class="flex justify-center items-start w-full mb-2 md:mb-4 flex-grow">${itemsHtml}</div>
-                        <div class="text-center border-t border-slate-50 pt-1.5 md:pt-3 mb-1.5 md:mb-3 mt-auto">
-                            <span class="text-[7px] md:text-[10px] font-bold text-slate-400 block mb-0.5 md:mb-1">총 납부금액 예상가</span>
-                            <span class="text-[8px] md:text-xs text-slate-400 line-through font-bold">월 ${item.normalPrice}</span>
-                            <div class="flex items-baseline justify-center gap-0.5 mt-0.5"><span class="text-[8px] md:text-sm font-black text-uplusPink">월</span><span class="text-[15px] md:text-3xl font-black text-uplusPink tracking-tighter">${item.salePrice}</span></div>
-                        </div>
-                        <div class="w-full mt-auto"><button onclick="openConsultModal('${item.subTitle} 상담 신청', '${item.placeType}')" class="w-full py-1.5 md:py-2.5 px-2 md:px-4 rounded-full bg-uplusPink hover:bg-pink-700 text-white font-bold text-[9px] md:text-[13px] active:scale-95 transition-all shadow-md shadow-pink-100 whitespace-nowrap tracking-tighter">가입상담 신청</button></div>
-                        <div class="absolute bottom-[-8px] md:bottom-[-12px] left-1/2 -translate-x-1/2 bg-gray-50 border border-gray-200 text-gray-500 text-[6px] md:text-[9px] font-bold py-0.5 md:py-1 px-2.5 md:px-4 rounded-full shadow-sm flex items-center whitespace-nowrap tracking-tight">${item.badgeText}</div>
-                    </div>`;
-                });
-            } else if (category === 'home') {
+            if (category === 'home') {
                 data.forEach(item => {
                     let mediaHtml = '';
                     if (item.tvChan) {
@@ -776,66 +814,51 @@
                         <div class="w-full mt-auto"><button onclick="openConsultModal('${item.subTitle} 상담 신청', '${item.placeType}')" class="w-full py-1.5 md:py-2.5 px-2 md:px-4 rounded-full border-2 border-uplusPink text-uplusPink bg-white font-bold text-[9px] md:text-[13px] hover:bg-uplusPink hover:text-white active:scale-95 transition-all whitespace-nowrap tracking-tighter">가입상담 신청</button></div>
                     </div>`;
                 });
-            } else {
+            } else if (category === 'soho') {
                 data.forEach(item => {
+                    let itemsHtml = '';
+                    item.items.forEach(subItem => {
+                        let icon = '🎁';
+                        if(subItem.type === 'router') icon = '📶';
+                        if(subItem.type === 'phone') icon = '☎️';
+                        if(subItem.type === 'cctv') icon = '📹';
+                        
+                        itemsHtml += `
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center shadow-sm text-[10px] md:text-sm shrink-0">${icon}</div>
+                            <span class="text-[9px] md:text-[13px] font-bold text-gray-700 tracking-tight leading-tight">${subItem.name}</span>
+                        </div>`;
+                    });
+
                     htmlContent += `
-                    <div class="plan-card w-[180px] md:w-auto shrink-0 snap-center bg-white rounded-[1.2rem] md:rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col" data-speed="${item.speed}">
-                        <div class="p-2.5 md:p-5 flex-grow">
-                            <div class="flex items-center gap-1 md:gap-1.5 mb-1.5 md:mb-2">
-                                <span class="${item.badgeColor} text-[7px] md:text-[10px] font-bold px-1 md:px-1.5 py-0.5 rounded-sm">${item.badgeText}</span>
-                                <span class="bg-gray-100 text-gray-600 text-[7px] md:text-[10px] font-bold px-1 md:px-1.5 py-0.5 rounded-sm">${item.speedText}</span>
+                    <div class="plan-card w-[240px] md:w-[320px] shrink-0 snap-center bg-white rounded-[1.5rem] md:rounded-3xl border-2 border-gray-100 shadow-md hover:shadow-xl hover:border-uplusPink transition-all duration-300 flex flex-col relative mt-4 md:mt-6 mb-2">
+                        <div class="absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[9px] md:text-[12px] font-black px-4 md:px-6 py-1 md:py-1.5 rounded-full shadow-md whitespace-nowrap tracking-tight z-10 border-2 border-white">${item.title}</div>
+                        
+                        <div class="p-4 md:p-6 pt-6 md:pt-8 flex-grow flex flex-col">
+                            <div class="text-center mb-3 md:mb-5">
+                                <span class="inline-block bg-pink-50 text-uplusPink text-[8px] md:text-[10px] font-bold px-2 py-0.5 rounded mb-1.5">${item.badgeText}</span>
+                                <h3 class="text-[12px] md:text-base font-black text-gray-900 break-keep leading-tight mt-1 flex items-center justify-center tracking-tighter">${item.subTitle}</h3>
                             </div>
-                            <h3 class="text-gray-500 text-[7px] md:text-[10px] font-bold uppercase tracking-tight">${item.subTitle}</h3>
-                            <h2 class="text-[10px] md:text-base font-bold text-gray-900 mt-0.5 mb-1.5 md:mb-2 tracking-tight break-keep leading-snug">${item.title}</h2>
                             
-                            <div class="my-1.5 md:my-3">
-                                ${item.normalPrice !== '견적가 문의' ? `<span class="text-gray-400 text-[6px] md:text-[10px] line-through block mb-0.5">정상가 ${item.normalPrice}</span>` : ''}
-                                <div class="flex flex-col md:flex-row md:items-baseline gap-0.5 md:gap-1.5 mt-0.5">
-                                    <span class="text-[7px] md:text-xs font-bold text-uplusPink">본사직영점 특가</span>
-                                    <span class="text-xs md:text-lg font-extrabold text-gray-900 tracking-tighter break-keep">${item.salePrice}</span>
-                                </div>
+                            <div class="bg-gray-50 rounded-xl p-3 md:p-5 mb-4 md:mb-6 border border-gray-100 flex-grow">
+                                ${itemsHtml}
                             </div>
 
-                            <div class="w-full mt-auto pt-1 md:pt-2">
-                                <button onclick="openConsultModal('${item.subTitle} 상담 신청', '${item.placeType}')" class="w-full py-1.5 md:py-2.5 px-2 md:px-4 rounded-lg md:rounded-xl bg-uplusPink hover:bg-pink-700 text-white font-bold text-[9px] md:text-[12px] transition-all shadow-md shadow-pink-100 tracking-tight">가입상담 신청</button>
-                            </div>
-                        </div>
-
-                        <!-- Features list in card footer -->
-                        <div class="bg-gray-50 p-2 md:p-4 border-t border-gray-100 text-[7px] md:text-[11px] text-gray-500 space-y-1.5 md:space-y-2">
-                            <div class="flex items-start gap-1.5 md:gap-2">
-                                <div class="w-4 h-4 md:w-6 md:h-6 rounded-full bg-white flex items-center justify-center shadow-sm text-[8px] md:text-xs shrink-0 mt-0.5">
-                                    🎁
-                                </div>
-                                <div class="tracking-tight break-keep leading-snug">
-                                    <span class="font-bold text-gray-700 block">무료 사은품 혜택</span>
-                                    ${item.gift}
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-1.5 md:gap-2">
-                                <div class="w-4 h-4 md:w-6 md:h-6 rounded-full bg-white flex items-center justify-center shadow-sm text-[8px] md:text-xs shrink-0 mt-0.5">
-                                    📶
-                                </div>
-                                <div class="tracking-tight break-keep leading-snug">
-                                    <span class="font-bold text-gray-700 block">와이파이 사양</span>
-                                    ${item.wifi}
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-1.5 md:gap-2">
-                                <div class="w-4 h-4 md:w-6 md:h-6 rounded-full bg-white flex items-center justify-center shadow-sm text-[8px] md:text-xs shrink-0 mt-0.5">
-                                    🛡️
-                                </div>
-                                <div class="tracking-tight break-keep leading-snug">
-                                    <span class="font-bold text-gray-700 block">차단 및 안전 서비스</span>
-                                    ${item.protect}
+                            <div class="text-center mt-auto border-t border-gray-100 pt-4 md:pt-5">
+                                <span class="text-gray-400 text-[10px] md:text-xs line-through block mb-1 tracking-tighter">정상가 ${item.normalPrice}</span>
+                                <div class="flex justify-center items-end gap-1">
+                                    <span class="text-[12px] md:text-sm font-bold text-gray-900 mb-0.5 md:mb-1">월</span>
+                                    <span class="text-2xl md:text-4xl font-black text-uplusPink tracking-tighter leading-none">${item.salePrice}</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    `;
+                        
+                        <div class="p-3 md:p-5 pt-0 w-full mt-auto">
+                            <button onclick="openConsultModal('${item.subTitle} 상담 신청', '${item.placeType}')" class="w-full py-2.5 md:py-3.5 rounded-xl bg-uplusPink hover:bg-pink-700 text-white font-bold text-[11px] md:text-[14px] transition-all shadow-md shadow-pink-200 tracking-tight active:scale-95">가입상담 신청하기</button>
+                        </div>
+                    </div>`;
                 });
             }
-
             planGrid.innerHTML = htmlContent;
         }
 
@@ -856,25 +879,6 @@
             }
         }
 
-        function switchSohoBenefit(type) {
-            const btnAi = document.getElementById('soho-btn-ai');
-            const btnCctv = document.getElementById('soho-btn-cctv');
-            const contentAi = document.getElementById('soho-content-ai');
-            const contentCctv = document.getElementById('soho-content-cctv');
-
-            if (type === 'ai') {
-                if(btnAi) btnAi.className = 'text-sm md:text-2xl font-black text-uplusPink border-b-[2px] md:border-b-[3px] border-uplusPink pb-1 md:pb-2 -mb-[1px] md:-mb-[2px] z-10 transition-all outline-none tracking-tight';
-                if(btnCctv) btnCctv.className = 'text-sm md:text-2xl font-bold text-gray-400 hover:text-gray-600 border-b-[2px] md:border-b-[3px] border-transparent pb-1 md:pb-2 -mb-[1px] md:-mb-[2px] z-10 transition-all outline-none tracking-tight';
-                if(contentAi) { contentAi.classList.remove('hidden'); contentAi.classList.add('animate-fade-in'); }
-                if(contentCctv) { contentCctv.classList.add('hidden'); contentCctv.classList.remove('animate-fade-in'); }
-            } else {
-                if(btnCctv) btnCctv.className = 'text-sm md:text-2xl font-black text-uplusPink border-b-[2px] md:border-b-[3px] border-uplusPink pb-1 md:pb-2 -mb-[1px] md:-mb-[2px] z-10 transition-all outline-none tracking-tight';
-                if(btnAi) btnAi.className = 'text-sm md:text-2xl font-bold text-gray-400 hover:text-gray-600 border-b-[2px] md:border-b-[3px] border-transparent pb-1 md:pb-2 -mb-[1px] md:-mb-[2px] z-10 transition-all outline-none tracking-tight';
-                if(contentCctv) { contentCctv.classList.remove('hidden'); contentCctv.classList.add('animate-fade-in'); }
-                if(contentAi) { contentAi.classList.add('hidden'); contentAi.classList.remove('animate-fade-in'); }
-            }
-        }
-
         function selectPlaceType(type) {
             document.querySelectorAll('.place-type-btn').forEach(btn => {
                 btn.classList.remove('border-uplusPink', 'bg-uplusLightPink', 'text-uplusPink', 'ring-1', 'ring-uplusPink');
@@ -891,7 +895,6 @@
                 targetBtn.classList.remove('border-gray-200', 'text-gray-600', 'bg-white');
                 targetBtn.classList.add('border-uplusPink', 'bg-uplusLightPink', 'text-uplusPink', 'ring-1', 'ring-uplusPink');
             }
-            
             const placeTypeInput = document.getElementById('place-type-input');
             if (placeTypeInput) { placeTypeInput.value = type; }
         }
@@ -927,7 +930,6 @@
                 content.classList.remove('scale-100', 'opacity-100');
                 content.classList.add('scale-95', 'opacity-0');
             }
-            
             if (modal) { setTimeout(() => { modal.classList.add('hidden'); }, 300); }
         }
 
@@ -997,7 +999,6 @@
                 content.classList.remove('scale-100', 'opacity-100');
                 content.classList.add('scale-95', 'opacity-0');
             }
-            
             if (modal) { setTimeout(() => { modal.classList.add('hidden'); }, 300); }
             clearInterval(gaugeInterval);
         }
@@ -1068,13 +1069,11 @@
                                 document.getElementById('up-result').innerText = speed + ' Mbps';
                                 if (status) status.innerText = '진단이 완료되었습니다.';
                                 if (btn) { btn.innerText = '다시 측정하기'; btn.disabled = false; }
-                                
                                 showRecommendation(targetSpeed);
                             }
                         }, 50);
                     }
                 }, 50);
-                
             }, 1000);
         }
 
@@ -1117,7 +1116,6 @@
                 content.classList.remove('scale-100', 'opacity-100');
                 content.classList.add('scale-95', 'opacity-0');
             }
-            
             if (modal) { setTimeout(() => { modal.classList.add('hidden'); }, 300); }
         }
 
