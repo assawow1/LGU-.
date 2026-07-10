@@ -661,50 +661,37 @@
                 }
             }
 
-            const benefitWrapper = document.getElementById('benefit-details-wrapper');
-            const lodgingSimulatorBanner = document.getElementById('lodging-simulator-banner');
-            const homeBenefitsSection = document.getElementById('home-benefits-section');
-            const defaultBenefitsSection = document.getElementById('lodging-benefits-section');
-            const sohoNewSection = document.getElementById('soho-new-section');
-            const lodgingPromoTable = document.getElementById('lodging-promo-table');
-            const planGrid = document.getElementById('plan-grid');
-            
-            if (benefitWrapper) {
-                if (tabName === 'home') {
-                    benefitWrapper.classList.remove('hidden');
-                } else {
-                    benefitWrapper.classList.add('hidden');
-                }
-            }
-            if (planGrid) {
-                if (tabName === 'soho') {
-                    planGrid.classList.add('hidden');
-                } else {
-                    planGrid.classList.remove('hidden');
-                }
-            }
+            // 모든 가변 섹션을 숨김 처리 (탭 전환 시 꼬임 방지)
+            const sections = [
+                'benefit-details-wrapper',
+                'lodging-simulator-banner',
+                'home-benefits-section',
+                'lodging-benefits-section',
+                'soho-new-section',
+                'lodging-promo-table',
+                'plan-grid'
+            ];
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
+            });
 
-            if (homeBenefitsSection) homeBenefitsSection.classList.add('hidden');
-            if (defaultBenefitsSection) defaultBenefitsSection.classList.add('hidden');
-            if (sohoNewSection) sohoNewSection.classList.add('hidden');
-            if (lodgingSimulatorBanner) lodgingSimulatorBanner.classList.add('hidden');
-            if (lodgingPromoTable) lodgingPromoTable.classList.add('hidden');
-
-            if (tabName === 'home') {
-                if (homeBenefitsSection) homeBenefitsSection.classList.remove('hidden');
+            // 현재 선택된 탭에 맞게 필요한 섹션만 노출 및 요금제 렌더링
+            if (tabName === 'lodging') {
+                document.getElementById('lodging-simulator-banner')?.classList.remove('hidden');
+                document.getElementById('lodging-benefits-section')?.classList.remove('hidden');
+                document.getElementById('lodging-promo-table')?.classList.remove('hidden');
+                // 숙박업소는 전용 테이블(lodging-promo-table)을 사용하므로 plan-grid는 숨김 유지
             } else if (tabName === 'soho') {
-                if (sohoNewSection) {
-                    sohoNewSection.classList.remove('hidden');
-                    switchSohoSubTab('plaza'); 
-                }
-            } else if (tabName === 'lodging') {
-                if (lodgingSimulatorBanner) lodgingSimulatorBanner.classList.remove('hidden');
-                if (defaultBenefitsSection) defaultBenefitsSection.classList.remove('hidden');
-                if (lodgingPromoTable) lodgingPromoTable.classList.remove('hidden');
-            }
-
-            if (tabName !== 'soho') {
-                renderPlanGrid(tabName);
+                document.getElementById('soho-new-section')?.classList.remove('hidden');
+                document.getElementById('plan-grid')?.classList.remove('hidden');
+                switchSohoSubTab('plaza'); 
+                renderPlanGrid('soho'); // 소호 전용 요금제만 렌더링
+            } else if (tabName === 'home') {
+                document.getElementById('benefit-details-wrapper')?.classList.remove('hidden');
+                document.getElementById('home-benefits-section')?.classList.remove('hidden');
+                document.getElementById('plan-grid')?.classList.remove('hidden');
+                renderPlanGrid('home'); // 가정용 전용 요금제만 렌더링
             }
         }
 
