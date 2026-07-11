@@ -323,6 +323,58 @@
             <!-- 지능형CCTV 내용 -->
             <div id="soho-content-cctv" class="hidden max-w-4xl mx-auto w-full animate-fade-in overflow-x-auto custom-scrollbar px-1">
                 <img src="./cctv.jpg" alt="지능형CCTV 안내" class="w-full h-auto rounded-xl shadow-sm cursor-pointer hover:opacity-95 transition-opacity" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x400/FFF0F6/E6007E?text=cctv.jpg'" onclick="openImageModal(this.src)">
+                
+                <!-- 추가된 에스원 안심 카드 영역 -->
+                <div class="mt-6 mb-4 max-w-md mx-auto bg-white rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-6 relative">
+                    <!-- Badges -->
+                    <div class="absolute top-6 right-6 flex gap-1">
+                        <span class="bg-[#3B66CC] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">추천</span>
+                        <span class="bg-[#E41818] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">인기</span>
+                    </div>
+
+                    <!-- Title & Subtitle -->
+                    <h3 class="text-xl md:text-2xl font-black text-gray-900 flex items-center gap-1 mb-2 tracking-tight">
+                        에스원 안심 
+                        <svg class="w-4 h-4 text-gray-300 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+                    </h3>
+                    <p class="text-[13px] text-gray-700 leading-relaxed tracking-tight break-keep">
+                        침입 등 위험 상황 감지하면 실시간 알림<br>
+                        국내 보안 업계 1위 에스원 긴급 출동까지!
+                    </p>
+
+                    <!-- Features -->
+                    <div class="bg-[#F8F9FB] rounded-xl p-4 md:p-5 mt-5 space-y-3 md:space-y-4">
+                        <div class="flex items-center gap-2.5">
+                            <span class="text-pink-400 text-base drop-shadow-sm">📢</span>
+                            <span class="text-[13px] font-bold text-gray-800 tracking-tight">월 2회 에스원 출동 서비스 제공</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <span class="text-blue-400 text-base drop-shadow-sm">☁️</span>
+                            <span class="text-[13px] font-bold text-gray-800 tracking-tight">실시간 고화질영상 클라우드 자동 저장</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <span class="text-purple-400 text-base drop-shadow-sm">🎁</span>
+                            <span class="text-[13px] font-bold text-gray-800 tracking-tight">에스원 안심 고객 전용 방범 스티커 제공</span>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="mt-6">
+                        <span class="text-[11px] font-medium text-gray-500 tracking-tight">3년 약정 기준</span>
+                        <div class="text-2xl font-black text-uplusPink mt-0.5 tracking-tighter">월 13,200원</div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="mt-5">
+                        <button onclick="openConsultModal('에스원 안심(지능형CCTV) 상담 신청', '상가')" class="w-full flex items-center justify-center gap-1.5 py-3 md:py-3.5 border border-uplusPink rounded-xl text-uplusPink font-bold text-sm hover:bg-uplusLightPink transition-colors shadow-sm active:scale-95">
+                            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                            가입상담 신청
+                        </button>
+                    </div>
+                </div>
+                <p class="text-[10px] text-gray-400 text-center tracking-tighter mb-4">
+                    · 모든 월정액은 3년약정기준, 너겟요금제는 1년약정기준, 부가세 포함금액입니다.
+                </p>
             </div>
         </div>
 
