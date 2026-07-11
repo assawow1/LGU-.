@@ -298,9 +298,11 @@
         <!-- 3. 소호인터넷 전용 탭 Section (새로운 구조 적용) -->
         <div id="soho-new-section" class="hidden mb-8 md:mb-16">
             <!-- 소호 전용 서브 메뉴 -->
-            <div class="flex gap-4 justify-center border-b border-gray-200 mb-4 md:mb-6 max-w-4xl mx-auto px-2">
-                <button onclick="switchSohoSubTab('plaza')" id="soho-tab-plaza" class="pb-2 font-bold border-b-[3px] border-uplusPink text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap">사장님광장</button>
-                <button onclick="switchSohoSubTab('app')" id="soho-tab-app" class="pb-2 font-medium border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap">우리가게패키지앱</button>
+            <div class="flex gap-3 md:gap-6 justify-start md:justify-center border-b border-gray-200 mb-4 md:mb-6 max-w-4xl mx-auto px-2 overflow-x-auto custom-scrollbar">
+                <button onclick="switchSohoSubTab('plaza')" id="soho-tab-plaza" class="pb-2 font-bold border-b-[3px] border-uplusPink text-uplusPink text-[13px] md:text-lg transition-colors whitespace-nowrap shrink-0">사장님광장</button>
+                <button onclick="switchSohoSubTab('app')" id="soho-tab-app" class="pb-2 font-medium border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink text-[13px] md:text-lg transition-colors whitespace-nowrap shrink-0">우리가게패키지앱</button>
+                <button onclick="switchSohoSubTab('aiphone')" id="soho-tab-aiphone" class="pb-2 font-medium border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink text-[13px] md:text-lg transition-colors whitespace-nowrap shrink-0">U+AI전화</button>
+                <button onclick="switchSohoSubTab('cctv')" id="soho-tab-cctv" class="pb-2 font-medium border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink text-[13px] md:text-lg transition-colors whitespace-nowrap shrink-0">지능형CCTV</button>
             </div>
             
             <!-- 사장님광장 내용 -->
@@ -311,6 +313,16 @@
             <!-- 우리가게패키지앱 내용 -->
             <div id="soho-content-app" class="hidden max-w-4xl mx-auto w-full animate-fade-in overflow-x-auto custom-scrollbar px-1">
                 <img src="woori.png" alt="우리가게패키지앱 안내" class="w-full h-auto rounded-xl shadow-sm cursor-pointer hover:opacity-95 transition-opacity" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x400/FFF0F6/E6007E?text=woori.png'" onclick="openImageModal(this.src)">
+            </div>
+
+            <!-- U+AI전화 내용 -->
+            <div id="soho-content-aiphone" class="hidden max-w-4xl mx-auto w-full animate-fade-in overflow-x-auto custom-scrollbar px-1">
+                <img src="AI t.jpg" alt="U+AI전화 안내" class="w-full h-auto rounded-xl shadow-sm cursor-pointer hover:opacity-95 transition-opacity" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x400/FFF0F6/E6007E?text=AI+t.jpg'" onclick="openImageModal(this.src)">
+            </div>
+
+            <!-- 지능형CCTV 내용 -->
+            <div id="soho-content-cctv" class="hidden max-w-4xl mx-auto w-full animate-fade-in overflow-x-auto custom-scrollbar px-1">
+                <img src="cctv.png" alt="지능형CCTV 안내" class="w-full h-auto rounded-xl shadow-sm cursor-pointer hover:opacity-95 transition-opacity" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x400/FFF0F6/E6007E?text=cctv.png'" onclick="openImageModal(this.src)">
             </div>
         </div>
 
@@ -704,22 +716,26 @@
         }
 
         function switchSohoSubTab(tab) {
-            const btnPlaza = document.getElementById('soho-tab-plaza');
-            const btnApp = document.getElementById('soho-tab-app');
-            const contentPlaza = document.getElementById('soho-content-plaza');
-            const contentApp = document.getElementById('soho-content-app');
-
-            if (tab === 'plaza') {
-                if(btnPlaza) btnPlaza.className = 'pb-2 font-bold border-b-[3px] border-uplusPink text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap';
-                if(btnApp) btnApp.className = 'pb-2 font-medium border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap';
-                if(contentPlaza) { contentPlaza.classList.remove('hidden'); contentPlaza.classList.add('animate-fade-in'); }
-                if(contentApp) { contentApp.classList.add('hidden'); contentApp.classList.remove('animate-fade-in'); }
-            } else {
-                if(btnApp) btnApp.className = 'pb-2 font-bold border-b-[3px] border-uplusPink text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap';
-                if(btnPlaza) btnPlaza.className = 'pb-2 font-medium border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink text-sm md:text-lg transition-colors whitespace-nowrap';
-                if(contentApp) { contentApp.classList.remove('hidden'); contentApp.classList.add('animate-fade-in'); }
-                if(contentPlaza) { contentPlaza.classList.add('hidden'); contentPlaza.classList.remove('animate-fade-in'); }
-            }
+            const tabs = ['plaza', 'app', 'aiphone', 'cctv'];
+            
+            tabs.forEach(t => {
+                const btn = document.getElementById(`soho-tab-${t}`);
+                const content = document.getElementById(`soho-content-${t}`);
+                
+                if (t === tab) {
+                    if (btn) btn.className = 'pb-2 font-bold border-b-[3px] border-uplusPink text-uplusPink text-[13px] md:text-lg transition-colors whitespace-nowrap shrink-0';
+                    if (content) { 
+                        content.classList.remove('hidden'); 
+                        content.classList.add('animate-fade-in'); 
+                    }
+                } else {
+                    if (btn) btn.className = 'pb-2 font-medium border-b-[3px] border-transparent text-gray-500 hover:text-uplusPink text-[13px] md:text-lg transition-colors whitespace-nowrap shrink-0';
+                    if (content) { 
+                        content.classList.add('hidden'); 
+                        content.classList.remove('animate-fade-in'); 
+                    }
+                }
+            });
         }
 
         function renderLodgingTable() {
