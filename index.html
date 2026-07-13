@@ -498,7 +498,8 @@
                         </div>
                         <div class="col-span-2 grid grid-cols-2 gap-2 border-t border-slate-200 pt-2 mt-1">
                             <div class="flex items-center gap-1.5"><input type="checkbox" id="sim-freeWifi" class="w-3 h-3 md:w-3.5 md:h-3.5 accent-uplus" checked><label for="sim-freeWifi" class="text-[10px] md:text-xs text-slate-700 font-bold">WIFI 무료</label></div>
-                            <div class="flex items-center gap-1.5"><input type="checkbox" id="sim-freeUHD3" class="w-3 h-3 md:w-3.5 md:h-3.5 accent-uplus" checked><label for="sim-freeUHD3" class="text-[10px] md:text-xs text-slate-700 font-bold">UHD3무료</label></div>
+                            <div class="flex items-center gap-1.5"><input type="checkbox" id="sim-freeUHD3" class="w-3 h-3 md:w-3.5 md:h-3.5 accent-uplus"><label for="sim-freeUHD3" class="text-[10px] md:text-xs text-slate-700 font-bold">UHD3무료</label></div>
+                            <div class="flex items-center gap-1.5 col-span-2"><input type="checkbox" id="sim-UHD4" class="w-3 h-3 md:w-3.5 md:h-3.5 accent-uplus" checked><label for="sim-UHD4" class="text-[10px] md:text-xs text-slate-700 font-bold">UHD4(2,200원)</label></div>
                             <div class="col-span-2 flex items-center mt-1"><label class="text-[9px] md:text-[10px] font-bold text-slate-400 mr-1.5">상품권 기준:</label><select id="sim-facility" class="border border-slate-200 rounded-md px-2 py-1 text-[9px] md:text-[10px] sim-select"><option value="모텔">모텔</option><option value="원룸">원룸</option></select></div>
                         </div>
                     </div>
@@ -567,7 +568,7 @@
             
             renderLodgingTable();
 
-            const simInputs = ['sim-contract', 'sim-internet', 'sim-tv', 'sim-tvTotal', 'sim-freeWifi', 'sim-facility'];
+            const simInputs = ['sim-contract', 'sim-internet', 'sim-tv', 'sim-tvTotal', 'sim-freeWifi', 'sim-freeUHD3', 'sim-UHD4', 'sim-facility'];
             simInputs.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.addEventListener('change', updateSimTable);
@@ -642,7 +643,7 @@
         const simPriceDB = {
             "3": { internet: { "광랜": { price: 25000, desc: "100Mbps 광랜 기본 서비스" }, "기가Slim": { price: 30000, desc: "500Mbps 기가속도 안정적 서비스" }, "기가1G": { price: 35000, desc: "1Gbps 기가속도 가장 빠른 서비스" } }, tv: { "실속형": { main: 12000, sub: 7000, desc: "217개 채널" }, "기본형": { main: 13000, sub: 7500, desc: "223개 채널" } } },
             "5": { internet: { "광랜": { price: 20000, desc: "100Mbps 광랜 기본 서비스" }, "기가Slim": { price: 25000, desc: "500Mbps 기가속도 안정적 서비스" }, "기가1G": { price: 30000, desc: "1Gbps 기가속도 가장 빠른 서비스" } }, tv: { "실속형": { main: 10000, sub: 6000, desc: "217개 채널" }, "기본형": { main: 11000, sub: 6500, desc: "223개 채널" } } },
-            equipment: { "WIFI": { price: 1000, desc: "정품 통합형 WIFI (무료정책)" }, "구글셋탑": { price: 1000, desc: "구글 셋탑박스" }, "UHD3셋탑": { price: 3000, desc: "UHD화질/넷플릭스 등 OTT 지원" } },
+            equipment: { "WIFI": { price: 1000, desc: "정품 통합형 WIFI (무료정책)" }, "구글셋탑": { price: 1000, desc: "구글 셋탑박스" }, "UHD3셋탑": { price: 3000, desc: "UHD화질/넷플릭스 등 OTT 지원" }, "UHD4셋탑": { price: 2000, desc: "초고화질 UHD4 셋탑박스" } },
             voucherDB: { "3": { "광랜": { "모텔": 200000, "원룸": 180000 }, "기가Slim": { "모텔": 230000, "원룸": 210000 }, "기가1G": { "모텔": 240000, "원룸": 220000 } }, "5": { "광랜": { "모텔": 250000, "원룸": 230000 }, "기가Slim": { "모텔": 280000, "원룸": 260000 }, "기가1G": { "모텔": 290000, "원룸": 270000 } } }
         };
 
@@ -1178,6 +1179,7 @@
             
             const freeWifiEl = document.getElementById('sim-freeWifi');
             const freeUHD3El = document.getElementById('sim-freeUHD3');
+            const uhd4El = document.getElementById('sim-UHD4');
 
             if (!contractEl || !internetTypeEl || !tvTypeEl || !tvTotalEl || !facilityTypeEl) return;
 
@@ -1189,6 +1191,7 @@
             
             const freeWifi = freeWifiEl ? freeWifiEl.checked : false;
             const freeUHD3 = freeUHD3El ? freeUHD3El.checked : false;
+            const isUHD4 = uhd4El ? uhd4El.checked : false;
 
             const internetQty = Math.ceil(tvTotal / 8); 
             const tvMainQty = internetQty; 
@@ -1243,10 +1246,21 @@
             tbody.innerHTML += createMobileRow("정품 공유기", "WIFI 임대", wifiData.desc, internetQty, wifiData.price, wifiAmount, freeWifi);
 
             const settopData = simPriceDB.equipment["UHD3셋탑"];
-            let settopAmount = tvTotal * settopData.price;
-            if (freeUHD3) settopAmount = 0; 
-            subtotal += settopAmount;
-            tbody.innerHTML += createMobileRow("UHD셋탑", "UHD3 셋탑박스", settopData.desc, tvTotal, settopData.price, settopAmount, freeUHD3);
+            if (freeUHD3) {
+                tbody.innerHTML += createMobileRow("UHD셋탑", "UHD3 셋탑박스", settopData.desc, tvTotal, settopData.price, 0, true);
+            } else if (!isUHD4) {
+                // UHD4도 체크해제되어 있고 UHD3무료도 체크해제인 경우 기본 UHD3 유료 과금
+                let settopAmount = tvTotal * settopData.price;
+                subtotal += settopAmount;
+                tbody.innerHTML += createMobileRow("UHD셋탑", "UHD3 셋탑박스", settopData.desc, tvTotal, settopData.price, settopAmount, false);
+            }
+
+            if (isUHD4) {
+                const uhd4Data = simPriceDB.equipment["UHD4셋탑"];
+                let uhd4Amount = tvTotal * uhd4Data.price;
+                subtotal += uhd4Amount;
+                tbody.innerHTML += createMobileRow("UHD셋탑", "UHD4 셋탑박스", uhd4Data.desc, tvTotal, uhd4Data.price, uhd4Amount, false);
+            }
 
             const vat = Math.floor(subtotal * 0.1);
             const grandTotal = subtotal + vat;
