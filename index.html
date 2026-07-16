@@ -730,7 +730,10 @@
             ];
             sections.forEach(id => {
                 const el = document.getElementById(id);
-                if (el) el.classList.add('hidden');
+                if (el) {
+                    el.classList.add('hidden');
+                    if (id === 'plan-grid') el.style.display = 'none'; // md:grid 등 반응형 클래스와의 충돌 방지
+                }
             });
 
             // 현재 선택된 탭에 맞게 필요한 섹션만 노출 및 요금제 렌더링
@@ -738,16 +741,26 @@
                 document.getElementById('lodging-simulator-banner')?.classList.remove('hidden');
                 document.getElementById('lodging-benefits-section')?.classList.remove('hidden');
                 document.getElementById('lodging-promo-table')?.classList.remove('hidden');
-                // 숙박업소는 전용 테이블(lodging-promo-table)을 사용하므로 plan-grid는 숨김 유지
+                // 숙박업소는 전용 테이블(lodging-promo-table)을 사용하므로 plan-grid는 숨김 유지 및 초기화
+                const planGrid = document.getElementById('plan-grid');
+                if (planGrid) planGrid.innerHTML = '';
             } else if (tabName === 'soho') {
                 document.getElementById('soho-new-section')?.classList.remove('hidden');
-                document.getElementById('plan-grid')?.classList.remove('hidden');
+                const planGrid = document.getElementById('plan-grid');
+                if (planGrid) {
+                    planGrid.classList.remove('hidden');
+                    planGrid.style.display = '';
+                }
                 switchSohoSubTab('plaza'); 
                 renderPlanGrid('soho'); // 소호 전용 요금제만 렌더링
             } else if (tabName === 'home') {
                 document.getElementById('benefit-details-wrapper')?.classList.remove('hidden');
                 document.getElementById('home-benefits-section')?.classList.remove('hidden');
-                document.getElementById('plan-grid')?.classList.remove('hidden');
+                const planGrid = document.getElementById('plan-grid');
+                if (planGrid) {
+                    planGrid.classList.remove('hidden');
+                    planGrid.style.display = '';
+                }
                 renderPlanGrid('home'); // 가정용 전용 요금제만 렌더링
             }
         }
