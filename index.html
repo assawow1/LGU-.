@@ -602,7 +602,8 @@
             ],
             soho: [
                 { isBundle: true, title: "가장 많은 사장님의 선택!", normalPrice: "133,100원", salePrice: "48,400원", badgeText: "결합할인 포함", placeType: "상가", subTitle: "인터넷 1G + U+AI전화 + CCTV 에스원 안심", items: [ { name: "인터넷 1G", type: "router" }, { name: "인터넷전화 U+AI전화", type: "phone" }, { name: "CCTV 에스원 안심", type: "cctv" } ] },
-                { isBundle: true, title: "가장 많은 사장님의 선택!", normalPrice: "95,700원", salePrice: "35,200원", badgeText: "결합할인 포함", placeType: "상가", subTitle: "인터넷 500M + 인터넷전화 + CCTV 에스원 안심", items: [ { name: "인터넷 500M", type: "router" }, { name: "인터넷전화", type: "phone" }, { name: "CCTV 에스원 안심", type: "cctv" } ] }
+                { isBundle: true, title: "가장 많은 사장님의 선택!", normalPrice: "95,700원", salePrice: "35,200원", badgeText: "결합할인 포함", placeType: "상가", subTitle: "인터넷 500M + 인터넷전화 + CCTV 에스원 안심", items: [ { name: "인터넷 500M", type: "router" }, { name: "인터넷전화", type: "phone" }, { name: "CCTV 에스원 안심", type: "cctv" } ] },
+                { isBundle: true, title: "가장 많은 사장님의 선택!", normalPrice: "84,700원", salePrice: "29,700원", badgeText: "결합할인 포함", placeType: "상가", subTitle: "인터넷 100M + 인터넷전화 + CCTV 에스원 안심", items: [ { name: "인터넷 100M", type: "router" }, { name: "인터넷전화", type: "phone" }, { name: "CCTV 에스원 안심", type: "cctv" } ] }
             ],
             lodging: []
         };
@@ -748,7 +749,7 @@
             if (category === 'home') {
                 // 가정용 커버플로우 레이아웃
                 planGrid.className = "w-full mb-6 md:mb-16";
-                htmlContent += `<div id="home-plan-slider" class="flex overflow-x-auto overflow-y-visible snap-x snap-mandatory py-10 w-full custom-scrollbar items-center relative" style="scroll-behavior: smooth;" onscroll="handlePlanScroll()">`;
+                htmlContent += `<div id="home-plan-slider" class="flex overflow-x-auto overflow-y-visible snap-x snap-mandatory py-10 w-full custom-scrollbar items-center relative" style="scroll-behavior: smooth;" onscroll="handlePlanScroll('home-plan-slider')">`;
                 
                 // 앞쪽 여백
                 htmlContent += `<div class="shrink-0 w-[5vw] md:w-[25vw]"></div>`;
@@ -819,13 +820,17 @@
                         if(cards.length > 1) {
                             centerPlanCard(cards[1]);
                         }
-                        handlePlanScroll();
+                        handlePlanScroll('home-plan-slider');
                     }
                 }, 100);
 
             } else if (category === 'soho') {
-                // 소호 전용 레이아웃 
-                planGrid.className = "flex flex-nowrap justify-center md:grid md:grid-cols-2 lg:flex lg:justify-center gap-2 md:gap-8 mb-6 md:mb-16 overflow-x-auto pb-4 custom-scrollbar snap-x snap-mandatory w-full";
+                // 소호 전용 커버플로우 레이아웃 적용 (가정용과 동일한 방식 적용)
+                planGrid.className = "w-full mb-6 md:mb-16";
+                htmlContent += `<div id="soho-plan-slider" class="flex overflow-x-auto overflow-y-visible snap-x snap-mandatory py-10 w-full custom-scrollbar items-center relative" style="scroll-behavior: smooth;" onscroll="handlePlanScroll('soho-plan-slider')">`;
+                
+                // 앞쪽 여백
+                htmlContent += `<div class="shrink-0 w-[5vw] md:w-[25vw]"></div>`;
                 
                 data.forEach(item => {
                     let itemsHtml = '';
@@ -842,11 +847,12 @@
                         </div>`;
                     });
 
+                    // 가정용과 완벽히 동일한 plan-card-item 및 커버플로우용 스타일 적용
                     htmlContent += `
-                    <div class="plan-card w-[240px] md:w-[320px] shrink-0 snap-center bg-white rounded-[1.5rem] md:rounded-3xl border-2 border-gray-100 shadow-md hover:shadow-xl hover:border-uplusPink transition-all duration-300 flex flex-col relative mt-4 md:mt-6 mb-2">
-                        <div class="absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[9px] md:text-[12px] font-black px-4 md:px-6 py-1 md:py-1.5 rounded-full shadow-md whitespace-nowrap tracking-tight z-10 border-2 border-white">${item.title}</div>
+                    <div onclick="centerPlanCard(this)" class="plan-card-item w-[240px] md:w-[320px] shrink-0 snap-center bg-white rounded-[1.5rem] md:rounded-3xl border-2 border-gray-100 relative flex flex-col cursor-pointer -mx-4 md:-mx-8 bg-opacity-95 shadow-lg transition-all duration-300">
+                        <div class="absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[9px] md:text-[12px] font-black px-4 md:px-6 py-1 md:py-1.5 rounded-full shadow-md whitespace-nowrap tracking-tight z-20 border-2 border-white">${item.title}</div>
                         
-                        <div class="p-4 md:p-6 pt-6 md:pt-8 flex-grow flex flex-col">
+                        <div class="p-4 md:p-6 pt-6 md:pt-8 flex-grow flex flex-col relative z-10">
                             <div class="text-center mb-3 md:mb-5">
                                 <span class="inline-block bg-pink-50 text-uplusPink text-[8px] md:text-[10px] font-bold px-2 py-0.5 rounded mb-1.5">${item.badgeText}</span>
                                 <h3 class="text-[12px] md:text-base font-black text-gray-900 break-keep leading-tight mt-1 flex items-center justify-center tracking-tighter">${item.subTitle}</h3>
@@ -865,17 +871,43 @@
                             </div>
                         </div>
                         
-                        <div class="p-3 md:p-5 pt-0 w-full mt-auto">
-                            <button onclick="openConsultModal('${item.subTitle} 상담 신청', '${item.placeType}')" class="w-full py-2.5 md:py-3.5 rounded-xl bg-uplusPink hover:bg-pink-700 text-white font-bold text-[11px] md:text-[14px] transition-all shadow-md shadow-pink-200 tracking-tight active:scale-95">가입상담 신청하기</button>
+                        <div class="p-3 md:p-5 pt-0 w-full mt-auto relative z-10">
+                            <button onclick="event.stopPropagation(); openConsultModal('${item.subTitle} 상담 신청', '${item.placeType}')" class="w-full py-2.5 md:py-3.5 rounded-xl bg-uplusPink hover:bg-pink-700 text-white font-bold text-[11px] md:text-[14px] transition-all shadow-md shadow-pink-200 tracking-tight active:scale-95">가입상담 신청하기</button>
                         </div>
                     </div>`;
                 });
+                
+                // 뒤쪽 여백
+                htmlContent += `<div class="shrink-0 w-[5vw] md:w-[25vw]"></div>`;
+                htmlContent += `</div>`;
+                
                 planGrid.innerHTML = htmlContent;
+
+                // 스크롤 중앙 정렬 적용
+                setTimeout(() => {
+                    const container = document.getElementById('soho-plan-slider');
+                    if (container) {
+                        const cards = container.querySelectorAll('.plan-card-item');
+                        if(cards.length > 1) {
+                            centerPlanCard(cards[1]);
+                        }
+                        handlePlanScroll('soho-plan-slider');
+                    }
+                }, 100);
             }
         }
 
-        function handlePlanScroll() {
-            const container = document.getElementById('home-plan-slider');
+        function handlePlanScroll(containerId) {
+            // 이벤트 객체가 전달되었거나 ID가 없는 경우 방어 코드 추가
+            if (!containerId || typeof containerId !== 'string') {
+                if (event && event.target && event.target.id) {
+                    containerId = event.target.id;
+                } else {
+                    return; // containerId를 찾을 수 없으면 종료
+                }
+            }
+
+            const container = document.getElementById(containerId);
             if (!container) return;
             const cards = container.querySelectorAll('.plan-card-item');
             let centerCard = null;
