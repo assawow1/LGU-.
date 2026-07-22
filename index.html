@@ -61,6 +61,20 @@
         
         /* 겹치는 슬라이더용 카드 트랜지션 (잘림방지용) */
         .plan-card-item { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, z-index 0s, border-color 0.3s ease, box-shadow 0.3s ease; }
+        
+        /* 모바일 가로 꽉차게 보기 전용 스타일 */
+        .force-landscape {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            width: 96vh !important;
+            height: 96vw !important;
+            max-width: 96vh !important;
+            max-height: 96vw !important;
+            transform: translate(-50%, -50%) rotate(90deg) !important;
+            object-fit: contain !important;
+            z-index: 105 !important;
+        }
     </style>
 </head>
 <body class="text-gray-800 antialiased selection:bg-uplusPink selection:text-white overflow-x-hidden">
@@ -387,8 +401,17 @@
     <!-- 이미지 확대 모달 (위아래 스크롤 짤림 완벽 방지) -->
     <div id="image-modal" class="fixed inset-0 bg-black/90 z-[100] hidden flex-col items-center justify-start overflow-y-auto custom-scrollbar backdrop-blur-sm transition-opacity duration-300 opacity-0" onclick="closeImageModal()">
         <button onclick="closeImageModal()" class="fixed top-4 right-4 md:top-8 md:right-8 text-white hover:text-gray-300 font-bold text-4xl z-[110] w-10 h-10 flex items-center justify-center bg-black/50 rounded-full focus:outline-none">&times;</button>
-        <div class="w-full min-h-full flex items-start justify-center pt-16 pb-12 px-2 md:pt-24 md:pb-16 md:px-10" onclick="event.stopPropagation()">
-            <img id="image-modal-content" src="" class="w-full max-w-2xl h-auto object-contain rounded-lg shadow-2xl transition-transform duration-300 transform scale-95" alt="확대된 이미지">
+        
+        <!-- 모바일 전용: 가로로 크게 보기 버튼 -->
+        <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-[120] md:hidden">
+            <button id="rotate-img-btn" onclick="toggleRotateImage(event)" class="bg-uplusPink hover:bg-pink-700 text-white px-5 py-2.5 rounded-full font-bold text-[13px] shadow-[0_0_15px_rgba(230,0,126,0.6)] flex items-center gap-1.5 transition-all active:scale-95 whitespace-nowrap">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg> 
+                <span>가로로 꽉차게 보기</span>
+            </button>
+        </div>
+
+        <div class="w-full min-h-full flex items-start justify-center pt-16 pb-24 px-2 md:pt-24 md:pb-16 md:px-10" onclick="event.stopPropagation()">
+            <img id="image-modal-content" src="" class="w-full max-w-2xl h-auto object-contain rounded-lg shadow-2xl transition-all duration-300 transform scale-95 origin-center" alt="확대된 이미지">
         </div>
     </div>
 
@@ -1517,6 +1540,13 @@
             if (modal && modalImg) {
                 modalImg.src = src;
                 modal.scrollTop = 0; // 모달을 열 때 항상 스크롤이 맨 위에서 시작하도록 초기화
+                
+                // 가로보기 상태 초기화
+                isImageRotated = false;
+                modalImg.classList.remove('force-landscape');
+                const rotateBtnSpan = document.querySelector('#rotate-img-btn span');
+                if (rotateBtnSpan) rotateBtnSpan.innerText = '가로로 꽉차게 보기';
+
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 void modal.offsetWidth; 
@@ -1533,11 +1563,35 @@
                 modal.classList.add('opacity-0');
                 modalImg.classList.remove('scale-100');
                 modalImg.classList.add('scale-95');
+                
+                // 가로보기 상태 초기화
+                isImageRotated = false;
+                modalImg.classList.remove('force-landscape');
+                const rotateBtnSpan = document.querySelector('#rotate-img-btn span');
+                if (rotateBtnSpan) rotateBtnSpan.innerText = '가로로 꽉차게 보기';
+
                 setTimeout(() => {
                     modal.classList.add('hidden');
                     modal.classList.remove('flex');
                     modalImg.src = '';
                 }, 300);
+            }
+        }
+        
+        let isImageRotated = false;
+        function toggleRotateImage(event) {
+            if (event) event.stopPropagation(); // 모달이 닫히는 것을 방지
+            const img = document.getElementById('image-modal-content');
+            const btnSpan = document.querySelector('#rotate-img-btn span');
+            
+            isImageRotated = !isImageRotated;
+            
+            if (isImageRotated) {
+                img.classList.add('force-landscape');
+                if (btnSpan) btnSpan.innerText = '세로로 보기 (원래대로)';
+            } else {
+                img.classList.remove('force-landscape');
+                if (btnSpan) btnSpan.innerText = '가로로 꽉차게 보기';
             }
         }
 
