@@ -403,7 +403,7 @@
         <button onclick="closeImageModal()" class="fixed top-4 right-4 md:top-8 md:right-8 text-white hover:text-gray-300 font-bold text-4xl z-[110] w-10 h-10 flex items-center justify-center bg-black/50 rounded-full focus:outline-none">&times;</button>
         
         <!-- 모바일 전용: 가로로 크게 보기 버튼 -->
-        <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-[120] md:hidden">
+        <div id="rotate-btn-container" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-[120] md:hidden">
             <button id="rotate-img-btn" onclick="toggleRotateImage(event)" class="bg-uplusPink hover:bg-pink-700 text-white px-5 py-2.5 rounded-full font-bold text-[13px] shadow-[0_0_15px_rgba(230,0,126,0.6)] flex items-center gap-1.5 transition-all active:scale-95 whitespace-nowrap">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg> 
                 <span>가로로 꽉차게 보기</span>
@@ -1537,6 +1537,8 @@
         function openImageModal(src) {
             const modal = document.getElementById('image-modal');
             const modalImg = document.getElementById('image-modal-content');
+            const rotateBtnContainer = document.getElementById('rotate-btn-container'); // 가로보기 버튼 컨테이너 식별
+
             if (modal && modalImg) {
                 modalImg.src = src;
                 modal.scrollTop = 0; // 모달을 열 때 항상 스크롤이 맨 위에서 시작하도록 초기화
@@ -1546,6 +1548,15 @@
                 modalImg.classList.remove('force-landscape');
                 const rotateBtnSpan = document.querySelector('#rotate-img-btn span');
                 if (rotateBtnSpan) rotateBtnSpan.innerText = '가로로 꽉차게 보기';
+
+                // 제휴카드 상세 이미지(s1.jpg ~ s6.jpg)일 때만 가로보기 버튼 노출, 나머지는 숨김 처리
+                if (rotateBtnContainer) {
+                    if (src.match(/s[1-6]\.jpg$/i)) {
+                        rotateBtnContainer.style.display = '';
+                    } else {
+                        rotateBtnContainer.style.display = 'none';
+                    }
+                }
 
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
