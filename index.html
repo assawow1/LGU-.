@@ -1077,23 +1077,32 @@
             const t2 = document.getElementById('lodging-table-2');
             if (!t1 || !t2) return;
 
+            // 첨부해주신 이미지의 월요금(VAT포함) 정확한 데이터 매핑
+            const feeData = {
+                6: 84700, 7: 93500, 8: 102300,
+                9: 145200, 10: 151800, 11: 160600, 12: 169400, 13: 178200, 14: 187000, 15: 195800, 16: 204600,
+                17: 245300, 18: 254100, 19: 262900, 20: 271700, 21: 280500, 22: 289300, 23: 298100, 24: 306900,
+                25: 347600, 26: 356400, 27: 365200, 28: 374000, 29: 382800, 30: 391600, 31: 400400, 32: 409200,
+                33: 449900, 34: 458700, 35: 467500, 36: 476300, 37: 485100, 38: 493900, 39: 502700, 40: 511500,
+                41: 552200, 42: 561000, 43: 569800, 44: 578600, 45: 587400, 46: 596200, 47: 605000, 48: 613800,
+                49: 654500
+            };
+
             let html1 = '';
-            for (let i = 10; i <= 29; i++) {
-                let mainLines = Math.ceil(i / 8);
-                let subLines = i - mainLines;
-                let totalFee = (mainLines * 38500) + (subLines * 6600);
-                let perRoom = Math.floor(totalFee / i);
+            // 표 1: 6 ~ 27 객실
+            for (let i = 6; i <= 27; i++) {
+                let totalFee = feeData[i];
+                let perRoom = Math.round(totalFee / i);
                 let gift = i * 280000;
                 html1 += `<tr class="text-center bg-white border-b border-gray-300 hover:bg-pink-50 transition-colors text-[9px] md:text-[13px]"><td class="py-1 md:py-2 border-r border-gray-300 text-gray-800 font-medium font-mono">${i}</td><td class="py-1 md:py-2 border-r border-gray-300 text-gray-800 font-medium font-mono">${totalFee.toLocaleString()}원</td><td class="py-1 md:py-2 border-r border-gray-300 text-gray-600 font-mono">${perRoom.toLocaleString()}원</td><td class="py-1 md:py-2 text-gray-800 font-bold tracking-tight font-mono">${gift.toLocaleString()}원</td></tr>`;
             }
             t1.innerHTML = html1;
 
             let html2 = '';
-            for (let i = 30; i <= 49; i++) {
-                let mainLines = Math.ceil(i / 8);
-                let subLines = i - mainLines;
-                let totalFee = (mainLines * 38500) + (subLines * 6600);
-                let perRoom = Math.floor(totalFee / i);
+            // 표 2: 28 ~ 49 객실
+            for (let i = 28; i <= 49; i++) {
+                let totalFee = feeData[i];
+                let perRoom = Math.round(totalFee / i);
                 let gift = i * 280000;
                 html2 += `<tr class="text-center bg-white border-b border-gray-300 hover:bg-pink-50 transition-colors text-[9px] md:text-[13px]"><td class="py-1 md:py-2 border-r border-gray-300 text-gray-800 font-medium font-mono">${i}</td><td class="py-1 md:py-2 border-r border-gray-300 text-gray-800 font-medium font-mono">${totalFee.toLocaleString()}원</td><td class="py-1 md:py-2 border-r border-gray-300 text-gray-600 font-mono">${perRoom.toLocaleString()}원</td><td class="py-1 md:py-2 text-red-600 font-bold tracking-tight font-mono">${gift.toLocaleString()}원</td></tr>`;
             }
